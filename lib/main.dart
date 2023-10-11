@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       return GetMaterialApp(
         builder: EasyLoading.init(),
         debugShowCheckedModeBanner: false,
-        title: 'dart p',
+        title: 'Delta Store',
         theme: ThemeData(
           appBarTheme: const AppBarTheme(
               systemOverlayStyle: SystemUiOverlayStyle(
