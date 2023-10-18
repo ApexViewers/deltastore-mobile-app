@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
@@ -13,8 +12,10 @@ import '../../../../constant/paddings.dart';
 import '../../../../constant/spacing.dart';
 import '../../../../constant/styles/app_textstyles.dart';
 import '../../../../constant/styles/colors.dart';
+import '../../../../data/Controllers/addto_cart_controller/addto_cart.dart';
 import '../../../../data/Controllers/all_product_controller/all_product_controller.dart';
 import '../../../../data/Controllers/product_by_id_controller/product_by_id_controller.dart';
+import '../../../../data/Controllers/total_amount_cart_controller/total_amount_controller.dart';
 import '../../../../reuseable_widgets/rounded_button.dart';
 import '../../../../reuseable_widgets/textformfield_contact.dart';
 import '../../../pantum_printers/our_gauarantee_to_you.dart';
@@ -48,6 +49,8 @@ class _HpLaptopDetailsScreenState extends State<HpLaptopDetailsScreen>
   bool addText = false;
   late TabController _tabController;
   var ProductidController = Get.put((ProductIdController()));
+  var addToCartController = Get.put((AddToCartDataController()));
+  var totalAmoutController=Get.put(TotalAmountController());
 
   @override
   void initState() {
@@ -71,6 +74,7 @@ class _HpLaptopDetailsScreenState extends State<HpLaptopDetailsScreen>
 
   @override
   Widget build(BuildContext context) {
+    print("test1");
     return Scaffold(
         backgroundColor: colorWhite.withOpacity(0.9),
         appBar: AppBar(
@@ -136,7 +140,13 @@ class _HpLaptopDetailsScreenState extends State<HpLaptopDetailsScreen>
                                                         .toString(),
                                                     style: hMedium.copyWith(
                                                       color: cGrey,
-                                                      fontSize: MediaQuery.of(context).size.width < 600 ? 11 : 16,
+                                                      fontSize:
+                                                          MediaQuery.of(context)
+                                                                      .size
+                                                                      .width <
+                                                                  600
+                                                              ? 11
+                                                              : 16,
                                                       decoration: TextDecoration
                                                           .lineThrough,
                                                     )),
@@ -148,8 +158,15 @@ class _HpLaptopDetailsScreenState extends State<HpLaptopDetailsScreen>
                                                       .productBYid.salePrice
                                                       .toString(),
                                                   style: hMedium.copyWith(
-                                                      color: cRed,
-                                                    fontSize: MediaQuery.of(context).size.width < 600 ? 11 : 16,),
+                                                    color: cRed,
+                                                    fontSize:
+                                                        MediaQuery.of(context)
+                                                                    .size
+                                                                    .width <
+                                                                600
+                                                            ? 11
+                                                            : 16,
+                                                  ),
                                                 ),
                                               ],
                                             ),
@@ -175,7 +192,13 @@ class _HpLaptopDetailsScreenState extends State<HpLaptopDetailsScreen>
                                                           TextOverflow.ellipsis,
                                                       maxLines: 2,
                                                       style: hMedium.copyWith(
-                                                        fontSize: MediaQuery.of(context).size.width < 600 ? 11 : 16,
+                                                        fontSize: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width <
+                                                                600
+                                                            ? 11
+                                                            : 16,
                                                         color: Colors.black,
                                                       ),
                                                     ),
@@ -223,10 +246,16 @@ class _HpLaptopDetailsScreenState extends State<HpLaptopDetailsScreen>
                                                                         index]
                                                                     .name
                                                                     .toString(),
-                                                                style: hxMedium.copyWith(
-                                                                    color: Colors
-                                                                        .black,
-                                                                  fontSize: MediaQuery.of(context).size.width < 600 ? 11 : 16,)),
+                                                                style: hxMedium
+                                                                    .copyWith(
+                                                                  color: Colors
+                                                                      .black,
+                                                                  fontSize:
+                                                                      MediaQuery.of(context).size.width <
+                                                                              600
+                                                                          ? 11
+                                                                          : 16,
+                                                                )),
                                                           ],
                                                         ),
                                                         Column(
@@ -348,57 +377,74 @@ class _HpLaptopDetailsScreenState extends State<HpLaptopDetailsScreen>
                                                             FontWeight.w800),
                                                   ),
                                                 ),
-
                                                 Flexible(
                                                     child: Column(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment.start,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Row(
                                                       crossAxisAlignment:
                                                           CrossAxisAlignment
                                                               .start,
                                                       children: [
-                                                        Row(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
+                                                        Column(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
                                                                   .start,
                                                           children: [
-                                                            Column(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                Container(
-                                                                  height:  MediaQuery.of(context).size.height < 600 ? 12.h : 9.h,
-                                                                  width: MediaQuery.of(context).size.width < 600 ? 50.w : 74.w,
-                                                                  child: Html(
-                                                                    data: ProductidController.productBYid.description,
-                                                                    style: {
-                                                                      '#': Style(
-                                                                        fontFamily: nexabook,
-                                                                        fontSize: FontSize(
-                                                                          MediaQuery.of(context).size.width < 600 ? 10.5.sp : 6.sp,
-                                                                        ),
-                                                                        maxLines: 3,
-                                                                        textOverflow: TextOverflow.ellipsis,
-                                                                      ),
-                                                                    },
+                                                            Container(
+                                                              height: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .height <
+                                                                      600
+                                                                  ? 12.h
+                                                                  : 9.h,
+                                                              width: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .width <
+                                                                      600
+                                                                  ? 50.w
+                                                                  : 74.w,
+                                                              child: Html(
+                                                                data: ProductidController
+                                                                    .productBYid
+                                                                    .description,
+                                                                style: {
+                                                                  '#': Style(
+                                                                    fontFamily:
+                                                                        nexabook,
+                                                                    fontSize:
+                                                                        FontSize(
+                                                                      MediaQuery.of(context).size.width <
+                                                                              600
+                                                                          ? 10.5
+                                                                              .sp
+                                                                          : 6.sp,
+                                                                    ),
+                                                                    maxLines: 3,
+                                                                    textOverflow:
+                                                                        TextOverflow
+                                                                            .ellipsis,
                                                                   ),
-                                                                )
-
-
-                                                              ],
-                                                            ),
-                                                            Icon(
-                                                              Icons.arrow_forward,
-                                                              size: 19,
-                                                              color: cBlack
-                                                                  .withOpacity(
-                                                                      0.9),
+                                                                },
+                                                              ),
                                                             )
                                                           ],
                                                         ),
+                                                        Icon(
+                                                          Icons.arrow_forward,
+                                                          size: 19,
+                                                          color: cBlack
+                                                              .withOpacity(0.9),
+                                                        )
                                                       ],
-                                                    ))
+                                                    ),
+                                                  ],
+                                                ))
                                               ],
                                             ),
                                           ),
@@ -438,8 +484,20 @@ class _HpLaptopDetailsScreenState extends State<HpLaptopDetailsScreen>
                                                               .start,
                                                       children: [
                                                         SizedBox(
-                                                          height:  MediaQuery.of(context).size.height < 600 ? 9.h :9.h,
-                                                          width: MediaQuery.of(context).size.width < 600 ? 50.w : 56.w,
+                                                          height: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .height <
+                                                                  600
+                                                              ? 9.h
+                                                              : 9.h,
+                                                          width: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width <
+                                                                  600
+                                                              ? 50.w
+                                                              : 56.w,
                                                           child: Column(
                                                             mainAxisAlignment:
                                                                 MainAxisAlignment
@@ -458,7 +516,15 @@ class _HpLaptopDetailsScreenState extends State<HpLaptopDetailsScreen>
                                                             ],
                                                           ),
                                                         ),
-                                                        SizedBox(width:MediaQuery.of(context).size.width < 600 ? 10.5.sp : 14.w ,),
+                                                        SizedBox(
+                                                          width: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width <
+                                                                  600
+                                                              ? 10.5.sp
+                                                              : 14.w,
+                                                        ),
                                                         Icon(
                                                           Icons.arrow_forward,
                                                           size: 19,
@@ -494,44 +560,64 @@ class _HpLaptopDetailsScreenState extends State<HpLaptopDetailsScreen>
                                               ),
                                               Flexible(
                                                   child: Column(
+                                                children: [
+                                                  Row(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
                                                     children: [
-                                                      Row(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          SizedBox(width:MediaQuery.of(context).size.width < 600 ? 10.5.sp : 4.w ,),
-                                                          SizedBox(
-                                                            height:  MediaQuery.of(context).size.height < 600 ? 10.5.sp : 8.h,
-                                                            width: MediaQuery.of(context).size.width < 600 ? 50.w : 60.w,
-                                                            child: Column(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                Text(
-                                                                  "Express delivery We deliver in 2 to 4 business days Responsive customer service We have a responsive customer service available 7/7",
-                                                                  maxLines: 2,
-                                                                  style: hsmall.copyWith(
-                                                                      overflow:
-                                                                          TextOverflow
-                                                                              .ellipsis,
-                                                                      color:
-                                                                          cBlack),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                          Icon(
-                                                            Icons.arrow_forward,
-                                                            size: 19,
-                                                            color: cBlack
-                                                                .withOpacity(0.9),
-                                                          )
-                                                        ],
+                                                      SizedBox(
+                                                        width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width <
+                                                                600
+                                                            ? 10.5.sp
+                                                            : 4.w,
                                                       ),
+                                                      SizedBox(
+                                                        height: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .height <
+                                                                600
+                                                            ? 10.5.sp
+                                                            : 8.h,
+                                                        width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width <
+                                                                600
+                                                            ? 50.w
+                                                            : 60.w,
+                                                        child: Column(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Text(
+                                                              "Express delivery We deliver in 2 to 4 business days Responsive customer service We have a responsive customer service available 7/7",
+                                                              maxLines: 2,
+                                                              style: hsmall.copyWith(
+                                                                  overflow:
+                                                                      TextOverflow
+                                                                          .ellipsis,
+                                                                  color:
+                                                                      cBlack),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Icon(
+                                                        Icons.arrow_forward,
+                                                        size: 19,
+                                                        color: cBlack
+                                                            .withOpacity(0.9),
+                                                      )
                                                     ],
-                                                  ))
+                                                  ),
+                                                ],
+                                              ))
                                             ],
                                           ),
                                         ),
@@ -573,8 +659,20 @@ class _HpLaptopDetailsScreenState extends State<HpLaptopDetailsScreen>
                                                               .start,
                                                       children: [
                                                         SizedBox(
-                                                          height:  MediaQuery.of(context).size.height < 600 ? 10.5.sp : 9.h,
-                                                          width: MediaQuery.of(context).size.width < 600 ? 50.w : 60.w,
+                                                          height: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .height <
+                                                                  600
+                                                              ? 10.5.sp
+                                                              : 9.h,
+                                                          width: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width <
+                                                                  600
+                                                              ? 50.w
+                                                              : 60.w,
                                                           child: Column(
                                                             mainAxisAlignment:
                                                                 MainAxisAlignment
@@ -614,72 +712,84 @@ class _HpLaptopDetailsScreenState extends State<HpLaptopDetailsScreen>
                                           },
                                           child: Row(
                                             crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                                CrossAxisAlignment.start,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsets.only(left: 10),
+                                                padding: const EdgeInsets.only(
+                                                    left: 10),
                                                 child: Container(
                                                   width: 25.w,
                                                   child: Text(
                                                     "Our Gauarantee to you",
                                                     maxLines: 3,
-                                                    overflow: TextOverflow.ellipsis
-                                                    ,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
                                                     style: hsmall.copyWith(
                                                         color: cBlack,
                                                         fontWeight:
-                                                        FontWeight.w800),
+                                                            FontWeight.w800),
                                                   ),
                                                 ),
                                               ),
-
                                               Flexible(
                                                   child: Padding(
-                                                    padding: const EdgeInsets.only(
-                                                        left: 8, right: 8),
-                                                    child: Column(
-                                                      mainAxisAlignment:
+                                                padding: const EdgeInsets.only(
+                                                    left: 8, right: 8),
+                                                child: Column(
+                                                  mainAxisAlignment:
                                                       MainAxisAlignment.start,
-                                                      crossAxisAlignment:
+                                                  crossAxisAlignment:
                                                       CrossAxisAlignment.start,
-                                                      children: [
-                                                        Row(
-                                                          crossAxisAlignment:
+                                                  children: [
+                                                    Row(
+                                                      crossAxisAlignment:
                                                           CrossAxisAlignment
                                                               .start,
-                                                          children: [
-                                                            SizedBox(
-                                                              height:  MediaQuery.of(context).size.height < 600 ? 10.5.sp : 9.h,
-                                                              width: MediaQuery.of(context).size.width < 600 ? 50.w : 60.w,
-                                                              child: Column(
-                                                                mainAxisAlignment:
+                                                      children: [
+                                                        SizedBox(
+                                                          height: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .height <
+                                                                  600
+                                                              ? 10.5.sp
+                                                              : 9.h,
+                                                          width: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width <
+                                                                  600
+                                                              ? 50.w
+                                                              : 60.w,
+                                                          child: Column(
+                                                            mainAxisAlignment:
                                                                 MainAxisAlignment
                                                                     .start,
-                                                                children: [
-                                                                  Text(
-                                                                    "In case of failure, the product is repaired free of charge. If the repair is not possible, Parts Can be replaced and you have to pay the price for Replaced Parts only. Labor & Servicing absolutely free for 1 year.",
-                                                                    maxLines: 2,
-                                                                    style: hsmall.copyWith(
-                                                                        overflow:
+                                                            children: [
+                                                              Text(
+                                                                "In case of failure, the product is repaired free of charge. If the repair is not possible, Parts Can be replaced and you have to pay the price for Replaced Parts only. Labor & Servicing absolutely free for 1 year.",
+                                                                maxLines: 2,
+                                                                style: hsmall.copyWith(
+                                                                    overflow:
                                                                         TextOverflow
                                                                             .ellipsis,
-                                                                        color:
+                                                                    color:
                                                                         cBlack),
-                                                                  ),
-                                                                ],
                                                               ),
-                                                            ),
-                                                            Icon(
-                                                              Icons.arrow_forward,
-                                                              size: 19,
-                                                              color: cBlack
-                                                                  .withOpacity(0.9),
-                                                            )
-                                                          ],
+                                                            ],
+                                                          ),
                                                         ),
+                                                        Icon(
+                                                          Icons.arrow_forward,
+                                                          size: 19,
+                                                          color: cBlack
+                                                              .withOpacity(0.9),
+                                                        )
                                                       ],
                                                     ),
-                                                  )),
+                                                  ],
+                                                ),
+                                              )),
                                             ],
                                           ),
                                         ),
@@ -709,7 +819,7 @@ class _HpLaptopDetailsScreenState extends State<HpLaptopDetailsScreen>
                           width: 100.w,
                           color: colorWhite,
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Container(
                                 alignment: Alignment.bottomCenter,
@@ -718,51 +828,69 @@ class _HpLaptopDetailsScreenState extends State<HpLaptopDetailsScreen>
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                        ProductidController
-                                            .productBYid.salePrice
-                                            .toString(),
-                                        style: hsmall.copyWith(
-                                            color: cBlack.withOpacity(0.6))),
-                                    Text(
-                                        ProductidController
-                                            .productBYid.regularPrice
-                                            .toString(),
+                                        "${"AED "' '+ ProductidController.productBYid.regularPrice.toString()}",
                                         style: hMedium.copyWith(
                                           color: cGrey,
                                           fontSize: 16,
                                           decoration:
-                                              TextDecoration.lineThrough,
+                                          TextDecoration.lineThrough,
                                         )),
+                                    Text(
+                                        "${"AED "' '+ProductidController.productBYid.salePrice.toString()}",
+                                        style: hsmall.copyWith(
+                                          fontSize: 20,
+                                            color: cBlack.withOpacity(0.8)),),
+
                                   ],
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(right: 8),
-                                child: RoundedButton(
+                              Obx(() {
+                                return Padding(
+                                  padding: const EdgeInsets.only(right: 8),
+                                  child: addToCartController.buttonText.value ==
+                                          "Add to Cart"
+                                      ?  ProductidController.productLoadbutton.value? CircularProgressIndicator():RoundedButton(
                                     borderRadius: 12,
                                     height: 6.h,
                                     width: 50.w,
                                     backGroundColor: appthem,
-                                    textButton: "Add to cart",
-                                    onTap: () {
-                                      Get.to(() => AddToCart(
-                                        id: ProductidController
-                                            .productBYid.id.toString(),
-                                            prooductName:
-                                            ProductidController
-                                                .productBYid.name
-                                                .toString(),
-                                            prooductPrice: ProductidController
-                                                .productBYid
-                                                .salePrice
-                                                .toString(),
-                                            prooductImage:
-                                            ProductidController
-                                                .productBYid.images![0].src
-                                                .toString(),
-                                          ));
-                                    }),
-                              )
+                                    textButton: "Add to Cart",
+                                    onTap: () async {
+                                      await addToCartController.addToCart(
+                                        ProductidController.productBYid.id
+                                            .toString(),
+                                        1.toString(),
+                                      );
+                                    },
+                                  )
+                                      : Column(
+                                        children: [
+
+                                          RoundedButton(
+                                              borderRadius: 12,
+                                              height: 6.h,
+                                              width: 50.w,
+                                              backGroundColor: Colors.red,
+                                              textButton: "Check out",
+                                              onTap: () {
+                                                Get.to(() => AddToCart(price:   ProductidController
+                                                    .productBYid.salePrice
+                                                    .toString(),
+
+
+                                                ));
+                                                totalAmoutController.totalAmountToCart();
+
+
+
+                                                
+
+                                              },
+                                            ),
+                                        ],
+                                      ),
+                                );
+                              })
                             ],
                           ),
                         ),

@@ -8,7 +8,7 @@ import '../../constant/paddings.dart';
 import '../../constant/styles/app_textstyles.dart';
 import '../../constant/styles/colors.dart';
 import '../desktop_computer/component/desktop_computer_grid_components.dart';
-import '../home/components/deals_of_day_product_components/listview_products_component.dart';
+
 import 'components/40_sales_product_components/sales_component.dart';
 
 class SalesProduct extends StatefulWidget {

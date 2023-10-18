@@ -23,10 +23,11 @@ class DellCategoriesListController extends GetxController {
     hpcategoriesLoading.value = true;
     var response = await  DellCategoriesServices.dellCategoriesList();
     if (response is List<DellLaptopModel>) {
-      print(response.toString());
+     print("hit successfullytttttttt");
       hpcategoriesLoading.value = false;
       hpLaptopModel = response;
     } else {
+      print("wrror show");
       hpcategoriesLoading.value = false;
       hpcategoriesError.value = response.toString();
     }

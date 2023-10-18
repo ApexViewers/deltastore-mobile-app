@@ -11,7 +11,7 @@ import '../../Model/lenovo_laptop_model/lenvo_laptop_model.dart';
 class LenovoCategoriesServices{
   static Future<dynamic> lenovoCategoriesList() async {
     try {
-      var url = "${AppUrls.baseAddress}${AppUrls.lenovoLaptops}";
+      var url = "${AppUrls.baseAddressneed}${AppUrls.lenovoLaptops}";
       var res = await BaseClientClass.get(url, "");
       print('in tryret');
 

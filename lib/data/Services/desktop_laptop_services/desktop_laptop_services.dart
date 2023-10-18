@@ -9,7 +9,7 @@ import '../../Model/desktop_computer_model/desktop_model.dart';
 class DesktopLaptopServices {
  static Future<dynamic> desktopLaptop() async {
     try {
-      var url = "${AppUrls.baseAddress}${AppUrls.desktopComputer}";
+      var url = "${AppUrls.baseAddressneed}${AppUrls.desktopComputer}";
       var res = await BaseClientClass.get(url, '');
       if (res is http.Response) {
         print("hit successfully");

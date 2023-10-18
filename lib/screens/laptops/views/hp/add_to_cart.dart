@@ -1,479 +1,597 @@
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
+import 'package:test_app/screens/laptops/views/hp/hp_details.dart';
 
-import '../../../../constant/decorations.dart';
 import '../../../../constant/paddings.dart';
 import '../../../../constant/routs_strings/routs_strings.dart';
-import '../../../../constant/spacing.dart';
 import '../../../../constant/styles/app_textstyles.dart';
 import '../../../../constant/styles/colors.dart';
+import '../../../../data/Controllers/addto_cart_controller/addto_cart.dart';
+import '../../../../data/Controllers/delete_cart_controller/delete_cart_controller.dart';
+import '../../../../data/Controllers/increment_account_controller/increment_quantity_controller.dart';
+import '../../../../data/Controllers/items_in_cart_controller/item_in_cart_controller.dart';
+import '../../../../data/Controllers/product_by_id_controller/product_by_id_controller.dart';
+import '../../../../data/Controllers/total_amount_cart_controller/total_amount_controller.dart';
 import '../../../../reuseable_widgets/rounded_button.dart';
 import '../../../address/view/address_screen.dart';
 import '../../../home/components/top_bar_component.dart';
-import '../../controller/add_to_cart_controller.dart';
 
 class AddToCart extends StatefulWidget {
-  String? prooductImage;
-  String? prooductName;
-  dynamic prooductPrice;
-  dynamic salePrice;
-  String? id;
+  String price;
 
-  AddToCart(
-      {Key? key, this.prooductImage, this.prooductName, this.prooductPrice,this.id,this.salePrice})
-      : super(key: key);
+
+  AddToCart({super.key, required this.price});
 
   @override
   State<AddToCart> createState() => _AddToCartState();
 }
 
 class _AddToCartState extends State<AddToCart> {
-  int initialValue = 0;
-  var valueChange =0;
-  int prooductPrice = 700;
-  String finlaPrice = "";
-  List<double> productPrices = [];
-  TextEditingController _priceController = TextEditingController();
+  String item = '';
+
+  // final ItemInCartController itemController = Get.find<ItemInCartController>();
+  var itemController = Get.put((ItemInCartController()));
+  var Deleteitem = Get.put((DeleteCartDataController()));
+  var totalAmoutController = Get.put(TotalAmountController());
+  var incrementAmountController = Get.put(IncrementAmountController());
+  var valueChange;
+  var ProductidController = Get.put((ProductIdController()));
+  var addToCartController = Get.put((AddToCartDataController()));
 
   @override
   Widget build(BuildContext context) {
-    print(widget.id.toString()+"shod id data");
-    int priceChange = int.parse(widget.prooductPrice.toString());
-    var addToCartController = Get.find<AddToCartController>();
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: colorWhite,
-        title: TopBarComponent(),
-      ),
-      backgroundColor: colorWhite.withOpacity(0.9),
-      body:
-          Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        Expanded(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: padA5,
-              child: Column(
-                children: [
-                  InkWell(
-                    onTap: () {
-                      Get.to(() => AddressScreen());
-                    },
-                    child: Card(
-                      child: Padding(
-                        padding: padA5.add(EdgeInsets.only(top: 0, bottom: 4)),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4)),
-                          child: Center(
+        appBar: AppBar(
+            elevation: 0,
+            backgroundColor: colorWhite,
+            title: TopBarComponent(),
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back, color: cBlack),
+              onPressed: () {
+                // Navigate back to the previous screen.
+                Navigator.pop(context);
+
+                // Reset the "Add to Cart" button text.
+                addToCartController
+                    .resetButtonText(); // Replace 'addCartDataController' with your controller instance.
+              },
+            )),
+        backgroundColor: colorWhite.withOpacity(0.9),
+        body: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: padA5,
+                    child: Column(
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            Get.to(() => AddressScreen());
+                          },
+                          child: Card(
                             child: Padding(
                               padding:
-                                  padA5.add(EdgeInsets.only(top: 4, bottom: 4)),
-                              child: Text(
-                                "Add new Address",
-                                style: hMedium.copyWith(
-                                    color: cBlack, fontSize: 15),
+                                  padA5.add(EdgeInsets.only(top: 0, bottom: 4)),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(4)),
+                                child: Center(
+                                  child: Padding(
+                                    padding: padA5.add(
+                                        EdgeInsets.only(top: 4, bottom: 4)),
+                                    child: Text(
+                                      "Add new Address",
+                                      style: hMedium.copyWith(
+                                          color: cBlack, fontSize: 15),
+                                    ),
+                                  ),
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    width: 100.w,
-                    child: ListView.builder(
-                        physics: PageScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount:1 ,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: padA6,
-                            child: Column(
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Obx(() {
+                          if (itemController.isLoading.value) {
+                            print("test1");
+                            return Center(child: CircularProgressIndicator());
+                          } else if (itemController.error.value.isNotEmpty) {
+                            return Center(
+                                child: Text(itemController.error.value));
+                          } else if (itemController.items.isEmpty) {
+                            return Center(child: Text("No items in the cart"));
+                          } else {
+                            return Column(
                               children: [
-                                Card(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                Container(
+                                  width: 100.w,
+                                  child: ListView.builder(
+                                      physics: PageScrollPhysics(),
+                                      shrinkWrap: true,
+                                      itemCount: itemController.items.length,
+                                      itemBuilder: (context, index) {
+                                        final item = itemController.items.values
+                                            .elementAt(index);
+print(itemController.items.length==0);
+                                        // valueChange=item['quantity']['value'];
+                                        int remainingStock = item['quantity']
+                                                ['max_purchase'] -
+                                            item['quantity']['value'];
+                                        return Padding(
+                                          padding: padA6,
+                                          child: Column(
                                             children: [
-                                              Padding(
-                                                padding: padA5,
-                                                child: Container(
-                                                  margin: EdgeInsets.only(
-                                                      left: 10,
-                                                      right: 10,
-                                                      bottom: 10,
-                                                      top: 10),
-                                                  height: 6.h,
-                                                  width: 12.w,
-                                                  decoration: BoxDecoration(
-                                                    image: DecorationImage(
-                                                      image: NetworkImage(widget
-                                                          .prooductImage
-                                                          .toString()),
-                                                      fit: BoxFit.cover,
-                                                    ),
-                                                  ),
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                          Flexible(
-                                              child: Padding(
-                                            padding: padA5,
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: [
-                                                Row(
+                                              Card(
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
                                                   children: [
-                                                    Flexible(
-                                                      child: Column(
-                                                        children: [
-                                                          Text(
-                                                            widget.prooductName
-                                                                .toString(),
-                                                            style: hMedium.copyWith(
-                                                                fontSize: 10,
-                                                                color: cBlack
-                                                                    .withOpacity(
-                                                                        0.6)),
-                                                          ),
-                                                          Row(
+                                                    Row(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Row(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Padding(
+                                                              padding: padA5,
+                                                              child: Container(
+                                                                margin:
+                                                                    const EdgeInsets
+                                                                            .only(
+                                                                        left:
+                                                                            10,
+                                                                        right:
+                                                                            10,
+                                                                        bottom:
+                                                                            10,
+                                                                        top:
+                                                                            10),
+                                                                height: 6.h,
+                                                                width: 12.w,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  image:
+                                                                      DecorationImage(
+                                                                    image: NetworkImage(
+                                                                        item['featured_image']
+                                                                            .toString()),
+                                                                    fit: BoxFit
+                                                                        .cover,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            )
+                                                          ],
+                                                        ),
+                                                        Flexible(
+                                                            child: Padding(
+                                                          padding: padA5,
+                                                          child: Column(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .start,
                                                             children: [
-                                                              Text(
-                                                                widget
-                                                                    .prooductPrice
-                                                                    .toString(),
-                                                                style: hMedium.copyWith(
-                                                                    fontSize:
-                                                                        10,
-                                                                    color: cBlack
-                                                                        .withOpacity(
-                                                                            0.9)),
+                                                              Row(
+                                                                children: [
+                                                                  Flexible(
+                                                                    child:
+                                                                        Column(
+                                                                      children: [
+                                                                        Text(
+                                                                          item[
+                                                                              'name'],
+                                                                          style: hMedium.copyWith(
+                                                                              fontSize: 10,
+                                                                              color: cBlack.withOpacity(0.6)),
+                                                                        ),
+                                                                        Row(
+                                                                          children: [
+                                                                            Text(
+                                                                              item['price'],
+                                                                              style: hMedium.copyWith(fontSize: 10, color: cBlack.withOpacity(0.9)),
+                                                                            ),
+                                                                          ],
+                                                                        ),
+                                                                        Row(
+                                                                          children: [
+                                                                            Text(
+                                                                              "${"Limited stock :" ' '}${'only' ' '}${remainingStock}${" left -"}${"order now"}",
+                                                                              style: hMedium.copyWith(fontSize: 12, color: cRed.withOpacity(0.9)),
+                                                                            ),
+                                                                          ],
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                ],
                                                               ),
                                                             ],
                                                           ),
-                                                        ],
-                                                      ),
+                                                        )),
+                                                      ],
                                                     ),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Padding(
+                                                          padding: padA5,
+                                                          child: Container(
+                                                            decoration: BoxDecoration(
+                                                                border: Border.all(
+                                                                    color:
+                                                                        cGrey),
+                                                                color: colorWhite
+                                                                    .withOpacity(
+                                                                        0.9),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            4)),
+                                                            child: Row(
+                                                              children: [
+                                                                Row(
+                                                                  children: [
+                                                                    InkWell(
+                                                                      onTap:
+                                                                          () async {
+                                                                        setState(
+                                                                            () {
+                                                                          int initialValue =
+                                                                              int.parse(item['quantity']['value'].toString());
+                                                                          itemController.incrementAmountToCart(
+                                                                              (initialValue - 1).toString(),
+                                                                              item['item_key']);
+
+                                                                          // Update the total amount
+                                                                        });
+                                                                        // totalAmoutController.totalAmountToCart();
+                                                                        //
+                                                                        // // Add a delay before calling the API
+                                                                        // // 2 seconds delay
+                                                                        //
+                                                                        // // Call the API to fetch data
+                                                                        // itemController.fetchDataFromApi();
+                                                                      },
+                                                                      child:
+                                                                          Icon(
+                                                                        Icons
+                                                                            .remove,
+                                                                        color: cBlack
+                                                                            .withOpacity(0.7),
+                                                                      ),
+                                                                    ),
+                                                                    SizedBox(
+                                                                      width: 4,
+                                                                    ),
+                                                                    Text(item['quantity']
+                                                                            [
+                                                                            'value']
+                                                                        .toString()),
+                                                                    SizedBox(
+                                                                      width: 4,
+                                                                    ),
+                                                                    InkWell(
+                                                                      onTap:
+                                                                          () {
+                                                                        setState(
+                                                                            () {
+                                                                          int initialValue =
+                                                                              int.parse(item['quantity']['value'].toString());
+                                                                          int incrementedValue =
+                                                                              initialValue + 1;
+                                                                          // totalAmoutController.totalAmountToCart();
+
+                                                                          // Call the controller method to increment the amount
+                                                                          itemController.incrementAmountToCart(
+                                                                              incrementedValue.toString(),
+                                                                              item['item_key']);
+
+                                                                          // Add a delay before calling the API
+
+                                                                          // itemController.fetchDataFromApi();
+                                                                        });
+                                                                      },
+                                                                      child:
+                                                                          Icon(
+                                                                        Icons
+                                                                            .add,
+                                                                        color: cBlack
+                                                                            .withOpacity(0.7),
+                                                                        size:
+                                                                            20,
+                                                                      ),
+                                                                    )
+                                                                  ],
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding: padA5.add(
+                                                              EdgeInsets.only(
+                                                                  left: 10)),
+                                                          child: Container(
+                                                            decoration: BoxDecoration(
+                                                                border: Border.all(
+                                                                    color:
+                                                                        cGrey),
+                                                                color: colorWhite
+                                                                    .withOpacity(
+                                                                        0.9),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            4)),
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                Padding(
+                                                                  padding: padA6.add(
+                                                                      EdgeInsets.only(
+                                                                          left:
+                                                                              5)),
+                                                                  child: Icon(
+                                                                    Icons
+                                                                        .favorite_border,
+                                                                    color: cBlack
+                                                                        .withOpacity(
+                                                                            0.3),
+                                                                  ),
+                                                                ),
+                                                                Padding(
+                                                                  padding:
+                                                                      padA5,
+                                                                  child: Text(
+                                                                    "Move to wishlist",
+                                                                    style: hsmall
+                                                                        .copyWith(
+                                                                            color:
+                                                                                cBlack.withOpacity(0.6)),
+                                                                  ),
+                                                                )
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding: padA5.add(
+                                                              EdgeInsets.only(
+                                                                  left: 0)),
+                                                          child: InkWell(
+                                                            onTap: () {
+                                                              setState(() {
+                                                                itemController
+                                                                    .deleteToCart(
+                                                                        item['item_key']
+                                                                            .toString());
+                                                                totalAmoutController
+                                                                    .totalAmountToCart();
+
+
+                                                                print(item[
+                                                                    'item_key']);
+                                                              });
+
+                                                              // Add your delete item logic here
+                                                            },
+                                                            child: Container(
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                border: Border.all(
+                                                                    color:
+                                                                        cGrey),
+                                                                color: colorWhite
+                                                                    .withOpacity(
+                                                                        0.9),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            4),
+                                                              ),
+                                                              child: Row(
+                                                                children: [
+                                                                  Icon(
+                                                                    Icons
+                                                                        .delete_outline,
+                                                                    color: cBlack
+                                                                        .withOpacity(
+                                                                            0.3),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        )
+                                                      ],
+                                                    )
                                                   ],
                                                 ),
-                                              ],
-                                            ),
-                                          )),
-                                        ],
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Padding(
-                                            padding: padA5,
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                  border:
-                                                      Border.all(color: cGrey),
-                                                  color: colorWhite
-                                                      .withOpacity(0.9),
-                                                  borderRadius:
-                                                      BorderRadius.circular(4)),
-                                              child: Row(
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      }),
+                                ),
+                                Column(
+                                  children: [
+                                    Container(
+                                      child: Card(
+                                        child: Padding(
+                                          padding: padA5,
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              SizedBox(
+                                                height: 8,
+                                              ),
+                                              Row(
                                                 children: [
-                                                  Row(
-                                                    children: [
-                                                      InkWell(
-                                                          onTap: () {
-                                                            setState(() {
-                                                              if (addToCartController
-                                                                      .initialValue >
-                                                                  0) {
-                                                                addToCartController
-                                                                    .initialValue--;
-                                                                addToCartController
-                                                                    .valueChange
-                                                                    .value = addToCartController
-                                                                        .initialValue
-                                                                        .value *
-                                                                    addToCartController
-                                                                        .prooductPrice
-                                                                        .value;
-                                                              }
-                                                              valueChange = int
-                                                                      .parse(widget
-                                                                          .prooductPrice
-                                                                          .toString()) *
-                                                                  addToCartController
-                                                                      .initialValue
-                                                                      .value;
-                                                            });
-                                                          },
-                                                          child: Icon(
-                                                            Icons.remove,
-                                                            color: cBlack
-                                                                .withOpacity(
-                                                                    0.7),
-                                                          )),
-                                                      SizedBox(
-                                                        width: 4,
-                                                      ),
-                                                      Text(addToCartController
-                                                          .initialValue.value
-                                                          .toString()),
-                                                      SizedBox(
-                                                        width: 4,
-                                                      ),
-                                                      InkWell(
-                                                          onTap: () {
-                                                            setState(() {
-                                                              addToCartController
-                                                                  .initialValue
-                                                                  .value++;
-                                                              addToCartController
-                                                                  .valueChange
-                                                                  .value = addToCartController
-                                                                      .initialValue
-                                                                      .value *
-                                                                  addToCartController
-                                                                      .prooductPrice
-                                                                      .value;
-
-                                                              valueChange = int
-                                                                      .parse(widget
-                                                                          .prooductPrice
-                                                                          .toString()) *
-                                                                  addToCartController
-                                                                      .initialValue
-                                                                      .value;
-                                                            });
-                                                          },
-                                                          child: Icon(
-                                                            Icons.add,
-                                                            color: cBlack
-                                                                .withOpacity(
-                                                                    0.7),
-                                                            size: 20,
-                                                          )),
-                                                    ],
+                                                  Text(
+                                                    "Order Summary",
+                                                    style: hMedium.copyWith(
+                                                        color: cBlack,
+                                                        fontSize: 13),
                                                   ),
                                                 ],
                                               ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: padA5
-                                                .add(EdgeInsets.only(left: 10)),
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                  border:
-                                                      Border.all(color: cGrey),
-                                                  color: colorWhite
-                                                      .withOpacity(0.9),
-                                                  borderRadius:
-                                                      BorderRadius.circular(4)),
-                                              child: Row(
+                                              SizedBox(
+                                                height: 8,
+                                              ),
+                                              Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
                                                         .spaceBetween,
                                                 children: [
-                                                  Padding(
-                                                    padding: padA6.add(
-                                                        EdgeInsets.only(
-                                                            left: 5)),
-                                                    child: Icon(
-                                                      Icons.favorite_border,
-                                                      color: cBlack
-                                                          .withOpacity(0.3),
-                                                    ),
+                                                  Text(
+                                                    "Subtotal",
+                                                    style: hsmall.copyWith(
+                                                        color: cBlack
+                                                            .withOpacity(0.5),
+                                                        fontSize: 15),
                                                   ),
-                                                  Padding(
-                                                    padding: padA5,
-                                                    child: Text(
-                                                      "Move to wishlist",
-                                                      style: hsmall.copyWith(
-                                                          color: cBlack
-                                                              .withOpacity(
-                                                                  0.6)),
+                                                  Text(
+
+                                                         totalAmoutController.totalAmountModel.totals!.subtotal.toString()
+                                                        ,
+                                                    style: hsmall.copyWith(
+                                                      color: cBlack.withOpacity(0.5),
+                                                      fontSize: 15,
                                                     ),
+                                                  )
+
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: 8,
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Text(
+                                                    "Shoping",
+                                                    style: hMedium.copyWith(
+                                                        color: cBlack
+                                                            .withOpacity(0.5),
+                                                        fontSize: 15),
+                                                  ),
+                                                  Text(
+                                                    totalAmoutController.totalAmountModel.totals!.subtotalTax.toString(),
+
+                                                    style: hsmall.copyWith(
+                                                        color: cBlack
+                                                            .withOpacity(0.5),
+                                                        fontSize: 15),
                                                   )
                                                 ],
                                               ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: padA5
-                                                .add(EdgeInsets.only(left: 0)),
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                  border:
-                                                      Border.all(color: cGrey),
-                                                  color: colorWhite
-                                                      .withOpacity(0.9),
-                                                  borderRadius:
-                                                      BorderRadius.circular(4)),
-                                              child: Row(
+                                              SizedBox(
+                                                height: 8,
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                 children: [
-                                                  Icon(
-                                                    Icons.delete_outline,
-                                                    color:
-                                                        cBlack.withOpacity(0.3),
+                                                  Text(
+                                                    "Total",
+                                                    style: hMedium.copyWith(
+                                                        color: cBlack,
+                                                        fontSize: 12),
                                                   ),
+                                                  Text(
+
+                                                         totalAmoutController.totalAmountModel.totals!.total.toString()
+                                                       ,
+
+                                                    style: hsmall.copyWith(
+                                                        color: cBlack,
+                                                        fontSize: 12),
+                                                  )
                                                 ],
                                               ),
-                                            ),
+                                              SizedBox(
+                                                height: 8,
+                                              ),
+                                            ],
                                           ),
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                )
                               ],
-                            ),
-                          );
+                            );
+                          }
                         }),
+                      ],
+                    ),
                   ),
-                  Container(
-                    child: Card(
-                      child: Padding(
-                        padding: padA5,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SizedBox(
-                              height: 8,
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  "Order Summary",
-                                  style: hMedium.copyWith(
-                                      color: cBlack, fontSize: 15),
-                                )
-                              ],
-                            ),
-                            SizedBox(
-                              height: 8,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Subtotal",
-                                  style: hsmall.copyWith(
-                                      color: cBlack, fontSize: 15),
-                                ),
-                                Text(
-                                  widget.prooductPrice.toString(),
-                                  style: hsmall.copyWith(
-                                      color: cBlack, fontSize: 15),
-                                )
-                              ],
-                            ),
-                            SizedBox(
-                              height: 8,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Shoping",
-                                  style: hMedium.copyWith(
-                                      color: cBlack, fontSize: 15),
-                                ),
-                                Text(
-                                  widget.prooductPrice.toString(),
-                                  style: hsmall.copyWith(
-                                      color: cBlack, fontSize: 15),
-                                )
-                              ],
-                            ),
-                            SizedBox(
-                              height: 8,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "total",
-                                  style: hMedium.copyWith(
-                                      color: cBlack, fontSize: 15),
-                                ),
-                                Text(
-                                    valueChange.toString() == "0" // Compare with string "0" since you're comparing to a string later
-                                      ? widget.prooductPrice.toString()
-                                      : valueChange.toString(),
-                                  style: hsmall.copyWith(
-                                      color: cBlack, fontSize: 15),
-                                )
-                              ],
-                            ),
-                            SizedBox(
-                              height: 8,
-                            ),
-                          ],
-                        ),
+                ),
+              ),
+              Container(
+                width: 100.w,
+                color: colorWhite,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      alignment: Alignment.bottomCenter,
+                      padding: EdgeInsets.all(16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Text(  "${addToCartController.addToCartModel.currency!.currencyCode.toString() + " "}${addToCartController.addToCartModel.items![0].totals!.total.toString()}",
+                          //     style: hMedium.copyWith(
+                          //       color: cBlack,
+                          //       fontSize: 16,
+                          //
+                          //     )),
+                        ],
                       ),
                     ),
-                  )
-                ],
-              ),
-            ),
-          ),
-        ),
-        Container(
-          width: 100.w,
-          color: colorWhite,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                alignment: Alignment.bottomCenter,
-                padding: EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text( widget.prooductPrice.toString(),
-                        style: hsmall.copyWith(color: cBlack.withOpacity(0.6))),
-                    Text("AED 1000",
-                        style: hMedium.copyWith(
-                          color: cGrey,
-                          fontSize: 16,
-                          decoration: TextDecoration.lineThrough,
-                        )),
+                    Padding(
+                      padding: EdgeInsets.only(right: 8),
+                      child: RoundedButton(
+                          borderRadius: 12,
+                          height: 6.h,
+                          width: 50.w,
+                          backGroundColor: appthem,
+                          textButton: "Check Out",
+                          onTap: () {
+                            Navigator.pushNamed(context, addressScreen);
+                          }),
+                    )
                   ],
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(right: 8),
-                child: RoundedButton(
-                    borderRadius: 12,
-                    height: 6.h,
-                    width: 50.w,
-                    backGroundColor: appthem,
-                    textButton: "Check Out",
-                    onTap: () {
-                      Navigator.pushNamed(context, addressScreen);
-                    }),
-              )
-            ],
-          ),
-        ),
-      ]),
-    );
+            ]));
   }
 }
+// ListView.builder(
+//             itemCount: itemController.items.length,
+//             itemBuilder: (context, index) {
+//               final item = itemController.items.values.elementAt(index);
+//               return ListTile(
+//                 title: Text(item['title']),
+//                 subtitle: Text('Price: \$${item['price']}'),
+//                 // You can display other item details here
+//               );
+//             },
+//           );

@@ -11,7 +11,7 @@ import '../screens/customer_service/customer_service.dart';
 import '../screens/desktop_computer/view/desktop_computer_home.dart';
 import '../screens/desktop_moniter/view/desktop_moniter_home.dart';
 import '../screens/home/components/nav_bar_component.dart';
-import '../screens/laptops/views/dell_laptop.dart';
+
 import '../screens/laptops/views/hp/hp_details.dart';
 import '../screens/laptops/views/hp/hp_laptop.dart';
 import '../screens/laptops/views/laptop_products.dart';
