@@ -62,7 +62,7 @@ class _DeskTopComputerComponentState extends State<DeskTopComputerComponent> {
               : Column(
                   children: [
                     Container(
-                      height: 4.h,
+                      height: 6.h,
                       child: ListView.separated(
                           scrollDirection: Axis.horizontal,
                           separatorBuilder: (context, index) =>

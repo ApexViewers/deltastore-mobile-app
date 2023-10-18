@@ -90,18 +90,29 @@ class DellLaptopProductComponent extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.only(left: 6.w, bottom: 10),
                         child: Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8)),
-                            height: 12.h,
-                            width: 29.w,
-                            child: Center(
-                                child:  dellLaptopController.hpLaptopModel[index].images![0].src!.isEmpty
-                                    ? Container(
-                                    child: Text(""))
-                                    : Image.network(
-                                    fit: BoxFit.cover,
-                                    dellLaptopController.hpLaptopModel[index].images![0].src
-                                        .toString()))),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          height: 12.h,
+                          width: 29.w,
+                          child: Center(
+                            child: dellLaptopController.hpLaptopModel[index].images![0].src == ''
+                                ? Container(
+                              child: Image.asset(ImageAssests.hpimage),
+                            )
+                                : Image.network(
+                              dellLaptopController.hpLaptopModel[index].images![0].src.toString(),
+                              fit: BoxFit.cover,
+                              errorBuilder: (context, error, stackTrace) {
+                                // Handle the 404 error here
+                                return Container(
+                                  child: Image.asset(ImageAssests.hpimage), // Provide a placeholder image
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+
                       ),
                       Padding(
                         padding:

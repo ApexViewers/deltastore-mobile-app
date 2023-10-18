@@ -8,7 +8,7 @@ import '../../Model/allProduct_model/all_product_model.dart';
 class AllProducts {
   static Future<dynamic> getProducts() async {
     try {
-      var url = "${AppUrls.baseAddress}${AppUrls.allProducts}";
+      var url = "${AppUrls.baseAddressneed}${AppUrls.allProducts}";
       var res = await BaseClientClass.get(url, "");
       print('in try');
 

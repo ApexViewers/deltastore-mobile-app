@@ -587,14 +587,46 @@ class _HomeScreenState extends State<HomeScreen> {
                                     //     ),
                                     //   ],
                                     // ),),
+                                    Row(
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Padding(
+                                          padding: padA5,
+                                          child: Text(
+                                            "Desktops Computers",
+                                            style: hMedium.copyWith(
+                                                color: cBlack, fontSize: 14),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(right: 5.w),
+                                          child: Row(
+                                            children: [
+                                              Text(
+                                                "See all",
+                                                style: hsmall,
+                                              ),
+                                              const SizedBox(
+                                                width: 5,
+                                              ),
+                                              const Icon(
+                                                Icons.arrow_forward,
+                                                size: 12,
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                     LaptopListViewProductComponent(),
                                     const SizedBox(
                                       height: 15,
                                     ),
-                                    ElevatedButton(
-                                      child: const Text('Show notifications'),
-                                      onPressed: () {},
-                                    )
+                                    // ElevatedButton(
+                                    //   child: const Text('Show notifications'),
+                                    //   onPressed: () {},
+                                    // )
                                   ],
                                 ),
                               ],

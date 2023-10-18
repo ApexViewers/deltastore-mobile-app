@@ -10,14 +10,17 @@ class ProductIdController extends GetxController {
 
 
   RxBool productLoading = false.obs;
+  RxBool productLoadbutton = false.obs;
   RxString productError = "".obs;
   var productBYid =ProductBYid();
 
   productById(int id) async {
     productLoading.value = true;
+    productLoadbutton.value = true;
     var response = await ProductById.getProductsid(id);
     if (response is ProductBYid) {
-      productLoading.value = false;
+      print("test23");
+      productLoading.value = false; productLoadbutton.value = false;
       productBYid = response;
     } else {
       productLoading.value = false;

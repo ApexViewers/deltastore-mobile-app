@@ -1,7 +1,8 @@
 class AppUrls {
 
   static const String baseAddress = "https://deltastore.ae/wp-json/wc/";
-  static const String baseAddresslogin = "http://stagging.ditllcae.com/wp-json/";
+  static const String baseAddresslogin = "https://stagging.ditllcae.com/wp-json/";
+  static const String baseAddressneed = "https://stagging.ditllcae.com/wp-json/wc/";
   static const String allProducts = "v3/products";
   static const String login = "api/login";
   static const String listofCategories = "v3/products/categories?parent=0&per_page=100";
@@ -14,6 +15,11 @@ class AppUrls {
   static const String twoInOneApi = "v3/products/categories/";
   static const String delldesktopHome = "v3/products?category=447";
   static const String hpdesktopHome = "v3/products?category=454";
+  static const String addItem = "cocart/v2/cart/add-item";
+  static const String ItemInCart = "cocart/v2/cart/items";
+  static const String deleteCart = "cocart/v2/cart/item/";
+  static const String totalAmountCart = "cocart/v2/cart/calculate";
+  static const String incrementQuantity = "cocart/v2/cart/item/";
 
 
 }

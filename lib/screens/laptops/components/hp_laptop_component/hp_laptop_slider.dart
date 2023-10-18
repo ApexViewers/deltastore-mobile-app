@@ -130,7 +130,7 @@ class _HpImageSliderState extends State<HpImageSlider> {
                                     RegExp('[^A-Za-z0-9]'), '-');
                                 name.trim();
 
-                                final url = '${'https://deltastore.ae/shop'}';
+                                final url = '${ProductidController.productBYid.permalink.toString()}';
 
                                 await Share.share('${url}');
                               },
@@ -152,7 +152,7 @@ class _HpImageSliderState extends State<HpImageSlider> {
                     ],
                   ),
                   Container(
-                    height: 34.h,
+                    height: 29.h,
                     width: 65.w,
                     child: ClipRRect(
                       borderRadius:

@@ -97,6 +97,36 @@ class BaseClientClass {
       return 'Connection timed out';
     }
   }
+  static Future<dynamic> delete(String url,) async {
+    final String basicAuth =
+        'Basic ${base64Encode(utf8.encode('$consumerkey:$secretkey'))}';
+    print('Url: $url');
+    // print(data);
+    http.Response response;
+    try {
+      response = await http
+          .delete(
+            Uri.parse(url),
+            // body: json.encode(data),
+            headers: {
+              "Content-Type": "application/json",
+              'Authorization': basicAuth,
+            },
+            encoding: Encoding.getByName('utf-8'),
+          )
+          .timeout(const Duration(seconds: TIME_OUT_DURATION));
+      print('Got response');
+      print('Status Code: ${response.statusCode}');
+      print('Body: ${response.body}');
+      return response;
+    } on SocketException {
+      print('No internet connection');
+      return 'No internet connection';
+    } on TimeoutException {
+      print('Connection timed out');
+      return 'Connection timed out';
+    }
+  }
 
   static Future<bool> isInternetConnected() async {
     try {
