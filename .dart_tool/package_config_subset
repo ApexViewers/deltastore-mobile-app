@@ -474,10 +474,6 @@ xml
 2.19
 file:///C:/Users/aleem/AppData/Local/Pub/Cache/hosted/pub.dev/xml-6.3.0/
 file:///C:/Users/aleem/AppData/Local/Pub/Cache/hosted/pub.dev/xml-6.3.0/lib/
-test_app
-3.0
-file:///C:/Users/aleem/OneDrive/Documents/GitHub/deltastore-mobile-app/
-file:///C:/Users/aleem/OneDrive/Documents/GitHub/deltastore-mobile-app/lib/
 sky_engine
 3.0
 file:///C:/src/flutter/bin/cache/pkg/sky_engine/
@@ -494,4 +490,8 @@ flutter_web_plugins
 3.0
 file:///C:/src/flutter/packages/flutter_web_plugins/
 file:///C:/src/flutter/packages/flutter_web_plugins/lib/
+test_app
+3.0
+file:///D:/GitHub/deltastore-mobile-app/
+file:///D:/GitHub/deltastore-mobile-app/lib/
 2

@@ -167,7 +167,7 @@ class _BarState extends State<Bar> {
   getStringValuesSF() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     //Return String
-    loginID = prefs.getString('LoginId');
+    loginID = prefs.getString('username');
   }
 
 
@@ -268,7 +268,7 @@ class _BarState extends State<Bar> {
               page = AllOrder();
               break;
             case 4:
-              page = loginID == null ? SettingScreen() : LoginScreen();
+              page = loginID == null ? LoginScreen() : const SettingScreen();
               break;
             default:
               page = Container();

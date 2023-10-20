@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../screens/home/components/nav_bar_component.dart';
 import '../../Model/login_model.dart';
-import '../../Model/product_by_id_model/product_by_id_model.dart';
 
-import '../../Services/create_account_services/create_account_services.dart';
 import '../../Services/login_account_servics/login_account_services.dart';
 
 class LoginAccountController extends GetxController {

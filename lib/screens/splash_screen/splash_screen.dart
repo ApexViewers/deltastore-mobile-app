@@ -41,7 +41,7 @@ class _DualRotationAnimationPageState extends State<DualRotationAnimationPage>
   void navigateToNextPage() {
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) =>  LoginScreen()),
+      MaterialPageRoute(builder: (context) =>  Bar()),
     );
   }
 
