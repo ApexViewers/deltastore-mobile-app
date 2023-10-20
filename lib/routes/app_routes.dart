@@ -75,7 +75,7 @@ class AppRoutes {
       case addressScreen:
         return MaterialPageRoute(builder: (context) =>  AddressScreen());
       case emptyCart:
-        return MaterialPageRoute(builder: (context) => const EmptyCartContainer());
+        return MaterialPageRoute(builder: (context) => EmptyCartContainer());
       case customerservicescreen:
         return MaterialPageRoute(builder: (context) => const SettingScreen());
       default:

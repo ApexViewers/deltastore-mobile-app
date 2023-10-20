@@ -127,6 +127,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:test_app/screens/allorder/view/alt_all_orders.dart';
 import 'package:test_app/screens/laptops/components/empty_cart_container.dart';
 import 'package:test_app/screens/laptops/views/hp/add_to_cart.dart';
 
@@ -266,7 +267,7 @@ class _BarState extends State<Bar> {
               page = const Wishlist();
               break;
             case 3:
-              page = AllOrder();
+              page = CartView();
               break;
             case 4:
               page = loginID == null ? LoginScreen() : const SettingScreen();

@@ -9,13 +9,15 @@ import '../../../constant/image_assets.dart';
 import '../../setting/Screen/setting_screen.dart';
 
 class EmptyCartContainer extends StatelessWidget {
-  const EmptyCartContainer({super.key});
+  bool showAppBar = true;
+  EmptyCartContainer({super.key});
+  EmptyCartContainer.showAppBar({super.key, required this.showAppBar});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backgroundColor,
-      appBar: AppBar(
+      appBar: showAppBar?AppBar(
         elevation: 0,
         backgroundColor: colorWhite,
         title: SizedBox(
@@ -35,7 +37,7 @@ class EmptyCartContainer extends StatelessWidget {
             },
           ),
         ),
-      ),
+      ):null,
       body: Container(
         margin: const EdgeInsets.all(25),
         padding: const EdgeInsets.fromLTRB(30, 230, 30, 40),

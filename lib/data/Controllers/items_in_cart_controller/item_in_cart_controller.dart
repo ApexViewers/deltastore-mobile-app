@@ -75,7 +75,7 @@ print(data.toString()+"show data");
       }
     } catch (e) {
       //error.value = 'Cart Empty';
-      Get.to(const EmptyCartContainer());
+      Get.to(EmptyCartContainer());
     }
 
     isLoading.value = false;

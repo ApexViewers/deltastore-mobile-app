@@ -1,85 +1,65 @@
-
 class CartModel {
-  String? cartHash;
-  String? cartKey;
-  Currency? currency;
-  Customer? customer;
-  List<Items>? items;
-  int? itemCount;
-  int? itemsWeight;
-  List<String>? coupons;
-  bool? needsPayment;
-  bool? needsShipping;
-  Shipping? shipping;
-  List<dynamic>? fees;
-  List<dynamic>? taxes;
-  Totals? totals;
-  List<dynamic>? removedItems;
-  List<dynamic>? crossSells;
-  List<dynamic>? notices;
+  String cartHash;
+  String cartKey;
+  Currency currency;
+  Customer customer;
+  List<Item> items;
+  int itemCount;
+  int itemsWeight;
+  List<dynamic> coupons; // Handle this based on the actual data type
+  bool needsPayment;
+  bool needsShipping;
+  Shipping shipping;
+  List<dynamic> fees; // Handle this based on the actual data type
+  List<dynamic> taxes; // Handle this based on the actual data type
+  Totals totals;
+  List<dynamic> removedItems; // Handle this based on the actual data type
+  List<dynamic> crossSells; // Handle this based on the actual data type
+  List<dynamic> notices; // Handle this based on the actual data type
 
   CartModel({
-    this.cartHash,
-    this.cartKey,
-    this.currency,
-    this.customer,
-    this.items = const [],
-    this.itemCount,
-    this.itemsWeight,
-    this.coupons = const [],
-    this.needsPayment,
-    this.needsShipping,
-    this.shipping,
-    this.fees = const [],
-    this.taxes = const [],
-    this.totals,
-    this.removedItems = const [],
-    this.crossSells = const [],
-    this.notices = const [],
+    required this.cartHash,
+    required this.cartKey,
+    required this.currency,
+    required this.customer,
+    required this.items,
+    required this.itemCount,
+    required this.itemsWeight,
+    required this.coupons,
+    required this.needsPayment,
+    required this.needsShipping,
+    required this.shipping,
+    required this.fees,
+    required this.taxes,
+    required this.totals,
+    required this.removedItems,
+    required this.crossSells,
+    required this.notices,
   });
 
   factory CartModel.fromJson(Map<String, dynamic> json) {
     return CartModel(
       cartHash: json['cart_hash'],
       cartKey: json['cart_key'],
-      currency: json['currency'] != null ? Currency.fromJson(json['currency']) : null,
-      customer: json['customer'] != null ? Customer.fromJson(json['customer']) : null,
-      items: List<Items>.from(json['items'].map((x) => Items.fromJson(x))),
+      currency: Currency.fromJson(json['currency']),
+      customer: Customer.fromJson(json['customer']),
+      // items: List<Item>.from(json['items'].map((item) => Item.fromJson(item))),
+      items: (json['items'] as List)
+          .map((item) => Item.fromJson(item))
+          .toList(),
       itemCount: json['item_count'],
       itemsWeight: json['items_weight'],
-      coupons: List<String>.from(json['coupons'].map((x) => x)),
+      coupons: json['coupons'], // Handle this based on the actual data type
       needsPayment: json['needs_payment'],
       needsShipping: json['needs_shipping'],
-      shipping: json['shipping'] != null ? Shipping.fromJson(json['shipping']) : null,
-      fees: List<dynamic>.from(json['fees'].map((x) => x)),
-      taxes: List<dynamic>.from(json['taxes'].map((x) => x)),
-      totals: json['totals'] != null ? Totals.fromJson(json['totals']) : null,
-      removedItems: List<dynamic>.from(json['removed_items'].map((x) => x)),
-      crossSells: List<dynamic>.from(json['cross_sells'].map((x) => x)),
-      notices: List<dynamic>.from(json['notices'].map((x) => x)),
+      shipping: Shipping.fromJson(json['shipping']),
+      fees: json['fees'], // Handle this based on the actual data type
+      taxes: json['taxes'], // Handle this based on the actual data type
+      totals: Totals.fromJson(json['totals']),
+      removedItems: json['removed_items'], // Handle this based on the actual data type
+      crossSells: json['cross_sells'], // Handle this based on the actual data type
+      notices: json['notices'], // Handle this based on the actual data type
     );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'cart_hash': cartHash,
-      'cart_key': cartKey,
-      'currency': currency?.toJson(),
-      'customer': customer?.toJson(),
-      'items': items?.map((x) => x.toJson()).toList(),
-      'item_count': itemCount,
-      'items_weight': itemsWeight,
-      'coupons': coupons,
-      'needs_payment': needsPayment,
-      'needs_shipping': needsShipping,
-      'shipping': shipping?.toJson(),
-      'fees': fees,
-      'taxes': taxes,
-      'totals': totals?.toJson(),
-      'removed_items': removedItems,
-      'cross_sells': crossSells,
-      'notices': notices,
-    };
   }
 }
 
@@ -113,122 +93,90 @@ class Currency {
       currencySuffix: json['currency_suffix'],
     );
   }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'currency_code': currencyCode,
-      'currency_symbol': currencySymbol,
-      'currency_minor_unit': currencyMinorUnit,
-      'currency_decimal_separator': currencyDecimalSeparator,
-      'currency_thousand_separator': currencyThousandSeparator,
-      'currency_prefix': currencyPrefix,
-      'currency_suffix': currencySuffix,
-    };
-  }
 }
 
 class Customer {
-  BillingAddress? billingAddress;
-  ShippingAddress? shippingAddress;
+  BillingAddress billingAddress;
+  ShippingAddress shippingAddress;
 
-  Customer({this.billingAddress, this.shippingAddress});
+  Customer({
+    required this.billingAddress,
+    required this.shippingAddress,
+  });
 
   factory Customer.fromJson(Map<String, dynamic> json) {
     return Customer(
-      billingAddress: json['billing_address'] != null ? BillingAddress.fromJson(json['billing_address']) : null,
-      shippingAddress: json['shipping_address'] != null ? ShippingAddress.fromJson(json['shipping_address']) : null,
+      billingAddress: BillingAddress.fromJson(json['billing_address']),
+      shippingAddress: ShippingAddress.fromJson(json['shipping_address']),
     );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'billing_address': billingAddress?.toJson(),
-      'shipping_address': shippingAddress?.toJson(),
-    };
   }
 }
 
 class BillingAddress {
-  String? billingEmail;
-  String? billingFirstName;
-  String? billingLastName;
-  String? billingPhone;
-  String? billingCompany;
+  String billingFirstName;
+  String billingLastName;
+  String billingCompany;
   String billingCountry;
-  String? billingAddress1;
-  String? billingAddress2;
-  String? billingCity;
-  String? billingState;
-  String? billingPostcode;
+  String billingAddress1;
+  String billingAddress2;
+  String billingPostcode;
+  String billingCity;
+  String billingState;
+  String billingPhone;
+  String billingEmail;
 
   BillingAddress({
-    this.billingEmail,
-    this.billingFirstName,
-    this.billingLastName,
-    this.billingPhone,
-    this.billingCompany,
+    required this.billingFirstName,
+    required this.billingLastName,
+    required this.billingCompany,
     required this.billingCountry,
-    this.billingAddress1,
-    this.billingAddress2,
-    this.billingCity,
-    this.billingState,
-    this.billingPostcode,
+    required this.billingAddress1,
+    required this.billingAddress2,
+    required this.billingPostcode,
+    required this.billingCity,
+    required this.billingState,
+    required this.billingPhone,
+    required this.billingEmail,
   });
 
   factory BillingAddress.fromJson(Map<String, dynamic> json) {
     return BillingAddress(
-      billingEmail: json['billing_email'],
       billingFirstName: json['billing_first_name'],
       billingLastName: json['billing_last_name'],
-      billingPhone: json['billing_phone'],
       billingCompany: json['billing_company'],
       billingCountry: json['billing_country'],
       billingAddress1: json['billing_address_1'],
       billingAddress2: json['billing_address_2'],
+      billingPostcode: json['billing_postcode'],
       billingCity: json['billing_city'],
       billingState: json['billing_state'],
-      billingPostcode: json['billing_postcode'],
+      billingPhone: json['billing_phone'],
+      billingEmail: json['billing_email'],
     );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'billing_email': billingEmail,
-      'billing_first_name': billingFirstName,
-      'billing_last_name': billingLastName,
-      'billing_phone': billingPhone,
-      'billing_company': billingCompany,
-      'billing_country': billingCountry,
-      'billing_address_1': billingAddress1,
-      'billing_address_2': billingAddress2,
-      'billing_city': billingCity,
-      'billing_state': billingState,
-      'billing_postcode': billingPostcode,
-    };
   }
 }
 
 class ShippingAddress {
-  String? shippingFirstName;
-  String? shippingLastName;
-  String? shippingCompany;
+  String shippingFirstName;
+  String shippingLastName;
+  String shippingCompany;
   String shippingCountry;
-  String? shippingAddress1;
-  String? shippingAddress2;
-  String? shippingCity;
-  String? shippingState;
-  String? shippingPostcode;
+  String shippingAddress1;
+  String shippingAddress2;
+  String shippingPostcode;
+  String shippingCity;
+  String shippingState;
 
   ShippingAddress({
-    this.shippingFirstName,
-    this.shippingLastName,
-    this.shippingCompany,
+    required this.shippingFirstName,
+    required this.shippingLastName,
+    required this.shippingCompany,
     required this.shippingCountry,
-    this.shippingAddress1,
-    this.shippingAddress2,
-    this.shippingCity,
-    this.shippingState,
-    this.shippingPostcode,
+    required this.shippingAddress1,
+    required this.shippingAddress2,
+    required this.shippingPostcode,
+    required this.shippingCity,
+    required this.shippingState,
   });
 
   factory ShippingAddress.fromJson(Map<String, dynamic> json) {
@@ -239,36 +187,115 @@ class ShippingAddress {
       shippingCountry: json['shipping_country'],
       shippingAddress1: json['shipping_address_1'],
       shippingAddress2: json['shipping_address_2'],
+      shippingPostcode: json['shipping_postcode'],
       shippingCity: json['shipping_city'],
       shippingState: json['shipping_state'],
-      shippingPostcode: json['shipping_postcode'],
     );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'shipping_first_name': shippingFirstName,
-      'shipping_last_name': shippingLastName,
-      'shipping_company': shippingCompany,
-      'shipping_country': shippingCountry,
-      'shipping_address_1': shippingAddress1,
-      'shipping_address_2': shippingAddress2,
-      'shipping_city': shippingCity,
-      'shipping_state': shippingState,
-      'shipping_postcode': shippingPostcode,
-    };
   }
 }
 
-class Items {
-  Items();
+class Item {
+  String itemKey;
+  int id;
+  String name;
+  String title;
+  String price;
+  Quantity quantity;
+  Totals totals;
+  String slug;
+  Map<String, dynamic> meta;
+  List<dynamic> cartItemData; // Handle this based on the actual data type
+  String featuredImage;
 
-  factory Items.fromJson(Map<String, dynamic> json) {
-    return Items();
+  Item({
+    required this.itemKey,
+    required this.id,
+    required this.name,
+    required this.title,
+    required this.price,
+    required this.quantity,
+    required this.totals,
+    required this.slug,
+    required this.meta,
+    required this.cartItemData,
+    required this.featuredImage,
+  });
+
+  factory Item.fromJson(Map<String, dynamic> json) {
+    return Item(
+      itemKey: json['item_key'] as String,
+      id: json['id'] as int,
+      name: json['name'] as String,
+      title: json['title'] as String,
+      price: json['price'] as String,
+      quantity: Quantity.fromJson(json['quantity']),
+      totals: Totals.fromJson(json['totals']),
+      slug: json['slug'] as String,
+      meta: json['meta'] as Map<String, dynamic>,
+      cartItemData: json['cart_item_data'] as List<dynamic>,
+      featuredImage: json['featured_image'] as String
+    );
   }
+}
 
-  Map<String, dynamic> toJson() {
-    return {};
+class Quantity {
+  int value;
+  int minPurchase;
+  int maxPurchase;
+
+  Quantity({
+    required this.value,
+    required this.minPurchase,
+    required this.maxPurchase,
+  });
+
+  factory Quantity.fromJson(Map<String, dynamic> json) {
+    return Quantity(
+      value: json['value'],
+      minPurchase: json['min_purchase'],
+      maxPurchase: json['max_purchase'],
+    );
+  }
+}
+
+class TaxData {
+  List<dynamic> subtotal; // Handle this based on the actual data type
+  List<dynamic> total; // Handle this based on the actual data type
+
+  TaxData({
+    required this.subtotal,
+    required this.total,
+  });
+
+  factory TaxData.fromJson(Map<String, dynamic> json) {
+    return TaxData(
+      subtotal: json['subtotal'], // Handle this based on the actual data type
+      total: json['total'], // Handle this based on the actual data type
+    );
+  }
+}
+
+class Totals {
+  String subtotal;
+  String subtotalTax;
+  String total;
+  String tax;
+
+  Totals({
+    required this.subtotal,
+    required this.subtotalTax,
+    required this.total,
+    required this.tax,
+  });
+
+  factory Totals.fromJson(Map<String, dynamic> json) {
+    return Totals(
+      subtotal: json['subtotal'].toString(),
+      subtotalTax: json['subtotal_tax'].toString(),
+      total: json['total'].toString(),
+      tax: json['tax'].toString()
+
+    );
   }
 }
 
@@ -276,7 +303,7 @@ class Shipping {
   int totalPackages;
   bool showPackageDetails;
   bool hasCalculatedShipping;
-  List<dynamic> packages;
+  Map<String, Package> packages;
 
   Shipping({
     required this.totalPackages,
@@ -286,76 +313,65 @@ class Shipping {
   });
 
   factory Shipping.fromJson(Map<String, dynamic> json) {
+    Map<String, Package> packages = {};
+    (json['packages'] as Map<String, dynamic>).forEach((key, value) {
+      packages[key] = Package.fromJson(value);
+    });
     return Shipping(
       totalPackages: json['total_packages'],
       showPackageDetails: json['show_package_details'],
       hasCalculatedShipping: json['has_calculated_shipping'],
-      packages: List<dynamic>.from(json['packages'].map((x) => x)),
+      packages: packages,
     );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'total_packages': totalPackages,
-      'show_package_details': showPackageDetails,
-      'has_calculated_shipping': hasCalculatedShipping,
-      'packages': packages,
-    };
   }
 }
 
-class Totals {
-  String subtotal;
-  String subtotalTax;
-  String feeTotal;
-  String feeTax;
-  String discountTotal;
-  String discountTax;
-  String shippingTotal;
-  String shippingTax;
-  String total;
-  String totalTax;
+class Package {
+  String packageName;
+  Map<String, dynamic> rates;
+  String packageDetails;
+  int index;
+  String chosenMethod;
+  String formattedDestination;
 
-  Totals({
-    required this.subtotal,
-    required this.subtotalTax,
-    required this.feeTotal,
-    required this.feeTax,
-    required this.discountTotal,
-    required this.discountTax,
-    required this.shippingTotal,
-    required this.shippingTax,
-    required this.total,
-    required this.totalTax,
+  Package({
+    required this.packageName,
+    required this.rates,
+    required this.packageDetails,
+    required this.index,
+    required this.chosenMethod,
+    required this.formattedDestination,
   });
 
-  factory Totals.fromJson(Map<String, dynamic> json) {
-    return Totals(
-      subtotal: json['subtotal'],
-      subtotalTax: json['subtotal_tax'],
-      feeTotal: json['fee_total'],
-      feeTax: json['fee_tax'],
-      discountTotal: json['discount_total'],
-      discountTax: json['discount_tax'],
-      shippingTotal: json['shipping_total'],
-      shippingTax: json['shipping_tax'],
-      total: json['total'],
-      totalTax: json['total_tax'],
+  factory Package.fromJson(Map<String, dynamic> json) {
+    return Package(
+      packageName: json['package_name'],
+      rates: json['rates'],
+      packageDetails: json['package_details'],
+      index: json['index'],
+      chosenMethod: json['chosen_method'],
+      formattedDestination: json['formatted_destination'],
     );
   }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'subtotal': subtotal,
-      'subtotal_tax': subtotalTax,
-      'fee_total': feeTotal,
-      'fee_tax': feeTax,
-      'discount_total': discountTotal,
-      'discount_tax': discountTax,
-      'shipping_total': shippingTotal,
-      'shipping_tax': shippingTax,
-      'total': total,
-      'total_tax': totalTax,
-    };
-  }
 }
+
+// class Item {
+//   // existing code
+//
+//   factory Item.fromJson(Map<String, dynamic> json) {
+//     return Item(
+//       itemKey: json['item_key'],
+//       id: json['id'],
+//       name: json['name'],
+//       title: json['title'],
+//       price: json['price'],
+//       quantity: Quantity.fromJson(json['quantity']),
+//       totals: Totals.fromJson(json['totals']),
+//       slug: json['slug'],
+//       meta: json['meta'],
+//       cartItemData: json['cart_item_data'],
+//       featuredImage: json['featured_image'],
+//     );
+//   }
+// }
+
