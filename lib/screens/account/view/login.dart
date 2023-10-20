@@ -1,10 +1,10 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
+import 'package:test_app/screens/home/components/nav_bar_component.dart';
 
 import '../../../constant/paddings.dart';
 import '../../../constant/styles/app_textstyles.dart';
@@ -18,7 +18,7 @@ import 'forgot_password.dart';
 
 class LoginScreen extends StatefulWidget {
   String? id;
-   LoginScreen({Key? key,this.id}) : super(key: key);
+  LoginScreen({Key? key, this.id}) : super(key: key);
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -28,19 +28,14 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-
   }
 
   final _formKey = GlobalKey<FormState>();
   var loginAccount = Get.put((LoginAccountController()));
-
-
   @override
   Widget build(BuildContext context) {
     print(widget.id.toString());
@@ -96,11 +91,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 1.h,
                 ),
                 RoundTextFormField(
-                  onValidate:(val) {
-                    if (val!.isEmpty) {
-                      return "This field is required.";
-                    }
-                  },
+                    onValidate: (val) {
+                      if (val!.isEmpty) {
+                        return "This field is required.";
+                      }
+                    },
                     borderRadius: 6,
                     ontapborderRadius: 6,
                     controller: loginAccount.emailController,
@@ -126,54 +121,57 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(
                   height: 1.h,
                 ),
-               Obx(() =>  Container(
-                 child: TextFormField(
-                   validator: (val) {
-                     if (val!.isEmpty) {
-                       return "This field is required.";
-                     }
-                   },
-                   controller: loginAccount.passwordController,
-                   cursorColor: appthem,
-                   textAlign: TextAlign.left,
-                   style: TextStyle(),
-                   obscureText: loginAccount.isPasswordVisible.value,
-                   decoration: InputDecoration(
-                       suffixIcon: GestureDetector(
-                         onTap: () => loginAccount.togglePasswordVisibility(),
-                         child: Icon(
-                           loginAccount.isPasswordVisible.value
-                               ? Icons.visibility
-                               : Icons.visibility_off,
-                         ),
-                       ),
-                       focusedBorder: OutlineInputBorder(
-                         borderSide: BorderSide(
-                           width: 2,
-                           color: appthem, // Set your desired border color
-                           // Set the border width
-                         ),
-                       ),
-                       contentPadding:
-                       EdgeInsets.symmetric(vertical: 8.0, horizontal: 8),
-                       hintStyle: TextStyle(),
-                       enabledBorder: OutlineInputBorder(
-                           borderRadius: BorderRadius.circular(6),
-                           borderSide: BorderSide(
-                             color: cGrey,
-                           )),
-                       disabledBorder: OutlineInputBorder(
-                         borderSide: BorderSide(color: cRed),
-                       ),
-                       border: OutlineInputBorder(
-                           borderSide: BorderSide(color: cGrey),
-                           borderRadius: BorderRadius.circular(6))),
-                 ),
-               ),),
+                Obx(
+                  () => Container(
+                    child: TextFormField(
+                      validator: (val) {
+                        if (val!.isEmpty) {
+                          return "This field is required.";
+                        }
+                      },
+                      controller: loginAccount.passwordController,
+                      cursorColor: appthem,
+                      textAlign: TextAlign.left,
+                      style: TextStyle(),
+                      obscureText: loginAccount.isPasswordVisible.value,
+                      decoration: InputDecoration(
+                          suffixIcon: GestureDetector(
+                            onTap: () =>
+                                loginAccount.togglePasswordVisibility(),
+                            child: Icon(
+                              loginAccount.isPasswordVisible.value
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              width: 2,
+                              color: appthem, // Set your desired border color
+                              // Set the border width
+                            ),
+                          ),
+                          contentPadding: EdgeInsets.symmetric(
+                              vertical: 8.0, horizontal: 8),
+                          hintStyle: TextStyle(),
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(6),
+                              borderSide: BorderSide(
+                                color: cGrey,
+                              )),
+                          disabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: cRed),
+                          ),
+                          border: OutlineInputBorder(
+                              borderSide: BorderSide(color: cGrey),
+                              borderRadius: BorderRadius.circular(6))),
+                    ),
+                  ),
+                ),
                 ListTile(
                     trailing: TextButton(
                   onPressed: () {
-                    Get.to(()=>ForgotPassword());
+                    Get.to(() => ForgotPassword());
                   },
                   child: Text(
                     "Forgot password",
@@ -183,7 +181,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Row(
                   children: [
                     Obx(
-                          () => Checkbox(
+                      () => Checkbox(
                         value: loginAccount.rememberMe.value,
                         onChanged: (newValue) {
                           loginAccount.rememberMe.value = newValue!;
@@ -207,19 +205,26 @@ class _LoginScreenState extends State<LoginScreen> {
                               borderRadius: 12,
                               width: 80.w,
                               textButton: "Login",
-                              onTap: ()async {
+                              onTap: () async {
                                 if (_formKey.currentState!.validate()) {
-                                  String email = loginAccount.emailController.text;
-                                  String password = loginAccount.passwordController.text;
-                                  await loginAccount.saveCredentials(email, password);
+                                  String email =
+                                      loginAccount.emailController.text;
+                                  String password =
+                                      loginAccount.passwordController.text;
                                   loginAccount.postLoginAccount(
+                                      email, password);
+                                  bool loginSuccess =
+                                      await loginAccount.postLoginAccount(
                                     loginAccount.emailController.text,
                                     loginAccount.passwordController.text,
                                   );
-
-                                  loginAccount.emailController.clear();
-
-                                  loginAccount.passwordController.clear();
+                                  if (loginSuccess) {
+                                    loginAccount.emailController.clear();
+                                    loginAccount.passwordController.clear();
+                                    Get.to(() => Bar());
+                                  } else {
+                                    Get.snackbar("Error", "User does not exit");
+                                  }
                                 }
                               }),
                 ),

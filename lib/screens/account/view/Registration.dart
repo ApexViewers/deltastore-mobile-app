@@ -75,7 +75,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     BoldText(
                       textBold: "Username ",
                     ),
-                    Text(
+                    const Text(
                       "*",
                       style: TextStyle(color: Colors.red),
                     )
@@ -209,7 +209,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     SizedBox(
                       width: 10.w,
                     ),
-                    Text("Already have an account ?"),
+                    const Text("Already have an account ?"),
                     TextButton(
                       onPressed: () {
                         Get.to(() => LoginScreen());

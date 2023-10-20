@@ -7,7 +7,7 @@ class LogoutController extends GetxController {
   RxString logoutError = "".obs;
   RxString buttonText = "Logout".obs;
 
-  logout() async {
+  Future<void> logout() async {
     logoutLoading.value = true;
     var response = await LogoutService.LogoutData();
     if(response.body){

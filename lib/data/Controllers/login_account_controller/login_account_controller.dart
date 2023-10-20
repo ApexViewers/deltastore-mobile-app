@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../screens/home/components/nav_bar_component.dart';
@@ -16,22 +17,32 @@ class LoginAccountController extends GetxController {
   var loginModel = LoginModel();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  Future<void> saveCredentials(String email, String password) async {
+
+  Future<void> saveCredentials(String email, String password, String firstName, String secondName) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('username', '$firstName $secondName');
     await prefs.setString('email', email);
     await prefs.setString('password', password);
     await prefs.setBool('rememberMe', rememberMe.value);
   }
+
+  Future<List<String>> retrieveUsername() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String username = prefs.getString('username')!;
+    String email = prefs.getString('email')!;
+    return [username,email];
+  }
+
   Future<void> retrieveCredentials() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String ?email = prefs.getString('email');
     String? password = prefs.getString('password');
     bool rememberMeStatus = prefs.getBool('rememberMe') ?? false;
-
     emailController.text = email ?? '';
     passwordController.text = rememberMeStatus ? password ?? '' : '';
     rememberMe.value = rememberMeStatus;
   }
+
   RxBool rememberMe = false.obs;
   var isPasswordVisible = false.obs;
 
@@ -47,7 +58,7 @@ class LoginAccountController extends GetxController {
     isPasswordVisible.toggle();
   }
 
-  void postLoginAccount(String username, String password) async {
+  Future<bool> postLoginAccount(String username, String password) async {
     loadingcontactus.value = true;
     errorloadingcontactus.value = '';
     var res = await LoginService.logInAccount(
@@ -57,31 +68,21 @@ class LoginAccountController extends GetxController {
 
     loadingcontactus.value = false;
     if (res is LoginModel) {
-
-
-      if(res.message=="Invalid username or password"){
-        print("hello 1");
+      if (res.user_id.runtimeType == String) {
+        await saveCredentials(res.email!, password, res.firstName!, res.lastName!);
+        //print("hello 1");
         Fluttertoast.showToast(
-            msg: res.message.toString(),
+            msg: 'Login Successful',
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.CENTER,
             timeInSecForIosWeb: 1,
             backgroundColor: Colors.red,
             textColor: Colors.white,
             fontSize: 16.0);
-
-      }else if(res.message=="Login Successfully") {
-        loginModel = res;
-        print("hello 2");
-        Get.to(() => Bar(initialIndex: 0,));
-        String? LoginID=res.payload?.userDetails?.id.toString();
-        final SharedPreferences prefs =
-        await SharedPreferences.getInstance();
-        await prefs.setString(
-            "LoginId", LoginID.toString());
-        print(res);
+        return true;
+      } else {
         Fluttertoast.showToast(
-            msg: res.message.toString(),
+            msg: 'Login Unsuccessful',
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.CENTER,
             timeInSecForIosWeb: 1,
@@ -89,29 +90,7 @@ class LoginAccountController extends GetxController {
             textColor: Colors.white,
             fontSize: 16.0);
       }
-      else {
-        print("hello 5");
-        Fluttertoast.showToast(
-            msg: res.message.toString(),
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.CENTER,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Colors.red,
-            textColor: Colors.white,
-            fontSize: 16.0);
-      }
-    } else {
-      print("hello 3");
-      errorloadingcontactus.value = res;
-      Fluttertoast.showToast(
-          msg: res.message.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-          fontSize: 16.0);
     }
-
+    return false;
   }
 }

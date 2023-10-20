@@ -51,6 +51,7 @@ class _HpLaptopDetailsScreenState extends State<HpLaptopDetailsScreen>
   var ProductidController = Get.put((ProductIdController()));
   var addToCartController = Get.put((AddToCartDataController()));
   var totalAmoutController=Get.put(TotalAmountController());
+  bool buttonIsAsync = false;
 
   @override
   void initState() {
@@ -856,12 +857,14 @@ class _HpLaptopDetailsScreenState extends State<HpLaptopDetailsScreen>
                                     backGroundColor: appthem,
                                     textButton: "Add to Cart",
                                     onTap: () async {
+                                      ProductidController.productLoadbutton.value = true;
                                       totalAmoutController.totalAmountToCart();
                                       await addToCartController.addToCart(
                                         ProductidController.productBYid.id
                                             .toString(),
                                         1.toString(),
                                       );
+                                      ProductidController.productLoadbutton.value = false;
                                     },
                                   )
                                       : Column(
@@ -872,8 +875,9 @@ class _HpLaptopDetailsScreenState extends State<HpLaptopDetailsScreen>
                                               height: 6.h,
                                               width: 50.w,
                                               backGroundColor: Colors.red,
-                                              textButton: "Check out",
+                                              textButton: "Go to Cart",
                                               onTap: () {
+                                                Future.delayed(const Duration(seconds: 5));
                                                 // print(totalAmoutController.totalAmountModel.totals!.shippingTotal.);
                                                 Get.to(() => AddToCart(
 

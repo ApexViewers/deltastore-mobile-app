@@ -1,5 +1,8 @@
+
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:test_app/screens/laptops/components/empty_cart_container.dart';
 import 'dart:convert';
 
 import '../../Model/delete_cart_model/delete_cart_model.dart';
@@ -71,7 +74,8 @@ print(data.toString()+"show data");
         print("no data");
       }
     } catch (e) {
-      error.value = 'An error occurred: $e';
+      //error.value = 'Cart Empty';
+      Get.to(const EmptyCartContainer());
     }
 
     isLoading.value = false;
@@ -108,6 +112,11 @@ print(data.toString()+"show data");
 
   incrementAmountToCart(String quantity, String itemkey) async {
     addToCartLoading.value = true;
+
+    if(quantity == "0" ){
+      Get.snackbar("Error", "Items cannot be zero");
+      return;
+    }
 
 
     var response = await IncrementCartService.incrementCartAmount(

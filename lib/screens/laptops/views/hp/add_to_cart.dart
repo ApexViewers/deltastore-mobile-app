@@ -40,12 +40,13 @@ class _AddToCartState extends State<AddToCart> {
 
 
 
+
   @override
   Widget build(BuildContext context) {
 
-    print(totalAmoutController.totalAmountModel.totals!.shippingTotal.toString());
-    print(totalAmoutController.totalAmountModel.totals!.total.toString());
-    print(totalAmoutController.totalAmountModel.totals!.subtotal.toString());
+    // print(totalAmoutController.totalAmountModel.totals!.shippingTotal.toString());
+    // print(totalAmoutController.totalAmountModel.totals!.total.toString());
+    // print(totalAmoutController.totalAmountModel.totals!.subtotal.toString());
     return Scaffold(
         appBar: AppBar(
             elevation: 0,
@@ -109,7 +110,7 @@ class _AddToCartState extends State<AddToCart> {
                             return Center(
                                 child: Text(itemController.error.value));
                           } else if (itemController.items.isEmpty) {
-                            return Center(child: Text("No items in the cart"));
+                            return const Center(child: Text("No items in the cart"));
                           } else {
                             return Column(
                               children: [
@@ -127,302 +128,309 @@ class _AddToCartState extends State<AddToCart> {
                                         int remainingStock = item['quantity']
                                                 ['max_purchase'] -
                                             item['quantity']['value'];
-                                        return Padding(
-                                          padding: padA6,
-                                          child: Column(
-                                            children: [
-                                              Card(
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Row(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Row(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Padding(
-                                                              padding: padA5,
-                                                              child: Container(
-                                                                margin: const EdgeInsets
-                                                                    .only(
-                                                                    left: 10,
-                                                                    right: 10,
-                                                                    bottom: 10,
-                                                                    top: 10),
-                                                                height: 6.h,
-                                                                width: 12.w,
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  image:
-                                                                      DecorationImage(
-                                                                    image: NetworkImage(
-                                                                        item['featured_image']
-                                                                            .toString()),
-                                                                    fit: BoxFit
-                                                                        .cover,
+                                        if(itemController.error.value != 'String parse error'){
+                                          return Padding(
+                                            padding: padA6,
+                                            child: Column(
+                                              children: [
+                                                Card(
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                    children: [
+                                                      Row(
+                                                        crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                        children: [
+                                                          Row(
+                                                            crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                            children: [
+                                                              Padding(
+                                                                padding: padA5,
+                                                                child: Container(
+                                                                  margin: const EdgeInsets
+                                                                      .only(
+                                                                      left: 10,
+                                                                      right: 10,
+                                                                      bottom: 10,
+                                                                      top: 10),
+                                                                  height: 6.h,
+                                                                  width: 12.w,
+                                                                  decoration:
+                                                                  BoxDecoration(
+                                                                    image:
+                                                                    DecorationImage(
+                                                                      image: NetworkImage(
+                                                                          item['featured_image']
+                                                                              .toString()),
+                                                                      fit: BoxFit
+                                                                          .cover,
+                                                                    ),
                                                                   ),
                                                                 ),
-                                                              ),
-                                                            )
-                                                          ],
-                                                        ),
-                                                        Flexible(
-                                                            child: Padding(
-                                                          padding: padA5,
-                                                          child: Column(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Row(
-                                                                children: [
-                                                                  Flexible(
-                                                                    child:
-                                                                        Column(
+                                                              )
+                                                            ],
+                                                          ),
+                                                          Flexible(
+                                                              child: Padding(
+                                                                padding: padA5,
+                                                                child: Column(
+                                                                  mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .start,
+                                                                  children: [
+                                                                    Row(
                                                                       children: [
-                                                                        Text(
-                                                                          item[
-                                                                              'name'],
-                                                                          style: hMedium.copyWith(
-                                                                              fontSize: 10,
-                                                                              color: cBlack.withOpacity(0.6)),
-                                                                        ),
-                                                                        Row(
-                                                                          children: [
-                                                                            Text(
-                                                                              item['price'],
-                                                                              style: hMedium.copyWith(fontSize: 10, color: cBlack.withOpacity(0.9)),
-                                                                            ),
-                                                                          ],
-                                                                        ),
-                                                                        Row(
-                                                                          children: [
-                                                                            Text(
-                                                                              "${"Limited stock :" ' '}${'only' ' '}${remainingStock}${" left -"}${"order now"}",
-                                                                              style: hMedium.copyWith(fontSize: 12, color: cRed.withOpacity(0.9)),
-                                                                            ),
-                                                                          ],
+                                                                        Flexible(
+                                                                          child:
+                                                                          Column(
+                                                                            children: [
+                                                                              Text(
+                                                                                item[
+                                                                                'name'],
+                                                                                style: hMedium.copyWith(
+                                                                                    fontSize: 10,
+                                                                                    color: cBlack.withOpacity(0.6)),
+                                                                              ),
+                                                                              Row(
+                                                                                children: [
+                                                                                  Text(
+                                                                                    item['price'],
+                                                                                    style: hMedium.copyWith(fontSize: 10, color: cBlack.withOpacity(0.9)),
+                                                                                  ),
+                                                                                ],
+                                                                              ),
+                                                                              Row(
+                                                                                children: [
+                                                                                  Text(
+                                                                                    "${"Limited stock :" ' '}${'only' ' '}${remainingStock}${" left -"}${"order now"}",
+                                                                                    style: hMedium.copyWith(fontSize: 12, color: cRed.withOpacity(0.9)),
+                                                                                  ),
+                                                                                ],
+                                                                              ),
+                                                                            ],
+                                                                          ),
                                                                         ),
                                                                       ],
                                                                     ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        )),
-                                                      ],
-                                                    ),
-                                                    Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        Padding(
-                                                          padding: padA5,
-                                                          child: Container(
-                                                            decoration: BoxDecoration(
-                                                                border: Border.all(
-                                                                    color:
-                                                                        cGrey),
-                                                                color: colorWhite
-                                                                    .withOpacity(
-                                                                        0.9),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            4)),
-                                                            child: Row(
-                                                              children: [
-                                                                Row(
-                                                                  children: [
-                                                                    InkWell(
-                                                                      onTap:
-                                                                          () async {
-                                                                        setState(
-                                                                            () {
-                                                                          int initialValue =
-                                                                              int.parse(item['quantity']['value'].toString());
-                                                                          itemController.incrementAmountToCart(
-                                                                              (initialValue - 1).toString(),
-                                                                              item['item_key']);
-
-                                                                          // Update the total amount
-                                                                        });
-                                                                        // totalAmoutController.totalAmountToCart();
-                                                                        //
-                                                                        // // Add a delay before calling the API
-                                                                        // // 2 seconds delay
-                                                                        //
-                                                                        // // Call the API to fetch data
-                                                                        // itemController.fetchDataFromApi();
-                                                                      },
-                                                                      child:
-                                                                          Icon(
-                                                                        Icons
-                                                                            .remove,
-                                                                        color: cBlack
-                                                                            .withOpacity(0.7),
-                                                                      ),
-                                                                    ),
-                                                                    SizedBox(
-                                                                      width: 4,
-                                                                    ),
-                                                                    Text(item['quantity']
-                                                                            [
-                                                                            'value']
-                                                                        .toString()),
-                                                                    SizedBox(
-                                                                      width: 4,
-                                                                    ),
-                                                                    InkWell(
-                                                                      onTap:
-                                                                          () {
-                                                                        setState(
-                                                                            () {
-                                                                          int initialValue =
-                                                                              int.parse(item['quantity']['value'].toString());
-                                                                          int incrementedValue =
-                                                                              initialValue + 1;
-                                                                          // totalAmoutController.totalAmountToCart();
-
-                                                                          // Call the controller method to increment the amount
-                                                                          itemController.incrementAmountToCart(
-                                                                              incrementedValue.toString(),
-                                                                              item['item_key']);
-
-                                                                          // Add a delay before calling the API
-
-                                                                          // itemController.fetchDataFromApi();
-                                                                        });
-                                                                      },
-                                                                      child:
-                                                                          Icon(
-                                                                        Icons
-                                                                            .add,
-                                                                        color: cBlack
-                                                                            .withOpacity(0.7),
-                                                                        size:
-                                                                            20,
-                                                                      ),
-                                                                    )
                                                                   ],
                                                                 ),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        Padding(
-                                                          padding: padA5.add(
-                                                              EdgeInsets.only(
-                                                                  left: 10)),
-                                                          child: Container(
-                                                            decoration: BoxDecoration(
-                                                                border: Border.all(
-                                                                    color:
-                                                                        cGrey),
-                                                                color: colorWhite
-                                                                    .withOpacity(
-                                                                        0.9),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            4)),
-                                                            child: Row(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .spaceBetween,
-                                                              children: [
-                                                                Padding(
-                                                                  padding: padA6.add(
-                                                                      EdgeInsets.only(
-                                                                          left:
-                                                                              5)),
-                                                                  child: Icon(
-                                                                    Icons
-                                                                        .favorite_border,
-                                                                    color: cBlack
-                                                                        .withOpacity(
-                                                                            0.3),
-                                                                  ),
-                                                                ),
-                                                                Padding(
-                                                                  padding:
-                                                                      padA5,
-                                                                  child: Text(
-                                                                    "Move to wishlist",
-                                                                    style: hsmall
-                                                                        .copyWith(
-                                                                            color:
-                                                                                cBlack.withOpacity(0.6)),
-                                                                  ),
-                                                                )
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        Padding(
-                                                          padding: padA5.add(
-                                                              EdgeInsets.only(
-                                                                  left: 0)),
-                                                          child: InkWell(
-                                                            onTap: () {
-                                                              setState(() {
-                                                                itemController
-                                                                    .deleteToCart(
-                                                                        item['item_key']
-                                                                            .toString());
-                                                                totalAmoutController
-                                                                    .totalAmountToCart();
-
-                                                                print(item[
-                                                                    'item_key']);
-                                                              });
-
-                                                              // Add your delete item logic here
-                                                            },
+                                                              )),
+                                                        ],
+                                                      ),
+                                                      Row(
+                                                        mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                        children: [
+                                                          Padding(
+                                                            padding: padA5,
                                                             child: Container(
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                border: Border.all(
-                                                                    color:
-                                                                        cGrey),
-                                                                color: colorWhite
-                                                                    .withOpacity(
-                                                                        0.9),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            4),
-                                                              ),
+                                                              decoration: BoxDecoration(
+                                                                  border: Border.all(
+                                                                      color:
+                                                                      cGrey),
+                                                                  color: colorWhite
+                                                                      .withOpacity(
+                                                                      0.9),
+                                                                  borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                      4)),
                                                               child: Row(
                                                                 children: [
-                                                                  Icon(
-                                                                    Icons
-                                                                        .delete_outline,
-                                                                    color: cBlack
-                                                                        .withOpacity(
-                                                                            0.3),
+                                                                  Row(
+                                                                    children: [
+                                                                      InkWell(
+                                                                        onTap:
+                                                                            () async {
+                                                                          setState(
+                                                                                  () {
+                                                                                int initialValue =
+                                                                                int.parse(item['quantity']['value'].toString());
+                                                                                itemController.incrementAmountToCart(
+                                                                                    (initialValue - 1).toString(),
+                                                                                    item['item_key']);
+
+                                                                                // Update the total amount
+                                                                              });
+                                                                          // totalAmoutController.totalAmountToCart();
+                                                                          //
+                                                                          // // Add a delay before calling the API
+                                                                          // // 2 seconds delay
+                                                                          //
+                                                                          // // Call the API to fetch data
+                                                                          // itemController.fetchDataFromApi();
+                                                                        },
+                                                                        child:
+                                                                        Icon(
+                                                                          Icons
+                                                                              .remove,
+                                                                          color: cBlack
+                                                                              .withOpacity(0.7),
+                                                                        ),
+                                                                      ),
+                                                                      SizedBox(
+                                                                        width: 4,
+                                                                      ),
+                                                                      Text(item['quantity']
+                                                                      [
+                                                                      'value']
+                                                                          .toString()),
+                                                                      SizedBox(
+                                                                        width: 4,
+                                                                      ),
+                                                                      InkWell(
+                                                                        onTap:
+                                                                            () {
+                                                                          setState(
+                                                                                  () {
+                                                                                int initialValue =
+                                                                                int.parse(item['quantity']['value'].toString());
+                                                                                int incrementedValue =
+                                                                                    initialValue + 1;
+                                                                                // totalAmoutController.totalAmountToCart();
+
+                                                                                // Call the controller method to increment the amount
+                                                                                itemController.incrementAmountToCart(
+                                                                                    incrementedValue.toString(),
+                                                                                    item['item_key']);
+
+                                                                                // Add a delay before calling the API
+
+                                                                                // itemController.fetchDataFromApi();
+                                                                              });
+                                                                        },
+                                                                        child:
+                                                                        Icon(
+                                                                          Icons
+                                                                              .add,
+                                                                          color: cBlack
+                                                                              .withOpacity(0.7),
+                                                                          size:
+                                                                          20,
+                                                                        ),
+                                                                      )
+                                                                    ],
                                                                   ),
                                                                 ],
                                                               ),
                                                             ),
                                                           ),
-                                                        )
-                                                      ],
-                                                    )
-                                                  ],
+                                                          Padding(
+                                                            padding: padA5.add(
+                                                                EdgeInsets.only(
+                                                                    left: 10)),
+                                                            child: Container(
+                                                              decoration: BoxDecoration(
+                                                                  border: Border.all(
+                                                                      color:
+                                                                      cGrey),
+                                                                  color: colorWhite
+                                                                      .withOpacity(
+                                                                      0.9),
+                                                                  borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                      4)),
+                                                              child: Row(
+                                                                mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceBetween,
+                                                                children: [
+                                                                  Padding(
+                                                                    padding: padA6.add(
+                                                                        EdgeInsets.only(
+                                                                            left:
+                                                                            5)),
+                                                                    child: Icon(
+                                                                      Icons
+                                                                          .favorite_border,
+                                                                      color: cBlack
+                                                                          .withOpacity(
+                                                                          0.3),
+                                                                    ),
+                                                                  ),
+                                                                  Padding(
+                                                                    padding:
+                                                                    padA5,
+                                                                    child: Text(
+                                                                      "Move to wishlist",
+                                                                      style: hsmall
+                                                                          .copyWith(
+                                                                          color:
+                                                                          cBlack.withOpacity(0.6)),
+                                                                    ),
+                                                                  )
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding: padA5.add(
+                                                                EdgeInsets.only(
+                                                                    left: 0)),
+                                                            child: InkWell(
+                                                              onTap: () {
+                                                                setState(() {
+                                                                  itemController
+                                                                      .deleteToCart(
+                                                                      item['item_key']
+                                                                          .toString());
+                                                                  totalAmoutController
+                                                                      .totalAmountToCart();
+
+                                                                  print(item[
+                                                                  'item_key']);
+                                                                });
+
+                                                                // Add your delete item logic here
+                                                              },
+                                                              child: Container(
+                                                                decoration:
+                                                                BoxDecoration(
+                                                                  border: Border.all(
+                                                                      color:
+                                                                      cGrey),
+                                                                  color: colorWhite
+                                                                      .withOpacity(
+                                                                      0.9),
+                                                                  borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                      4),
+                                                                ),
+                                                                child: Row(
+                                                                  children: [
+                                                                    Icon(
+                                                                      Icons
+                                                                          .delete_outline,
+                                                                      color: cBlack
+                                                                          .withOpacity(
+                                                                          0.3),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          )
+                                                        ],
+                                                      )
+                                                    ],
+                                                  ),
                                                 ),
-                                              ),
-                                            ],
-                                          ),
-                                        );
+                                              ],
+                                            ),
+                                          );
+                                        }
+                                        else{
+                                          return const Center(
+                                            child: Text("List Empty"),
+                                          );
+                                        }
                                       }),
                                 ),
                                 Column(
@@ -564,7 +572,7 @@ class _AddToCartState extends State<AddToCart> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(right: 8),
+                      padding: EdgeInsets.only(right: 18,bottom: 18),
                       child: RoundedButton(
                           borderRadius: 12,
                           height: 6.h,

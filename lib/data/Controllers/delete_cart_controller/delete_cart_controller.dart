@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 import '../../Model/addtocart_model/addto_cart_model.dart';
@@ -13,25 +14,25 @@ class DeleteCartDataController extends GetxController {
 
   deleteToCart(String itemKey) async {
     addToCartLoading.value = true;
-
-
-
     var response = await DeleteCartService.deleteCartData(itemKey);
-    print(itemKey.toString());
+    Future.delayed(const Duration(seconds: 5));
+    if (kDebugMode) {
+      print(itemKey.toString());
+    }
 
     if (response is DeleteCartModel) {
       addToCartLoading.value = false;
-      addToCartLoading.value = false;
       deleteCartModel = response;
-      print("hit successfully");
-
+      if (kDebugMode) {
+        print("hit successfully");
+      }
       Get.snackbar("Success", "delete successfully");
-
-
     } else {
       addToCartLoading.value = false;
       addToCartError.value = response.toString();
-      print("add to cart API not successful");
+      if (kDebugMode) {
+        print("add to cart API not successful");
+      }
     }
   }
 }

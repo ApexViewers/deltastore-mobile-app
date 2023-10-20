@@ -1,5 +1,7 @@
 
+
 import 'package:flutter/material.dart';
+import 'package:test_app/screens/laptops/components/empty_cart_container.dart';
 
 import '../constant/routs_strings/routs_strings.dart';
 import '../screens/about/view/about_screen.dart';
@@ -72,8 +74,9 @@ class AppRoutes {
         return MaterialPageRoute(builder: (context) =>  RegistrationScreen());
       case addressScreen:
         return MaterialPageRoute(builder: (context) =>  AddressScreen());
+      case emptyCart:
+        return MaterialPageRoute(builder: (context) => const EmptyCartContainer());
       case customerservicescreen:
-
         return MaterialPageRoute(builder: (context) => const SettingScreen());
       default:
         return MaterialPageRoute(

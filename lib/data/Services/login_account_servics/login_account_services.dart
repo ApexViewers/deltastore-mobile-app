@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:get/get_connect/http/src/response/response.dart';
 import 'package:get/get_connect/http/src/response/response.dart';
 
@@ -12,7 +14,7 @@ class LoginService{
  static Future<dynamic> logInAccount(String username,String password)async{
    try{ var url = "${AppUrls.baseAddresslogin}${AppUrls.login}";
    Map data = {
-     "username": username,
+     "email": username,
 
      "password": password,
    };
@@ -22,7 +24,7 @@ class LoginService{
    if(res is http.Response){
 
 
-     return loginModelFromJson(res.body);
+     return LoginModel.fromJson(jsonDecode(res.body));
    }else {
      print('in else');
 

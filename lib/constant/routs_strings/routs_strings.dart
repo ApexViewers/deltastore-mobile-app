@@ -18,3 +18,4 @@ const String loginscreen = "/loginscreen";
 const String registrationScreen = "/registrationScreen";
 const String addressScreen = "/addressScreen";
 const String settingScreen = "/settingScreen";
+const String emptyCart = "/emptyCartContainer";
