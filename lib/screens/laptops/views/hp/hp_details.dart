@@ -877,7 +877,7 @@ class _HpLaptopDetailsScreenState extends State<HpLaptopDetailsScreen>
                                               backGroundColor: Colors.red,
                                               textButton: "Go to Cart",
                                               onTap: () {
-                                                Future.delayed(const Duration(seconds: 5));
+                                                Future.delayed(const Duration(seconds: 8));
                                                 // print(totalAmoutController.totalAmountModel.totals!.shippingTotal.);
                                                 Get.to(() => AddToCart(
 

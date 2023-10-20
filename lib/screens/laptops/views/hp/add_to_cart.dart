@@ -104,8 +104,7 @@ class _AddToCartState extends State<AddToCart> {
                         ),
                         Obx(() {
                           if (itemController.isLoading.value) {
-                            print("test1");
-                            return Center(child: CircularProgressIndicator());
+                            return const Center(child: CircularProgressIndicator());
                           } else if (itemController.error.value.isNotEmpty) {
                             return Center(
                                 child: Text(itemController.error.value));
