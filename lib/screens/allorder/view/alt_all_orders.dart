@@ -37,42 +37,38 @@ class CartView extends StatelessWidget {
                     if (cartController.cartData.value.items.isEmpty) {
                       return EmptyCartContainer.showAppBar(showAppBar: false);
                     } else {
-                      return Column(
-                        children: [
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          ListView.builder(
-                            itemCount:
-                                cartController.cartData.value.items.length,
-                            itemBuilder: (context, index) {
-                              final item =
-                                  cartController.cartData.value.items[index];
-                              return ListTile(
-                                leading: item.featuredImage != null
-                                    ? Image.network(item.featuredImage,
-                                        width: 50,
-                                        height: 50,
-                                        fit: BoxFit.cover, errorBuilder:
-                                            (BuildContext context,
-                                                Object exception,
-                                                StackTrace? stackTrace) {
-                                        return const Icon(Icons.image);
-                                      })
-                                    : const Icon(Icons
-                                        .image), // Display default icon if image is not available
-                                title: Text(item.name),
-                                subtitle: Text('Price: ${item.price}'),
-                                trailing: IconButton(
-                                  icon: const Icon(Icons.delete),
-                                  onPressed: () {
-                                    // Implement delete functionality here
-                                  },
-                                ),
-                              );
-                            },
-                          ),
-                        ],
+                      return Padding(
+                        padding: const EdgeInsets.fromLTRB(8, 15, 8, 8),
+                        child: ListView.builder(
+                          itemCount:
+                              cartController.cartData.value.items.length,
+                          itemBuilder: (context, index) {
+                            final item =
+                                cartController.cartData.value.items[index];
+                            return ListTile(
+                              leading: item.featuredImage != null
+                                  ? Image.network(item.featuredImage,
+                                      width: 50,
+                                      height: 50,
+                                      fit: BoxFit.cover, errorBuilder:
+                                          (BuildContext context,
+                                              Object exception,
+                                              StackTrace? stackTrace) {
+                                      return const Icon(Icons.image);
+                                    })
+                                  : const Icon(Icons
+                                      .image), // Display default icon if image is not available
+                              title: Text(item.name),
+                              subtitle: Text('Price: ${item.price}'),
+                              trailing: IconButton(
+                                icon: const Icon(Icons.delete),
+                                onPressed: () {
+                                  // Implement delete functionality here
+                                },
+                              ),
+                            );
+                          },
+                        ),
                       );
                     }
                   },
