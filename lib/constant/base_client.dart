@@ -5,12 +5,13 @@ import 'dart:convert';
 import 'dart:io';
 
 
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 import 'keys.dart';
 
 class BaseClientClass {
-  static const int TIME_OUT_DURATION = 30;
+  static const int TIME_OUT_DURATION = 60;
 
   static Future<dynamic> get(String url, String params) async {
     final String basicAuth =

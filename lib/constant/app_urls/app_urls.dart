@@ -1,6 +1,7 @@
 class AppUrls {
 
   static const String baseAddress = "https://deltastore.ae/wp-json/wc/";
+  static const String baseAddressAlt = "https://stagging.ditllcae.com/";
   static const String baseAddresslogin = "https://stagging.ditllcae.com/wp-json/";
   static const String baseAddressneed = "https://stagging.ditllcae.com/wp-json/wc/";
   static const String allProducts = "v3/products";
@@ -21,5 +22,6 @@ class AppUrls {
   static const String totalAmountCart = "cocart/v2/cart/calculate";
   static const String incrementQuantity = "cocart/v2/cart/item/";
   static const String logout = "cocart/v2/cart/logout";
+  static const String deleteItemFromCart = "/wp-json/cocart/v2/cart/item/";
 
 }
