@@ -2,7 +2,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../constant/fonts_strings.dart';
 import '../../constant/paddings.dart';
 import '../../constant/styles/app_textstyles.dart';
 import '../../constant/styles/colors.dart';

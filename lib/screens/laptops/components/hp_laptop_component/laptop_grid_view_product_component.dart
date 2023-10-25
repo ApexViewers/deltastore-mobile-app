@@ -1,10 +1,8 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../../constant/image_assets.dart';
 import '../../../../constant/loading/shimmerEffect_full_page.dart';
 import '../../../../constant/paddings.dart';
 import '../../../../constant/styles/app_textstyles.dart';
@@ -23,7 +21,7 @@ class HpLaptopGridProductComponent extends StatelessWidget {
 
     return  Obx(
             () => showAllCategoryByIdController.productLoading.value
-            ? FullPageShimmerEffect()
+            ? const FullPageShimmerEffect()
             : showAllCategoryByIdController.productError != ''
             ? Center(
             child: Column(
@@ -67,7 +65,7 @@ class HpLaptopGridProductComponent extends StatelessWidget {
                               MainAxisAlignment
                                   .spaceBetween,
                               children: [
-                                Text(""),
+                                const Text(""),
                                 SizedBox(
                                   width: 33.w,
                                 ),
@@ -82,7 +80,7 @@ class HpLaptopGridProductComponent extends StatelessWidget {
                                               30)),
                                       width: 6.w,
                                       height: 3.h,
-                                      child: Icon(
+                                      child: const Icon(
                                         Icons.favorite_border,
                                         size: 16,
                                         color:colorWhite,
@@ -106,14 +104,14 @@ class HpLaptopGridProductComponent extends StatelessWidget {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(left: 7),
+                              padding: const EdgeInsets.only(left: 7),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Column(
                                     children: [
-                                      Container(
+                                      SizedBox(
                                           width: 40.w,
                                           child: Text( showAllCategoryByIdController.allCategoryById[index].name.toString(),style: hsmall.copyWith(
                                             fontSize: 10
@@ -130,7 +128,7 @@ class HpLaptopGridProductComponent extends StatelessWidget {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(left: 7),
+                              padding: const EdgeInsets.only(left: 7),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -144,7 +142,7 @@ class HpLaptopGridProductComponent extends StatelessWidget {
                                           color: cBlack
                                               .withOpacity(
                                               0.6))),
-                                      SizedBox(height: 0.5,),
+                                      const SizedBox(height: 0.5,),
                                       Text(
                                         showAllCategoryByIdController.allCategoryById[index].regularPrice.toString(),
                                         style: hsmall.copyWith(

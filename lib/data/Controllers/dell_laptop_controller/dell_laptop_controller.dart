@@ -1,10 +1,7 @@
 import 'package:get/get.dart';
 
-import '../../../screens/categories/view/categories.dart';
-import '../../Model/categories_model/categories_model.dart';
 import '../../Model/dell_laptop_model/dell_laptop_model.dart';
 
-import '../../Services/all_categories/all_categories.dart';
 import '../../Services/dell_laptop_services/dell_laptop_services.dart';
 
 

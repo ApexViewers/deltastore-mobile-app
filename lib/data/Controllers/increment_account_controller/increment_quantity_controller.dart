@@ -1,11 +1,7 @@
 import 'package:get/get.dart';
 
-import '../../Model/addtocart_model/addto_cart_model.dart';
 import '../../Model/incrementAmountModel/incrementAccountModel.dart';
-import '../../Model/total_amount_model/total_amount_model.dart';
-import '../../Services/add_to_cart_services/add_to_cart.dart';
 import '../../Services/increment_quantity_services/increment_quantity_services.dart';
-import '../../Services/total_amount_services/total_amount_services.dart';
 
 class IncrementAmountController extends GetxController {
   RxBool addToCartLoading = false.obs;

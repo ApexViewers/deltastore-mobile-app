@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../constant/decorations.dart';
@@ -66,7 +65,7 @@ class SalesListViewProductComponent extends StatelessWidget {
                     width: 12.w,
                     decoration: BoxDecoration(
                         color: cGrey, borderRadius: BorderRadius.circular(40)),
-                    child: Center(
+                    child: const Center(
                         child: Icon(
                       Icons.shopping_cart,
                       color: colorWhite,
@@ -74,7 +73,7 @@ class SalesListViewProductComponent extends StatelessWidget {
                   )
                 ],
               ),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [],
               ),

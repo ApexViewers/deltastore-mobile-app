@@ -1,10 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../../constant/image_assets.dart';
 import '../../../../constant/loading/shimmerEffect_full_page.dart';
 import '../../../../constant/styles/app_textstyles.dart';
 import '../../../../constant/styles/colors.dart';
@@ -42,7 +39,7 @@ class _LaptopsState extends State<Laptops> {
       child: Column(
         children: [
           Obx(() => allCatagoriesByIdController.productLoading.value
-              ? FullPageShimmerEffect()
+              ? const FullPageShimmerEffect()
               : allCatagoriesByIdController.productError != ''
                   ? Center(
                       child: Column(
@@ -83,7 +80,7 @@ class _LaptopsState extends State<Laptops> {
                         "See All",
                         style: hsmall.copyWith(fontSize: 12),
                       ),
-                      Icon(
+                      const Icon(
                         Icons.arrow_forward,
                         size: 13,
                       ),
@@ -93,8 +90,7 @@ class _LaptopsState extends State<Laptops> {
               ],
             ),
 
-                      if (allCatagoriesByIdController.categoryById.length ==
-                          0) ...[
+                      if (allCatagoriesByIdController.categoryById.isEmpty) ...[
                         Column(
                           children: [
                             Row(
@@ -146,7 +142,7 @@ class _LaptopsState extends State<Laptops> {
                         Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Container(
+                              SizedBox(
                                 height: 100.h,
                                 width: MediaQuery.of(context).size.width < 600 ? 60.w : 50.w,
 

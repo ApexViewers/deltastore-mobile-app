@@ -25,7 +25,7 @@ class AllCategoryByIdController extends GetxController {
       productLoading.value = false;
       categoryById = response;
 
-      print(response.length.toString()+"show length of dafdsfasta");
+      print("${response.length}show length of dafdsfasta");
 
     } else {
       productLoading.value = false;

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import 'package:test_app/screens/account/view/login.dart';
 import '../../constant/image_assets.dart';
 import '../home/components/nav_bar_component.dart';
 

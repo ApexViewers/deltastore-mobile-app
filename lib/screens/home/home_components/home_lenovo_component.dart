@@ -2,15 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../constant/image_assets.dart';
 import '../../../constant/loading/ShimmerEffectloading.dart';
 import '../../../constant/paddings.dart';
 import '../../../constant/styles/app_textstyles.dart';
 import '../../../constant/styles/colors.dart';
-import '../../../data/Controllers/all_product_controller/all_product_controller.dart';
-import '../../../data/Controllers/dell_laptop_controller/dell_laptop_controller.dart';
 
-import '../../../data/Controllers/hp_laptop_controller/hp_laptop_controller.dart';
 import '../../../data/Controllers/lenovo_laptop_controller/lenovo_laptop_controller.dart';
 import '../../../data/Controllers/product_by_id_controller/product_by_id_controller.dart';
 import '../../laptops/views/hp/hp_details.dart';
@@ -98,7 +94,7 @@ class LenovoLaptopProductComponent extends StatelessWidget {
                                     .images![0]
                                     .src!
                                     .isEmpty
-                                    ? Container(child: Text(""))
+                                    ? Container(child: const Text(""))
                                     : Image.network(
                                     fit: BoxFit.cover,
                                     lenovoLaptopController.lenovoLaptopModel[index]
@@ -146,28 +142,19 @@ class LenovoLaptopProductComponent extends StatelessWidget {
                                   height: 4.0,
                                 ),
                                 Text(
-                                    "AED" +
-                                        " " +
-                                        lenovoLaptopController.lenovoLaptopModel[index]
-                                            .salePrice
-                                            .toString() ==
+                                    "AED ${lenovoLaptopController.lenovoLaptopModel[index]
+                                            .salePrice}" ==
                                         ""
                                         ? ""
-                                        : "AED" +
-                                        " " +
-                                        lenovoLaptopController.lenovoLaptopModel[index]
-                                            .salePrice
-                                            .toString(),
+                                        : "AED ${lenovoLaptopController.lenovoLaptopModel[index]
+                                            .salePrice}",
                                     style: hsmall.copyWith(
                                         fontSize: 10.sp,
                                         color:
                                         cBlack.withOpacity(0.6))),
                                 Text(
-                                  "AED" +
-                                      " " +
-                                      lenovoLaptopController.lenovoLaptopModel[index]
-                                          .regularPrice
-                                          .toString() !=
+                                  "AED ${lenovoLaptopController.lenovoLaptopModel[index]
+                                          .regularPrice}" !=
                                       ""
                                       ?  lenovoLaptopController.lenovoLaptopModel[index]
                                       .regularPrice

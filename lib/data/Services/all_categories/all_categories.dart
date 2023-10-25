@@ -1,6 +1,5 @@
 import '../../../constant/app_urls/app_urls.dart';
 import '../../../constant/base_client.dart';
-import '../../Model/allProduct_model/all_product_model.dart';
 import 'package:http/http.dart' as http;
 
 import '../../Model/categories_model/categories_model.dart';

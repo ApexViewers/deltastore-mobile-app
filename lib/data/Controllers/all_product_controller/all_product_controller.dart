@@ -22,7 +22,7 @@ class AllProductController extends GetxController {
     if (response is List<AllProductModel>) {
       productLoading.value = false;
       productModel = response;
-      print(response.length.toString()+"show length of data");
+      print("${response.length}show length of data");
 
     } else {
       productLoading.value = false;

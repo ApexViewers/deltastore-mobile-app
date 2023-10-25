@@ -1,5 +1,4 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:test_app/screens/setting/Screen/help/help_pages/terms_conditions.dart';
@@ -33,29 +32,29 @@ class _HelpPageState extends State<HelpPage> {
       body: Column(
         children: [
           ListTile(
-            trailing: Icon(Icons.arrow_forward),
+            trailing: const Icon(Icons.arrow_forward),
             title: Text("FAQ",style: hMedium.copyWith(color: cBlack,fontSize: 15),),
 
           ),
-          Divider(),
+          const Divider(),
           ListTile(
             onTap: (){
-              Get.to(()=>TermAndConditions());
+              Get.to(()=>const TermAndConditions());
             },
-            trailing: Icon(Icons.arrow_forward),
+            trailing: const Icon(Icons.arrow_forward),
             title: Text("Terms and Conditions",style: hMedium.copyWith(color: cBlack,fontSize: 15),),
 
           ),
-          Divider(),
+          const Divider(),
           ListTile(
             onTap: (){
-              Get.to(()=>AboutScreen());
+              Get.to(()=>const AboutScreen());
             },
-            trailing: Icon(Icons.arrow_forward),
+            trailing: const Icon(Icons.arrow_forward),
             title: Text("About us",style: hMedium.copyWith(color: cBlack,fontSize: 15),),
 
           ),
-          Divider(),
+          const Divider(),
 
 
 

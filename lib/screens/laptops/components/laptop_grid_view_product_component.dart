@@ -1,13 +1,10 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../constant/image_assets.dart';
 import '../../../constant/styles/app_textstyles.dart';
 import '../../../constant/styles/colors.dart';
-import '../views/hp/hp_details.dart';
 
 class LaptopGridProductComponent extends StatelessWidget {
   LaptopGridProductComponent({super.key});
@@ -48,7 +45,7 @@ class LaptopGridProductComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return  Container(
+    return  SizedBox(
 
       height: 13.9.h,
 

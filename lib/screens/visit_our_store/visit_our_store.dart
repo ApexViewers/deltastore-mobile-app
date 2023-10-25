@@ -96,9 +96,9 @@ class _VisitOurStoreState extends State<VisitOurStore> {
                                 decoration: BoxDecoration(
                                     border: Border.all(),
                                     borderRadius: BorderRadius.circular(10)),
-                                child: Column(
+                                child: const Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
-                                  children: const [
+                                  children: [
                                     CircularProgressIndicator(),
                                     SizedBox(height: 20),
                                     Text('Loading...'),

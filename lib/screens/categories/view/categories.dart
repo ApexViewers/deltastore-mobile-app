@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:sizer/sizer.dart';
-import '../../../constant/image_assets.dart';
 import '../../../constant/loading/shimmerEffect_full_page.dart';
 import '../../../constant/styles/app_textstyles.dart';
 import '../../../constant/styles/colors.dart';
@@ -11,10 +9,7 @@ import '../../../data/Controllers/all_categories_controller/all_categories_show_
 import '../../../data/Controllers/categories_parent/categories_by_id_controller.dart';
 import '../../../data/Controllers/twoinone_category_controller/twoinone_category_controller.dart';
 import '../../../reuseable_widgets/appbar_widget.dart';
-import '../../laptops/views/hp/hp_laptop.dart';
-import 'allcategoriespages/desktop_moniters.dart';
 import 'allcategoriespages/laptops.dart';
-import 'allcategoriespages/desktop_computer.dart';
 
 class AllCategories extends StatefulWidget {
   const AllCategories({Key? key}) : super(key: key);

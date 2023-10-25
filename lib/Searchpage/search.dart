@@ -1,8 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:sizer/sizer.dart';
 
 import '../constant/paddings.dart';
@@ -11,7 +9,6 @@ import '../constant/styles/colors.dart';
 import '../reuseable_widgets/appbar_widget.dart';
 import '../reuseable_widgets/rounded_button.dart';
 import '../reuseable_widgets/rounded_textfield.dart';
-import '../screens/home/components/top_bar_component.dart';
 import 'Search_result.dart';
 
 class Search extends StatefulWidget {
@@ -50,9 +47,9 @@ class _SearchState extends State<Search> {
                 children: [
                   ReuseTextField(
 
-suffixIcon: Icon(Icons.search),
+suffixIcon: const Icon(Icons.search),
                     onTap: () {
-                      Get.to(() => Search());
+                      Get.to(() => const Search());
                     },
                     onChanged: (val) {},
                     fontSize: 15,
@@ -76,14 +73,14 @@ suffixIcon: Icon(Icons.search),
                             _showcategories();
                           },
                           leading: Text("Browse Catagories",style: hMedium.copyWith(fontSize: 15,color: cBlack),),
-                          trailing: Icon(Icons.arrow_forward_ios_sharp),
+                          trailing: const Icon(Icons.arrow_forward_ios_sharp),
 
                         ),
                       ),
                       RoundedButton(
                           backGroundColor: appthem,
                           textButton: "Search", onTap: (){
-                            Get.to(()=>SearchPage());
+                            Get.to(()=>const SearchPage());
                       }),
                     ],
                   ),
@@ -123,9 +120,9 @@ suffixIcon: Icon(Icons.search),
                         },
                         child:Chip(
                           backgroundColor: cGrey,
-                          label: Padding(
+                          label: const Padding(
                             padding:
-                            const EdgeInsets.symmetric(horizontal: 5),
+                            EdgeInsets.symmetric(horizontal: 5),
                             child: Text("bad",
                                 style: TextStyle(
                                     color: Colors.cyan)),

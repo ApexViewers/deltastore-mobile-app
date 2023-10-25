@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:test_app/constant/styles/colors.dart';
 import 'package:test_app/screens/home/components/nav_bar_component.dart';
-import 'package:test_app/screens/home/view/home.dart';
 
 import '../../../constant/image_assets.dart';
 import '../../setting/Screen/setting_screen.dart';

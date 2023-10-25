@@ -1,8 +1,6 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../constant/paddings.dart';
@@ -34,7 +32,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text(
+        title: const Text(
           "Register",
         ),
         backgroundColor: appthem,
@@ -91,6 +89,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     if (val!.isEmpty) {
                       return "This field is required.";
                     }
+                    return null;
                   },
                   obsecure: false,
                   controller: nameController,
@@ -106,7 +105,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     BoldText(
                       textBold: "Email address ",
                     ),
-                    Text(
+                    const Text(
                       "*",
                       style: TextStyle(color: Colors.red),
                     )
@@ -122,6 +121,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     if (val!.isEmpty) {
                       return "This field is required.";
                     }
+                    return null;
                   },
                   obsecure: false,
                   controller: emailController,
@@ -137,7 +137,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     BoldText(
                       textBold: "Password ",
                     ),
-                    Text(
+                    const Text(
                       "*",
                       style: TextStyle(color: Colors.red),
                     ),
@@ -153,6 +153,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     if (val!.isEmpty) {
                       return "This field is required.";
                     }
+                    return null;
                   },
                   obsecure: false,
                   controller: passwordController,

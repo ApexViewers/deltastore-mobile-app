@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
-import 'package:test_app/screens/laptops/views/hp/hp_details.dart';
 
 import '../../../../constant/paddings.dart';
 import '../../../../constant/routs_strings/routs_strings.dart';
@@ -51,7 +50,7 @@ class _AddToCartState extends State<AddToCart> {
         appBar: AppBar(
             elevation: 0,
             backgroundColor: colorWhite,
-            title: TopBarComponent(),
+            title: const TopBarComponent(),
             leading: IconButton(
               icon: Icon(Icons.arrow_back, color: cBlack),
               onPressed: () {
@@ -75,7 +74,7 @@ class _AddToCartState extends State<AddToCart> {
                       children: [
                         InkWell(
                           onTap: () {
-                            Get.to(() => AddressScreen());
+                            Get.to(() => const AddressScreen());
                           },
                           child: Card(
                             child: Padding(
@@ -120,7 +119,7 @@ class _AddToCartState extends State<AddToCart> {
                             } else {
                               return Column(
                                 children: [
-                                  Container(
+                                  SizedBox(
                                     width: 100.w,
                                     child: RefreshIndicator(
                                       onRefresh: () async {
@@ -216,7 +215,7 @@ class _AddToCartState extends State<AddToCart> {
                                                                                   Row(
                                                                                     children: [
                                                                                       Text(
-                                                                                        "${"Limited stock :" ' '}${'only' ' '}${remainingStock}${" left -"}${"order now"}",
+                                                                                        "${"Limited stock :" ' '}${'only' ' '}$remainingStock${" left -"}${"order now"}",
                                                                                         style: hMedium.copyWith(fontSize: 12, color: cRed.withOpacity(0.9)),
                                                                                       ),
                                                                                     ],
@@ -353,7 +352,7 @@ class _AddToCartState extends State<AddToCart> {
                                                                     children: [
                                                                       Padding(
                                                                         padding: padA6.add(
-                                                                            EdgeInsets.only(
+                                                                            const EdgeInsets.only(
                                                                                 left:
                                                                                 5)),
                                                                         child: Icon(
@@ -381,7 +380,7 @@ class _AddToCartState extends State<AddToCart> {
                                                               ),
                                                               Padding(
                                                                 padding: padA5.add(
-                                                                    EdgeInsets.only(
+                                                                    const EdgeInsets.only(
                                                                         left: 0)),
                                                                 child: InkWell(
                                                                   onTap: () {
@@ -454,7 +453,7 @@ class _AddToCartState extends State<AddToCart> {
                                               mainAxisAlignment:
                                                   MainAxisAlignment.spaceBetween,
                                               children: [
-                                                SizedBox(
+                                                const SizedBox(
                                                   height: 8,
                                                 ),
                                                 Row(
@@ -467,7 +466,7 @@ class _AddToCartState extends State<AddToCart> {
                                                     ),
                                                   ],
                                                 ),
-                                                SizedBox(
+                                                const SizedBox(
                                                   height: 8,
                                                 ),
                                                 Row(
@@ -496,7 +495,7 @@ class _AddToCartState extends State<AddToCart> {
                                                     )
                                                   ],
                                                 ),
-                                                SizedBox(
+                                                const SizedBox(
                                                   height: 8,
                                                 ),
                                                 Row(
@@ -520,7 +519,7 @@ class _AddToCartState extends State<AddToCart> {
                                                     )
                                                   ],
                                                 ),
-                                                SizedBox(
+                                                const SizedBox(
                                                   height: 8,
                                                 ),
                                                 Row(
@@ -542,7 +541,7 @@ class _AddToCartState extends State<AddToCart> {
                                                     )
                                                   ],
                                                 ),
-                                                SizedBox(
+                                                const SizedBox(
                                                   height: 8,
                                                 ),
                                               ],
@@ -570,8 +569,8 @@ class _AddToCartState extends State<AddToCart> {
                   children: [
                     Container(
                       alignment: Alignment.bottomCenter,
-                      padding: EdgeInsets.all(16),
-                      child: Column(
+                      padding: const EdgeInsets.all(16),
+                      child: const Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           // Text(  "${addToCartController.addToCartModel.currency!.currencyCode.toString() + " "}${addToCartController.addToCartModel.items![0].totals!.total.toString()}",
@@ -584,7 +583,7 @@ class _AddToCartState extends State<AddToCart> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(right: 18,bottom: 18),
+                      padding: const EdgeInsets.only(right: 18,bottom: 18),
                       child: RoundedButton(
                           borderRadius: 12,
                           height: 6.h,

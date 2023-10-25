@@ -1,13 +1,10 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../constant/decorations.dart';
 import '../../constant/paddings.dart';
 import '../../constant/styles/app_textstyles.dart';
 import '../../constant/styles/colors.dart';
-import '../desktop_computer/component/desktop_computer_grid_components.dart';
 
 import 'components/40_sales_product_components/sales_component.dart';
 
@@ -23,7 +20,7 @@ class _SalesProductState extends State<SalesProduct> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text(
+          title: const Text(
             "Shop",
           ),
           backgroundColor: appthem),
@@ -43,12 +40,12 @@ class _SalesProductState extends State<SalesProduct> {
                       ),
                       TextButton(
                         style: ButtonStyle(
-                          minimumSize: MaterialStateProperty.all(Size(100, 30)),
+                          minimumSize: MaterialStateProperty.all(const Size(100, 30)),
                           // Set custom width and height
                           padding: MaterialStateProperty.all(EdgeInsets.zero),
                           // Remove padding
                           textStyle: MaterialStateProperty.all(
-                              TextStyle(fontSize: 14)), // Adjust font size
+                              const TextStyle(fontSize: 14)), // Adjust font size
                           // Add more customizations if needed
                         ),
                         onPressed: () {},
@@ -60,15 +57,15 @@ class _SalesProductState extends State<SalesProduct> {
                     ],
                   ),
                 ),
-                Container(
+                SizedBox(
                   height: 30.h,
                   child: ListView.builder(
                       itemCount: 10,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
-                        return Padding(
+                        return const Padding(
                           padding: padA5,
-                          child: const SalesListViewProductComponent(),
+                          child: SalesListViewProductComponent(),
                         );
                       }),
                 ),
@@ -85,12 +82,12 @@ class _SalesProductState extends State<SalesProduct> {
                           ),
                           TextButton(
                             style: ButtonStyle(
-                              minimumSize: MaterialStateProperty.all(Size(100, 30)),
+                              minimumSize: MaterialStateProperty.all(const Size(100, 30)),
                               // Set custom width and height
                               padding: MaterialStateProperty.all(EdgeInsets.zero),
                               // Remove padding
                               textStyle: MaterialStateProperty.all(
-                                  TextStyle(fontSize: 14)), // Adjust font size
+                                  const TextStyle(fontSize: 14)), // Adjust font size
                               // Add more customizations if needed
                             ),
                             onPressed: () {},
@@ -102,16 +99,16 @@ class _SalesProductState extends State<SalesProduct> {
                         ],
                       ),
                     ),
-                    Container(
+                    SizedBox(
                       width: 100.w,
                       child: ListView.builder(
-                          physics: ScrollPhysics(),
+                          physics: const ScrollPhysics(),
                           shrinkWrap: true,
                           itemCount: 10,
                           itemBuilder: (context, index) {
-                            return Padding(
+                            return const Padding(
                               padding: padA5,
-                              child: const SalesListViewProductComponent(),
+                              child: SalesListViewProductComponent(),
                             );
                           }),
                     ),

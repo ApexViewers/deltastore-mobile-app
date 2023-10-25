@@ -1,10 +1,7 @@
 import 'package:get/get.dart';
-import 'package:get/get.dart';
 import 'package:test_app/data/Controllers/login_account_controller/login_account_controller.dart';
 import 'package:test_app/data/Services/LogoutServices/logout_services.dart';
 import 'package:test_app/screens/home/components/nav_bar_component.dart';
-import 'package:test_app/screens/home/view/home.dart';
-import '../../Model/LogoutModel/logout_model.dart';
 
 class LogoutController extends GetxController {
   RxBool logoutLoading = false.obs;

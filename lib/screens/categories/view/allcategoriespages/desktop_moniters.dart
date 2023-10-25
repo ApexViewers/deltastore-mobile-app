@@ -1,8 +1,6 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../constant/image_assets.dart';
@@ -55,7 +53,7 @@ class _DesktopMonitersState extends State<DesktopMoniters> {
                 child: Row(
                   children: [
                     Text("See All",style: hsmall.copyWith(fontSize: 12),),
-                    Icon(Icons.arrow_forward,size: 13,)
+                    const Icon(Icons.arrow_forward,size: 13,)
                   ],
                 ),
               )
@@ -65,7 +63,7 @@ class _DesktopMonitersState extends State<DesktopMoniters> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
 
-              Container(
+              SizedBox(
                 height: 77.h,
                 width: 70.w,
                 child: GridView.builder(
@@ -92,7 +90,7 @@ class _DesktopMonitersState extends State<DesktopMoniters> {
                                 height: 8.h,
                                 width: 20.5.w,
                                 child: Container(
-                                  decoration: BoxDecoration(),
+                                  decoration: const BoxDecoration(),
                                   margin: EdgeInsets.only(
                                       left: 3.w, right: 4.w, bottom: 2.h, top: 2.h),
                                   child: Image.asset(

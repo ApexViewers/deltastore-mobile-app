@@ -43,13 +43,9 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../../constant/image_assets.dart';
-import '../../../../constant/loading/AppEasyloading.dart';
 import '../../../../constant/loading/ShimmerEffectloading.dart';
 import '../../../../constant/paddings.dart';
 import '../../../../constant/styles/app_textstyles.dart';
@@ -102,7 +98,7 @@ class _HpImageSliderState extends State<HpImageSlider> {
                         children: [
                           Padding(
                             padding:
-                                padA6.add(EdgeInsets.only(right: 20, top: 10)),
+                                padA6.add(const EdgeInsets.only(right: 20, top: 10)),
                             child: InkWell(
                               onTap:(){
 
@@ -113,7 +109,7 @@ class _HpImageSliderState extends State<HpImageSlider> {
                                       borderRadius: BorderRadius.circular(30)),
                                   width: 9.w,
                                   height: 5.h,
-                                  child: Icon(
+                                  child: const Icon(
                                     Icons.favorite_border,
                                     size: 16,
                                     color: colorWhite,
@@ -122,7 +118,7 @@ class _HpImageSliderState extends State<HpImageSlider> {
                           ),
                           Padding(
                             padding:
-                                padA6.add(EdgeInsets.only(right: 20, top: 10)),
+                                padA6.add(const EdgeInsets.only(right: 20, top: 10)),
                             child: InkWell(
                               onTap: () async {
                                 dynamic name = "name";
@@ -130,9 +126,9 @@ class _HpImageSliderState extends State<HpImageSlider> {
                                     RegExp('[^A-Za-z0-9]'), '-');
                                 name.trim();
 
-                                final url = '${ProductidController.productBYid.permalink.toString()}';
+                                final url = ProductidController.productBYid.permalink.toString();
 
-                                await Share.share('${url}');
+                                await Share.share(url);
                               },
                               child: Container(
                                   decoration: BoxDecoration(
@@ -140,7 +136,7 @@ class _HpImageSliderState extends State<HpImageSlider> {
                                       borderRadius: BorderRadius.circular(30)),
                                   width: 9.w,
                                   height: 5.h,
-                                  child: Icon(
+                                  child: const Icon(
                                     Icons.share_outlined,
                                     size: 16,
                                     color: colorWhite,
@@ -151,7 +147,7 @@ class _HpImageSliderState extends State<HpImageSlider> {
                       ),
                     ],
                   ),
-                  Container(
+                  SizedBox(
                     height: 29.h,
                     width: 65.w,
                     child: ClipRRect(
@@ -170,7 +166,7 @@ class _HpImageSliderState extends State<HpImageSlider> {
                           }
 
                           else{
-                            return ShimmerEffectLoading();
+                            return const ShimmerEffectLoading();
                           }
                         },
                         errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {

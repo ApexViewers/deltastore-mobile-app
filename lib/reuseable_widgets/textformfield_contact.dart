@@ -1,7 +1,5 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../constant/styles/colors.dart';
 
@@ -51,7 +49,7 @@ class RoundTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: width,
       height: height,
       child: TextFormField(
@@ -67,14 +65,14 @@ class RoundTextFormField extends StatelessWidget {
         keyboardType: TextInputType.multiline,
         maxLines: maxLint,
         decoration: InputDecoration(
-            focusedBorder: OutlineInputBorder(
+            focusedBorder: const OutlineInputBorder(
               borderSide: BorderSide(
                 width: 2,
                 color: appthem, // Set your desired border color
                // Set the border width
               ),
             ),
-            contentPadding: EdgeInsets.symmetric(vertical: 8.0,horizontal: 8),
+            contentPadding: const EdgeInsets.symmetric(vertical: 8.0,horizontal: 8),
           hintStyle: TextStyle(
             color: hintTextColor
           ),

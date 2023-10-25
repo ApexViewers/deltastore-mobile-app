@@ -1,5 +1,4 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -27,7 +26,7 @@ class _ListOfSettingItemState extends State<ListOfSettingItem> {
             child: Icon(Icons.arrow_back,color: cBlack,)),
         elevation: 0,
         backgroundColor: colorWhite,
-        title: Container(
+        title: SizedBox(
           width: 60.w,
           child: Image.asset(
             ImageAssests.logoImge.toString(),

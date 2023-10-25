@@ -1,5 +1,4 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:sizer/sizer.dart';
@@ -88,8 +87,8 @@ class _ReviewTabBarState extends State<ReviewTabBar> {
                               allowHalfRating: false,
                               itemCount: 5,
                               itemPadding:
-                                  EdgeInsets.symmetric(horizontal: 2.0),
-                              itemBuilder: (context, _) => Icon(
+                                  const EdgeInsets.symmetric(horizontal: 2.0),
+                              itemBuilder: (context, _) => const Icon(
                                 Icons.star,
                                 size: 8,
                                 color:appthem,
@@ -117,7 +116,7 @@ class _ReviewTabBarState extends State<ReviewTabBar> {
                   "Your Review  :",
                   style: hMedium.copyWith(color: cBlack, fontSize: 14),
                 ),
-                SizedBox(width: 16), // Add spacing between the fields
+                const SizedBox(width: 16), // Add spacing between the fields
                 Expanded(
                   child: RoundTextFormField(
                     fill: true,

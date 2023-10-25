@@ -1,8 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 import 'package:test_app/screens/home/components/nav_bar_component.dart';
 
@@ -95,6 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       if (val!.isEmpty) {
                         return "This field is required.";
                       }
+                      return null;
                     },
                     borderRadius: 6,
                     ontapborderRadius: 6,
@@ -127,11 +125,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       if (val!.isEmpty) {
                         return "This field is required.";
                       }
+                      return null;
                     },
                     controller: loginAccount.passwordController,
                     cursorColor: appthem,
                     textAlign: TextAlign.left,
-                    style: TextStyle(),
+                    style: const TextStyle(),
                     obscureText: loginAccount.isPasswordVisible.value,
                     decoration: InputDecoration(
                         suffixIcon: GestureDetector(
@@ -143,16 +142,16 @@ class _LoginScreenState extends State<LoginScreen> {
                                 : Icons.visibility_off,
                           ),
                         ),
-                        focusedBorder: OutlineInputBorder(
+                        focusedBorder: const OutlineInputBorder(
                           borderSide: BorderSide(
                             width: 2,
                             color: appthem, // Set your desired border color
                             // Set the border width
                           ),
                         ),
-                        contentPadding: EdgeInsets.symmetric(
+                        contentPadding: const EdgeInsets.symmetric(
                             vertical: 8.0, horizontal: 8),
-                        hintStyle: TextStyle(),
+                        hintStyle: const TextStyle(),
                         enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(6),
                             borderSide: BorderSide(
@@ -169,7 +168,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ListTile(
                     trailing: TextButton(
                   onPressed: () {
-                    Get.to(() => ForgotPassword());
+                    Get.to(() => const ForgotPassword());
                   },
                   child: Text(
                     "Forgot password",
@@ -186,7 +185,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                       ),
                     ),
-                    Text('Remember Me'),
+                    const Text('Remember Me'),
                   ],
                 ),
                 Obx(
@@ -245,7 +244,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     const Text("New in our app ?"),
                     TextButton(
                       onPressed: () {
-                        Get.to(() => RegistrationScreen());
+                        Get.to(() => const RegistrationScreen());
                       },
                       child: Text(
                         "Create Account",

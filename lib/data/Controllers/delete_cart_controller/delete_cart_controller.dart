@@ -1,9 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
-import '../../Model/addtocart_model/addto_cart_model.dart';
 import '../../Model/delete_cart_model/delete_cart_model.dart';
-import '../../Services/add_to_cart_services/add_to_cart.dart';
 import '../../Services/delete_cart_services/delete_cart_services.dart';
 
 class DeleteCartDataController extends GetxController {

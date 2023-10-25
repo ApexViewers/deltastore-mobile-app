@@ -16,11 +16,7 @@ import '../../../data/Controllers/dell_laptop_controller/dell_laptop_controller.
 import '../../../data/Controllers/destop_computer_controller/desktop_computer_controller.dart';
 import '../../../data/Controllers/twoinone_category_controller/twoinone_category_controller.dart';
 import '../../../reuseable_widgets/rounded_textfield.dart';
-import '../../desktop_computer/component/desktop_computer_listview_component.dart';
-import '../../laptops/components/hp_laptop_component/laptop_listview_products_component.dart';
-import '../../laptops/components/laptop_grid_view_product_component.dart';
 import '../../laptops/components/laptop_listview_products_component.dart';
-import '../../laptops/views/hp/hp_laptop.dart';
 import '../../setting/Screen/delivery_shipment_policy/view.dart';
 import '../../setting/Screen/return_policy/view.dart';
 import '../components/my_image_slider.dart';
@@ -91,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             padding: const EdgeInsets.only(top: 3),
                             child: ReuseTextField(
                               onTap: () {
-                                Get.to(() => Search(),
+                                Get.to(() => const Search(),
                                     transition: Transition.cupertino);
                               },
                               onChanged: (val) {},
@@ -540,7 +536,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           ),
                                         ],
                                       ),
-                                      DeskTopComputerComponent(),
+                                      const DeskTopComputerComponent(),
 
                                       // Obx(() => Row(
                                       //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -652,6 +648,8 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class Design1 extends StatelessWidget {
+  const Design1({super.key});
+
   @override
   Widget build(BuildContext context) {
     return   LenovoLaptopProductComponent();
@@ -659,6 +657,8 @@ class Design1 extends StatelessWidget {
 }
 
 class Design2 extends StatelessWidget {
+  const Design2({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -679,6 +679,8 @@ class Design2 extends StatelessWidget {
 }
 
 class Design3 extends StatelessWidget {
+  const Design3({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(

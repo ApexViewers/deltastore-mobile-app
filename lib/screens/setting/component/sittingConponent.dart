@@ -1,8 +1,6 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 import '../../../constant/paddings.dart';
 import '../../../constant/styles/app_textstyles.dart';
@@ -307,7 +305,7 @@ class ListComponent extends StatelessWidget {
                       ),
                       InkWell(
                         onTap: () {
-                          Get.to(() => ContactInfo());
+                          Get.to(() => const ContactInfo());
                         },
                         child: Padding(
                           padding: const EdgeInsets.only(top: 10, bottom: 10),

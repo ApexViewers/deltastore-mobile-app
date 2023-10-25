@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
-import 'package:test_app/constant/base_client.dart';
 import 'package:test_app/screens/laptops/components/empty_cart_container.dart';
 import '../../../constant/paddings.dart';
 import '../../../constant/routs_strings/routs_strings.dart';
 import '../../../constant/styles/app_textstyles.dart';
 import '../../../constant/styles/colors.dart';
 import '../../../data/Controllers/cart_controller/cart_controller.dart';
+import '../../../data/Controllers/items_in_cart_controller/item_in_cart_controller.dart';
 import '../../../data/Controllers/total_amount_cart_controller/total_amount_controller.dart';
 import '../../../reuseable_widgets/appbar_widget.dart';
 import '../../../reuseable_widgets/rounded_button.dart';
 import '../../address/view/address_screen.dart';
 import '../../home/view/home.dart';
-import 'package:test_app/constant/app_urls/app_urls.dart';
 
 class CartView extends StatefulWidget {
 
-  CartView({super.key});
+  const CartView({super.key});
 
   @override
   State<CartView> createState() => _CartViewState();
@@ -25,6 +24,7 @@ class CartView extends StatefulWidget {
 
 class _CartViewState extends State<CartView> {
   final CartController cartController = Get.put(CartController());
+  var itemController = Get.put((ItemInCartController()));
 
   var totalAmoutController = Get.put(TotalAmountController());
 
@@ -258,13 +258,13 @@ class _CartViewState extends State<CartView> {
                                                                 BorderRadius
                                                                     .circular(5)),
                                                             child: IconButton(
-                                                                onPressed: () {
+                                                                onPressed: () async {
+                                                                  itemController
+                                                                      .deleteToCart(item.itemKey);
+                                                                  await Future.delayed(const Duration(seconds: 5));
                                                                   setState(() async {
-                                                                    BaseClientClass.delete(
-                                                                        '${AppUrls.baseAddressAlt}${AppUrls.deleteItemFromCart}${item.itemKey}');
-                                                                    await Future.delayed(
-                                                                        const Duration(
-                                                                            seconds: 5));
+                                                                    totalAmoutController
+                                                                        .totalAmountToCart();
                                                                   });
 
                                                                     Get.snackbar(
@@ -293,7 +293,7 @@ class _CartViewState extends State<CartView> {
                                             mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                             children: [
-                                              SizedBox(
+                                              const SizedBox(
                                                 height: 8,
                                               ),
                                               Row(
@@ -306,7 +306,7 @@ class _CartViewState extends State<CartView> {
                                                   ),
                                                 ],
                                               ),
-                                              SizedBox(
+                                              const SizedBox(
                                                 height: 8,
                                               ),
                                               Row(
@@ -335,7 +335,7 @@ class _CartViewState extends State<CartView> {
                                                   )
                                                 ],
                                               ),
-                                              SizedBox(
+                                              const SizedBox(
                                                 height: 8,
                                               ),
                                               Row(
@@ -359,7 +359,7 @@ class _CartViewState extends State<CartView> {
                                                   )
                                                 ],
                                               ),
-                                              SizedBox(
+                                              const SizedBox(
                                                 height: 8,
                                               ),
                                               Row(
@@ -381,7 +381,7 @@ class _CartViewState extends State<CartView> {
                                                   )
                                                 ],
                                               ),
-                                              SizedBox(
+                                              const SizedBox(
                                                 height: 8,
                                               ),
                                             ],

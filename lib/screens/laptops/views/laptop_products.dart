@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sizer/sizer.dart';
 
 import '../../../constant/decorations.dart';
 import '../../../constant/paddings.dart';
@@ -73,13 +72,13 @@ class LaptopProducts extends StatelessWidget {
                 )
               : Expanded(
                 child: ListView.builder(
-                    physics: ScrollPhysics(),
+                    physics: const ScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: 10,
                     itemBuilder: (context, index) {
-                      return Padding(
+                      return const Padding(
                         padding: padA5,
-                        child: const SalesListViewProductComponent(),
+                        child: SalesListViewProductComponent(),
                       );
                     }),
               ),

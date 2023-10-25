@@ -31,7 +31,7 @@ class AppRoutes {
       case homescreen:
         return MaterialPageRoute(builder: (context) =>  Bar());
       case splashscreen:
-        return MaterialPageRoute(builder: (context) =>  DualRotationAnimationPage());
+        return MaterialPageRoute(builder: (context) =>  const DualRotationAnimationPage());
 
       case laptopproductsscreen:
         return MaterialPageRoute(builder: (context) => const LaptopProducts());
@@ -59,9 +59,9 @@ class AppRoutes {
       case googlemapscreen:
         return MaterialPageRoute(builder: (context) =>  GoogleMapScreen());
       case pantumprintersscreen:
-        return MaterialPageRoute(builder: (context) =>  PantumPrinters());
+        return MaterialPageRoute(builder: (context) =>  const PantumPrinters());
       case salesproductscreen:
-        return MaterialPageRoute(builder: (context) =>  SalesProduct());
+        return MaterialPageRoute(builder: (context) =>  const SalesProduct());
       case hplaptopscreen:
         return MaterialPageRoute(builder: (context) =>  HpLaptops());
       // case delllaptopscreen:
@@ -71,9 +71,9 @@ class AppRoutes {
       case loginscreen:
         return MaterialPageRoute(builder: (context) =>  LoginScreen());
       case registrationScreen:
-        return MaterialPageRoute(builder: (context) =>  RegistrationScreen());
+        return MaterialPageRoute(builder: (context) =>  const RegistrationScreen());
       case addressScreen:
-        return MaterialPageRoute(builder: (context) =>  AddressScreen());
+        return MaterialPageRoute(builder: (context) =>  const AddressScreen());
       case emptyCart:
         return MaterialPageRoute(builder: (context) => EmptyCartContainer());
       case customerservicescreen:

@@ -3,8 +3,6 @@ import 'package:get/get.dart';
 
 
 import '../../Model/allCategories_model/all_categories_model.dart';
-import '../../Model/category_by_id_model/category_by_id.dart';
-import '../../Services/all_categories_by_id/AllCategoriesById.dart';
 import '../../Services/all_categories_list_services/all_categories_list_services.dart';
 
 class ShowAllCategoryByIdController extends GetxController {
@@ -27,7 +25,7 @@ class ShowAllCategoryByIdController extends GetxController {
       productLoading.value = false;
       allCategoryById = response;
 
-      print(response.length.toString()+"show length of data needdd");
+      print("${response.length}show length of data needdd");
 
     } else {
       productLoading.value = false;
