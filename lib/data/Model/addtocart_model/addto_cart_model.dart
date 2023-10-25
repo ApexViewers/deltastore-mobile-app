@@ -62,7 +62,7 @@ class AddToCartModel {
     fees: json["fees"] == null ? [] : List<dynamic>.from(json["fees"]!.map((x) => x)),
     taxes: json["taxes"] == null ? [] : List<dynamic>.from(json["taxes"]!.map((x) => x)),
     totals: json["totals"] == null ? null : AddToCartModelTotals.fromJson(json["totals"]),
-    removedItems: json["removed_items"] == null ? [] : List<dynamic>.from(json["removed_items"]!.map((x) => x)),
+   // removedItems: json["removed_items"] == null ? [] : List<dynamic>.from(json["removed_items"]!.map((x) => x)),
     crossSells: json["cross_sells"] == null ? [] : List<dynamic>.from(json["cross_sells"]!.map((x) => x)),
     notices: json["notices"] == null ? null : Notices.fromJson(json["notices"]),
   );

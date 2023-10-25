@@ -264,7 +264,7 @@ class _CartViewState extends State<CartView> {
                                                                         '${AppUrls.baseAddressAlt}${AppUrls.deleteItemFromCart}${item.itemKey}');
                                                                     await Future.delayed(
                                                                         const Duration(
-                                                                            seconds: 10));
+                                                                            seconds: 5));
                                                                   });
 
                                                                     Get.snackbar(
@@ -397,8 +397,8 @@ class _CartViewState extends State<CartView> {
                                         children: [
                                           Container(
                                             alignment: Alignment.bottomCenter,
-                                            padding: EdgeInsets.all(16),
-                                            child: Column(
+                                            padding: const EdgeInsets.all(16),
+                                            child: const Column(
                                               crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
                                                 // Text(  "${addToCartController.addToCartModel.currency!.currencyCode.toString() + " "}${addToCartController.addToCartModel.items![0].totals!.total.toString()}",
@@ -411,7 +411,7 @@ class _CartViewState extends State<CartView> {
                                             ),
                                           ),
                                           Padding(
-                                            padding: EdgeInsets.only(right: 18,bottom: 10,top: 10),
+                                            padding: const EdgeInsets.only(right: 18,bottom: 10,top: 10),
                                             child: RoundedButton(
                                                 borderRadius: 12,
                                                 height: 6.h,

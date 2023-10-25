@@ -20,7 +20,7 @@ class DeleteCartService {
 
       if (res is http.Response) {
         print("successfully");
-        return deleteCartModelFromJson(res.body);
+        return addToCartModelFromJson(res.body);
       } else {
         print('in else');
 
