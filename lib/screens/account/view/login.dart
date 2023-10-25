@@ -81,7 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     BoldText(
                       textBold: "Username or email address ",
                     ),
-                    Text(
+                    const Text(
                       "*",
                       style: TextStyle(color: Colors.red),
                     )
@@ -112,7 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     BoldText(
                       textBold: "Password ",
                     ),
-                    Text(
+                    const Text(
                       "*",
                       style: TextStyle(color: Colors.red),
                     ),
@@ -122,50 +122,48 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 1.h,
                 ),
                 Obx(
-                  () => Container(
-                    child: TextFormField(
-                      validator: (val) {
-                        if (val!.isEmpty) {
-                          return "This field is required.";
-                        }
-                      },
-                      controller: loginAccount.passwordController,
-                      cursorColor: appthem,
-                      textAlign: TextAlign.left,
-                      style: TextStyle(),
-                      obscureText: loginAccount.isPasswordVisible.value,
-                      decoration: InputDecoration(
-                          suffixIcon: GestureDetector(
-                            onTap: () =>
-                                loginAccount.togglePasswordVisibility(),
-                            child: Icon(
-                              loginAccount.isPasswordVisible.value
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
-                            ),
+                  () => TextFormField(
+                    validator: (val) {
+                      if (val!.isEmpty) {
+                        return "This field is required.";
+                      }
+                    },
+                    controller: loginAccount.passwordController,
+                    cursorColor: appthem,
+                    textAlign: TextAlign.left,
+                    style: TextStyle(),
+                    obscureText: loginAccount.isPasswordVisible.value,
+                    decoration: InputDecoration(
+                        suffixIcon: GestureDetector(
+                          onTap: () =>
+                              loginAccount.togglePasswordVisibility(),
+                          child: Icon(
+                            loginAccount.isPasswordVisible.value
+                                ? Icons.visibility
+                                : Icons.visibility_off,
                           ),
-                          focusedBorder: OutlineInputBorder(
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            width: 2,
+                            color: appthem, // Set your desired border color
+                            // Set the border width
+                          ),
+                        ),
+                        contentPadding: EdgeInsets.symmetric(
+                            vertical: 8.0, horizontal: 8),
+                        hintStyle: TextStyle(),
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(6),
                             borderSide: BorderSide(
-                              width: 2,
-                              color: appthem, // Set your desired border color
-                              // Set the border width
-                            ),
-                          ),
-                          contentPadding: EdgeInsets.symmetric(
-                              vertical: 8.0, horizontal: 8),
-                          hintStyle: TextStyle(),
-                          enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(6),
-                              borderSide: BorderSide(
-                                color: cGrey,
-                              )),
-                          disabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: cRed),
-                          ),
-                          border: OutlineInputBorder(
-                              borderSide: BorderSide(color: cGrey),
-                              borderRadius: BorderRadius.circular(6))),
-                    ),
+                              color: cGrey,
+                            )),
+                        disabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: cRed),
+                        ),
+                        border: OutlineInputBorder(
+                            borderSide: BorderSide(color: cGrey),
+                            borderRadius: BorderRadius.circular(6))),
                   ),
                 ),
                 ListTile(
@@ -244,7 +242,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(
                       width: 13.w,
                     ),
-                    Text("New in our app ?"),
+                    const Text("New in our app ?"),
                     TextButton(
                       onPressed: () {
                         Get.to(() => RegistrationScreen());

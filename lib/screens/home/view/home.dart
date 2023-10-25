@@ -129,514 +129,519 @@ class _HomeScreenState extends State<HomeScreen> {
               // Your SliverAppBar configuration...
             ];
           },
-          body: SingleChildScrollView(
-            child: Container(
-              color: cGrey.withOpacity(0.1),
-              child: Column(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                          color: colorWhite, child: const MyImageSlider()),
-                      // vSpac10,
-                      Column(
-                        children: [
-                          Container(
-                              width: 100.w,
-                              height: 4.h,
-                              color: appthem,
-                              child: Center(
-                                  child: Text(
-                                "free delivery in order AED 25",
-                                style: hsmall.copyWith(color: colorWhite),
-                              ))),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          // Container(
-                          //   child: Column(
-                          //     children: [LaptopGridProductComponent()],
-                          //   ),
-                          // ),
-                          const SizedBox(
-                            height: 9,
-                          ),
-                          Padding(
-                            padding: sidepad,
-                            child: Column(
-                              children: [
-                                Column(
-                                  children: [
-                                    Padding(
-                                      padding: padA5,
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            "24 hours deals offers available",
-                                            style: hMedium.copyWith(
-                                                color: cBlack, fontSize: 14),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.circular(10),
-                                      child: Image.asset(
-                                        ImageAssests.cover1mge,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 15,
-                                    ),
-                                  ],
-                                ),
-
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Padding(
-                                      padding: padA5,
-                                      child: Text(
-                                        "Dell Laptop Deals",
-                                        style: hMedium.copyWith(
-                                            color: cBlack, fontSize: 14),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(right: 5.w),
-                                      child: Row(
-                                        children: [
-                                          InkWell(
-                                            onTap: () {},
-                                            child: Text(
-                                              "See all",
-                                              style: hsmall,
+          body: RefreshIndicator(
+            onRefresh: () async {
+              build(context);
+            },
+            child: SingleChildScrollView(
+              child: Container(
+                color: cGrey.withOpacity(0.1),
+                child: Column(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                            color: colorWhite, child: const MyImageSlider()),
+                        // vSpac10,
+                        Column(
+                          children: [
+                            Container(
+                                width: 100.w,
+                                height: 4.h,
+                                color: appthem,
+                                child: Center(
+                                    child: Text(
+                                  "free delivery in order AED 25",
+                                  style: hsmall.copyWith(color: colorWhite),
+                                ))),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            // Container(
+                            //   child: Column(
+                            //     children: [LaptopGridProductComponent()],
+                            //   ),
+                            // ),
+                            const SizedBox(
+                              height: 9,
+                            ),
+                            Padding(
+                              padding: sidepad,
+                              child: Column(
+                                children: [
+                                  Column(
+                                    children: [
+                                      Padding(
+                                        padding: padA5,
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              "24 hours deals offers available",
+                                              style: hMedium.copyWith(
+                                                  color: cBlack, fontSize: 14),
                                             ),
-                                          ),
-                                          const SizedBox(
-                                            width: 5,
-                                          ),
-                                          const Icon(
-                                            Icons.arrow_forward,
-                                            size: 12,
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                DellLaptopProductComponent(),
-                                const SizedBox(
-                                  height: 15,
-                                ),
-                                Row(
-                                  children: [
-                                    Padding(
-                                      padding: padA5,
-                                      child: Text(
-                                        "24 hours deals offers available",
-                                        style: hMedium.copyWith(
-                                            color: cBlack, fontSize: 14),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(10),
-                                  child: Image.network(
-                                    "https://deltastore.ae/wp-content/uploads/2023/04/cover-1536x320.png",
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 15,
-                                ),
-                                Column(
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Padding(
-                                          padding: padA5,
-                                          child: Text(
-                                            "Hp Laptop Deals",
-                                            style: hMedium.copyWith(
-                                                color: cBlack, fontSize: 14),
-                                          ),
+                                          ],
                                         ),
-                                        Padding(
-                                          padding: EdgeInsets.only(right: 5.w),
-                                          child: Row(
-                                            children: [
-                                              Text(
+                                      ),
+                                      ClipRRect(
+                                        borderRadius: BorderRadius.circular(10),
+                                        child: Image.asset(
+                                          ImageAssests.cover1mge,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 15,
+                                      ),
+                                    ],
+                                  ),
+
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Padding(
+                                        padding: padA5,
+                                        child: Text(
+                                          "Dell Laptop Deals",
+                                          style: hMedium.copyWith(
+                                              color: cBlack, fontSize: 14),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(right: 5.w),
+                                        child: Row(
+                                          children: [
+                                            InkWell(
+                                              onTap: () {},
+                                              child: Text(
                                                 "See all",
                                                 style: hsmall,
                                               ),
-                                              const SizedBox(
-                                                width: 5,
-                                              ),
-                                              const Icon(
-                                                Icons.arrow_forward,
-                                                size: 12,
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    HpLaptopProductComponent()
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: 15,
-                                ),
-                                // Row(
-                                //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                //   children: [
-                                //     ClipRRect(
-                                //       borderRadius: BorderRadius.circular(12),
-                                //       child: Container(
-                                //         height: 60,
-                                //         width: 60,
-                                //         child: Image.network(
-                                //           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ5qmjHOwsN5iwBmtYF752Nng_7a9MMuYCWQ&usqp=CAU',
-                                //           fit: BoxFit.cover,
-                                //         ),
-                                //       ),
-                                //     ),
-                                //     ClipRRect(
-                                //       borderRadius: BorderRadius.circular(12),
-                                //       child: Container(
-                                //         height: 60,
-                                //         width: 60,
-                                //         decoration: BoxDecoration(
-                                //             borderRadius: BorderRadius.circular(30)),
-                                //         child: Image.network(
-                                //           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3mU46b5HZih8dW-wJlodJDYVd2ekBWzr8dA&usqp=CAU',
-                                //           fit: BoxFit.cover,
-                                //         ),
-                                //       ),
-                                //     ),
-                                //     ClipRRect(
-                                //       borderRadius: BorderRadius.circular(12),
-                                //       child: Container(
-                                //         height: 60,
-                                //         width: 60,
-                                //         decoration: BoxDecoration(
-                                //             color: cRed,
-                                //             borderRadius: BorderRadius.circular(30)),
-                                //         child: Image.network(
-                                //           'https://images.unsplash.com/photo-1580522154071-c6ca47a859ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGxhcHRvcHN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60',
-                                //           fit: BoxFit.cover,
-                                //         ),
-                                //       ),
-                                //     ),
-                                //   ],
-                                // ),
-                                // SizedBox(
-                                //   height: 20,
-                                // ),
-                                // Row(
-                                //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                //   children: [
-                                //     Card(
-                                //       child: Container(
-                                //         decoration: BoxDecoration(
-                                //             borderRadius:
-                                //             BorderRadius.circular(
-                                //                 8)),
-                                //         height: 10.h,
-                                //         width: 20.5.w,
-                                //         child: Container(
-                                //           decoration: BoxDecoration(),
-                                //           margin: EdgeInsets.only(
-                                //               left: 3.w,
-                                //               right: 4.w,
-                                //               bottom: 2.h,
-                                //               top: 2.h),
-                                //           child: Image.network(
-                                //             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ5qmjHOwsN5iwBmtYF752Nng_7a9MMuYCWQ&usqp=CAU',
-                                //             fit: BoxFit.cover,
-                                //           ),
-                                //         ),
-                                //       ),
-                                //     ),
-                                //     ClipRRect(
-                                //       borderRadius: BorderRadius.circular(12),
-                                //       child: Container(
-                                //         height: 60,
-                                //         width: 60,
-                                //         child: Image.network(
-                                //           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ5qmjHOwsN5iwBmtYF752Nng_7a9MMuYCWQ&usqp=CAU',
-                                //           fit: BoxFit.cover,
-                                //         ),
-                                //       ),
-                                //     ),
-                                //     ClipRRect(
-                                //       borderRadius: BorderRadius.circular(12),
-                                //       child: Container(
-                                //         height: 60,
-                                //         width: 60,
-                                //         decoration: BoxDecoration(
-                                //             borderRadius: BorderRadius.circular(30)),
-                                //         child: Image.network(
-                                //           'https://deltastore.ae/wp-content/uploads/2023/04/Dell-Latitude-7400.png',
-                                //           fit: BoxFit.cover,
-                                //         ),
-                                //       ),
-                                //     ),
-                                //     ClipRRect(
-                                //       borderRadius: BorderRadius.circular(5),
-                                //       child: Container(
-                                //         height: 60,
-                                //         width: 60,
-                                //
-                                //         decoration: BoxDecoration(
-                                //             color: colorWhite,
-                                //             borderRadius: BorderRadius.circular(4)),
-                                //         child: Padding(
-                                //           padding: const EdgeInsets.all(8.0),
-                                //           child: Image.network(
-                                //             'https://images.unsplash.com/photo-1580522154071-c6ca47a859ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGxhcHRvcHN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60',
-                                //             fit: BoxFit.cover,
-                                //           ),
-                                //         ),
-                                //       ),
-                                //     ),
-                                //   ],
-                                // ),
-                                SizedBox(
-                                  child: Row(
-                                    children: [
-                                      Expanded(
-                                        child: InkWell(
-                                          onTap: () {
-                                            Get.to(() =>
-                                                const DeliveryAndShipment());
-                                          },
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                const BorderRadius.only(
-                                                    topLeft:
-                                                        Radius.circular(10),
-                                                    bottomLeft:
-                                                        Radius.circular(10)),
-                                            child: Image.asset(
-                                              ImageAssests.freeshipping,
-                                              fit: BoxFit.cover,
                                             ),
-                                          ),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: InkWell(
-                                          onTap: () {
-                                            Get.to(() => const ReturnPolicy());
-                                          },
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                const BorderRadius.only(
-                                                    topRight:
-                                                        Radius.circular(10),
-                                                    bottomRight:
-                                                        Radius.circular(10)),
-                                            child: Image.asset(
-                                              ImageAssests.freereturn,
-                                              fit: BoxFit.cover,
+                                            const SizedBox(
+                                              width: 5,
                                             ),
-                                          ),
+                                            const Icon(
+                                              Icons.arrow_forward,
+                                              size: 12,
+                                            )
+                                          ],
                                         ),
                                       ),
                                     ],
                                   ),
-                                ),
-                                const SizedBox(
-                                  height: 15,
-                                ),
-                                Column(
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                  DellLaptopProductComponent(),
+                                  const SizedBox(
+                                    height: 15,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Padding(
+                                        padding: padA5,
+                                        child: Text(
+                                          "24 hours deals offers available",
+                                          style: hMedium.copyWith(
+                                              color: cBlack, fontSize: 14),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(10),
+                                    child: Image.network(
+                                      "https://deltastore.ae/wp-content/uploads/2023/04/cover-1536x320.png",
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 15,
+                                  ),
+                                  Column(
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Padding(
+                                            padding: padA5,
+                                            child: Text(
+                                              "Hp Laptop Deals",
+                                              style: hMedium.copyWith(
+                                                  color: cBlack, fontSize: 14),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(right: 5.w),
+                                            child: Row(
+                                              children: [
+                                                Text(
+                                                  "See all",
+                                                  style: hsmall,
+                                                ),
+                                                const SizedBox(
+                                                  width: 5,
+                                                ),
+                                                const Icon(
+                                                  Icons.arrow_forward,
+                                                  size: 12,
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      HpLaptopProductComponent()
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    height: 15,
+                                  ),
+                                  // Row(
+                                  //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  //   children: [
+                                  //     ClipRRect(
+                                  //       borderRadius: BorderRadius.circular(12),
+                                  //       child: Container(
+                                  //         height: 60,
+                                  //         width: 60,
+                                  //         child: Image.network(
+                                  //           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ5qmjHOwsN5iwBmtYF752Nng_7a9MMuYCWQ&usqp=CAU',
+                                  //           fit: BoxFit.cover,
+                                  //         ),
+                                  //       ),
+                                  //     ),
+                                  //     ClipRRect(
+                                  //       borderRadius: BorderRadius.circular(12),
+                                  //       child: Container(
+                                  //         height: 60,
+                                  //         width: 60,
+                                  //         decoration: BoxDecoration(
+                                  //             borderRadius: BorderRadius.circular(30)),
+                                  //         child: Image.network(
+                                  //           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3mU46b5HZih8dW-wJlodJDYVd2ekBWzr8dA&usqp=CAU',
+                                  //           fit: BoxFit.cover,
+                                  //         ),
+                                  //       ),
+                                  //     ),
+                                  //     ClipRRect(
+                                  //       borderRadius: BorderRadius.circular(12),
+                                  //       child: Container(
+                                  //         height: 60,
+                                  //         width: 60,
+                                  //         decoration: BoxDecoration(
+                                  //             color: cRed,
+                                  //             borderRadius: BorderRadius.circular(30)),
+                                  //         child: Image.network(
+                                  //           'https://images.unsplash.com/photo-1580522154071-c6ca47a859ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGxhcHRvcHN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60',
+                                  //           fit: BoxFit.cover,
+                                  //         ),
+                                  //       ),
+                                  //     ),
+                                  //   ],
+                                  // ),
+                                  // SizedBox(
+                                  //   height: 20,
+                                  // ),
+                                  // Row(
+                                  //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  //   children: [
+                                  //     Card(
+                                  //       child: Container(
+                                  //         decoration: BoxDecoration(
+                                  //             borderRadius:
+                                  //             BorderRadius.circular(
+                                  //                 8)),
+                                  //         height: 10.h,
+                                  //         width: 20.5.w,
+                                  //         child: Container(
+                                  //           decoration: BoxDecoration(),
+                                  //           margin: EdgeInsets.only(
+                                  //               left: 3.w,
+                                  //               right: 4.w,
+                                  //               bottom: 2.h,
+                                  //               top: 2.h),
+                                  //           child: Image.network(
+                                  //             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ5qmjHOwsN5iwBmtYF752Nng_7a9MMuYCWQ&usqp=CAU',
+                                  //             fit: BoxFit.cover,
+                                  //           ),
+                                  //         ),
+                                  //       ),
+                                  //     ),
+                                  //     ClipRRect(
+                                  //       borderRadius: BorderRadius.circular(12),
+                                  //       child: Container(
+                                  //         height: 60,
+                                  //         width: 60,
+                                  //         child: Image.network(
+                                  //           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ5qmjHOwsN5iwBmtYF752Nng_7a9MMuYCWQ&usqp=CAU',
+                                  //           fit: BoxFit.cover,
+                                  //         ),
+                                  //       ),
+                                  //     ),
+                                  //     ClipRRect(
+                                  //       borderRadius: BorderRadius.circular(12),
+                                  //       child: Container(
+                                  //         height: 60,
+                                  //         width: 60,
+                                  //         decoration: BoxDecoration(
+                                  //             borderRadius: BorderRadius.circular(30)),
+                                  //         child: Image.network(
+                                  //           'https://deltastore.ae/wp-content/uploads/2023/04/Dell-Latitude-7400.png',
+                                  //           fit: BoxFit.cover,
+                                  //         ),
+                                  //       ),
+                                  //     ),
+                                  //     ClipRRect(
+                                  //       borderRadius: BorderRadius.circular(5),
+                                  //       child: Container(
+                                  //         height: 60,
+                                  //         width: 60,
+                                  //
+                                  //         decoration: BoxDecoration(
+                                  //             color: colorWhite,
+                                  //             borderRadius: BorderRadius.circular(4)),
+                                  //         child: Padding(
+                                  //           padding: const EdgeInsets.all(8.0),
+                                  //           child: Image.network(
+                                  //             'https://images.unsplash.com/photo-1580522154071-c6ca47a859ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGxhcHRvcHN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60',
+                                  //             fit: BoxFit.cover,
+                                  //           ),
+                                  //         ),
+                                  //       ),
+                                  //     ),
+                                  //   ],
+                                  // ),
+                                  SizedBox(
+                                    child: Row(
                                       children: [
-                                        Padding(
-                                          padding: padA5,
-                                          child: Text(
-                                            "Lenovo Laptop Deals",
-                                            style: hMedium.copyWith(
-                                                color: cBlack, fontSize: 14),
+                                        Expanded(
+                                          child: InkWell(
+                                            onTap: () {
+                                              Get.to(() =>
+                                                  const DeliveryAndShipment());
+                                            },
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  const BorderRadius.only(
+                                                      topLeft:
+                                                          Radius.circular(10),
+                                                      bottomLeft:
+                                                          Radius.circular(10)),
+                                              child: Image.asset(
+                                                ImageAssests.freeshipping,
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
                                           ),
                                         ),
-                                        Padding(
-                                          padding: EdgeInsets.only(right: 5.w),
-                                          child: Row(
-                                            children: [
-                                              Text(
-                                                "See all",
-                                                style: hsmall,
+                                        Expanded(
+                                          child: InkWell(
+                                            onTap: () {
+                                              Get.to(() => const ReturnPolicy());
+                                            },
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  const BorderRadius.only(
+                                                      topRight:
+                                                          Radius.circular(10),
+                                                      bottomRight:
+                                                          Radius.circular(10)),
+                                              child: Image.asset(
+                                                ImageAssests.freereturn,
+                                                fit: BoxFit.cover,
                                               ),
-                                              const SizedBox(
-                                                width: 5,
-                                              ),
-                                              const Icon(
-                                                Icons.arrow_forward,
-                                                size: 12,
-                                              )
-                                            ],
+                                            ),
                                           ),
                                         ),
                                       ],
                                     ),
-                                    LenovoLaptopProductComponent()
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: 15,
-                                ),
+                                  ),
+                                  const SizedBox(
+                                    height: 15,
+                                  ),
+                                  Column(
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Padding(
+                                            padding: padA5,
+                                            child: Text(
+                                              "Lenovo Laptop Deals",
+                                              style: hMedium.copyWith(
+                                                  color: cBlack, fontSize: 14),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(right: 5.w),
+                                            child: Row(
+                                              children: [
+                                                Text(
+                                                  "See all",
+                                                  style: hsmall,
+                                                ),
+                                                const SizedBox(
+                                                  width: 5,
+                                                ),
+                                                const Icon(
+                                                  Icons.arrow_forward,
+                                                  size: 12,
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      LenovoLaptopProductComponent()
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    height: 15,
+                                  ),
 
-                                Column(
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Padding(
-                                          padding: padA5,
-                                          child: Text(
-                                            "Desktops Computers",
-                                            style: hMedium.copyWith(
-                                                color: cBlack, fontSize: 14),
+                                  Column(
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Padding(
+                                            padding: padA5,
+                                            child: Text(
+                                              "Desktops Computers",
+                                              style: hMedium.copyWith(
+                                                  color: cBlack, fontSize: 14),
+                                            ),
                                           ),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(right: 5.w),
-                                          child: Row(
-                                            children: [
-                                              Text(
-                                                "See all",
-                                                style: hsmall,
-                                              ),
-                                              const SizedBox(
-                                                width: 5,
-                                              ),
-                                              const Icon(
-                                                Icons.arrow_forward,
-                                                size: 12,
-                                              )
-                                            ],
+                                          Padding(
+                                            padding: EdgeInsets.only(right: 5.w),
+                                            child: Row(
+                                              children: [
+                                                Text(
+                                                  "See all",
+                                                  style: hsmall,
+                                                ),
+                                                const SizedBox(
+                                                  width: 5,
+                                                ),
+                                                const Icon(
+                                                  Icons.arrow_forward,
+                                                  size: 12,
+                                                )
+                                              ],
+                                            ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                    DeskTopComputerComponent(),
+                                        ],
+                                      ),
+                                      DeskTopComputerComponent(),
 
-                                    // Obx(() => Row(
-                                    //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                    //   children: [
-                                    //     ElevatedButton(
-                                    //       onPressed: () {
-                                    //         desktopComputerController.changecategoriesdata(1); // Change to Design 1
-                                    //       },
-                                    //       style: ElevatedButton.styleFrom(
-                                    //         primary:    desktopComputerController.selectedDesign.value == 1
-                                    //             ? Colors.blue // Change to blue if selected
-                                    //             : null, // Null to use default color
-                                    //       ),
-                                    //       child: const Text('All'),
-                                    //     ),
-                                    //     ElevatedButton(
-                                    //       onPressed: () {
-                                    //         desktopComputerController.changecategoriesdata(2);// Change to Design 2
-                                    //       },
-                                    //       style: ElevatedButton.styleFrom(
-                                    //         primary: desktopComputerController.selectedDesign.value == 2
-                                    //             ? Colors.red // Change to red if selected
-                                    //             : null, // Null to use default color
-                                    //       ),
-                                    //       child: const Text('Hp'),
-                                    //     ),
-                                    //     ElevatedButton(
-                                    //       onPressed: () {
-                                    //         desktopComputerController.changecategoriesdata(3);/// Change to Design 3
-                                    //       },
-                                    //       style: ElevatedButton.styleFrom(
-                                    //         primary:   desktopComputerController.selectedDesign.value == 3
-                                    //             ? Colors.green // Change to green if selected
-                                    //             : Colors.white, // Null to use default color
-                                    //       ),
-                                    //       child: const Text('Dell'),
-                                    //     ),
-                                    //     ElevatedButton(
-                                    //       onPressed: () {
-                                    //         desktopComputerController.changecategoriesdata(3);/// Change to Design 3
-                                    //       },
-                                    //       style: ElevatedButton.styleFrom(
-                                    //         primary:   desktopComputerController.selectedDesign.value == 3
-                                    //             ? Colors.green // Change to green if selected
-                                    //             : Colors.white, // Null to use default color
-                                    //       ),
-                                    //       child: const Text('Lenovo'),
-                                    //     ),
-                                    //   ],
-                                    // ),),
-                                    Row(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Padding(
-                                          padding: padA5,
-                                          child: Text(
-                                            "Desktops Computers",
-                                            style: hMedium.copyWith(
-                                                color: cBlack, fontSize: 14),
+                                      // Obx(() => Row(
+                                      //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      //   children: [
+                                      //     ElevatedButton(
+                                      //       onPressed: () {
+                                      //         desktopComputerController.changecategoriesdata(1); // Change to Design 1
+                                      //       },
+                                      //       style: ElevatedButton.styleFrom(
+                                      //         primary:    desktopComputerController.selectedDesign.value == 1
+                                      //             ? Colors.blue // Change to blue if selected
+                                      //             : null, // Null to use default color
+                                      //       ),
+                                      //       child: const Text('All'),
+                                      //     ),
+                                      //     ElevatedButton(
+                                      //       onPressed: () {
+                                      //         desktopComputerController.changecategoriesdata(2);// Change to Design 2
+                                      //       },
+                                      //       style: ElevatedButton.styleFrom(
+                                      //         primary: desktopComputerController.selectedDesign.value == 2
+                                      //             ? Colors.red // Change to red if selected
+                                      //             : null, // Null to use default color
+                                      //       ),
+                                      //       child: const Text('Hp'),
+                                      //     ),
+                                      //     ElevatedButton(
+                                      //       onPressed: () {
+                                      //         desktopComputerController.changecategoriesdata(3);/// Change to Design 3
+                                      //       },
+                                      //       style: ElevatedButton.styleFrom(
+                                      //         primary:   desktopComputerController.selectedDesign.value == 3
+                                      //             ? Colors.green // Change to green if selected
+                                      //             : Colors.white, // Null to use default color
+                                      //       ),
+                                      //       child: const Text('Dell'),
+                                      //     ),
+                                      //     ElevatedButton(
+                                      //       onPressed: () {
+                                      //         desktopComputerController.changecategoriesdata(3);/// Change to Design 3
+                                      //       },
+                                      //       style: ElevatedButton.styleFrom(
+                                      //         primary:   desktopComputerController.selectedDesign.value == 3
+                                      //             ? Colors.green // Change to green if selected
+                                      //             : Colors.white, // Null to use default color
+                                      //       ),
+                                      //       child: const Text('Lenovo'),
+                                      //     ),
+                                      //   ],
+                                      // ),),
+                                      Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Padding(
+                                            padding: padA5,
+                                            child: Text(
+                                              "Desktops Computers",
+                                              style: hMedium.copyWith(
+                                                  color: cBlack, fontSize: 14),
+                                            ),
                                           ),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(right: 5.w),
-                                          child: Row(
-                                            children: [
-                                              Text(
-                                                "See all",
-                                                style: hsmall,
-                                              ),
-                                              const SizedBox(
-                                                width: 5,
-                                              ),
-                                              const Icon(
-                                                Icons.arrow_forward,
-                                                size: 12,
-                                              )
-                                            ],
+                                          Padding(
+                                            padding: EdgeInsets.only(right: 5.w),
+                                            child: Row(
+                                              children: [
+                                                Text(
+                                                  "See all",
+                                                  style: hsmall,
+                                                ),
+                                                const SizedBox(
+                                                  width: 5,
+                                                ),
+                                                const Icon(
+                                                  Icons.arrow_forward,
+                                                  size: 12,
+                                                )
+                                              ],
+                                            ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                    LaptopListViewProductComponent(),
-                                    const SizedBox(
-                                      height: 15,
-                                    ),
-                                    // ElevatedButton(
-                                    //   child: const Text('Show notifications'),
-                                    //   onPressed: () {},
-                                    // )
-                                  ],
-                                ),
-                              ],
+                                        ],
+                                      ),
+                                      LaptopListViewProductComponent(),
+                                      const SizedBox(
+                                        height: 15,
+                                      ),
+                                      // ElevatedButton(
+                                      //   child: const Text('Show notifications'),
+                                      //   onPressed: () {},
+                                      // )
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

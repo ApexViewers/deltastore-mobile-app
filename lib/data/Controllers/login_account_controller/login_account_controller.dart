@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -27,6 +29,17 @@ class LoginAccountController extends GetxController {
     String username = prefs.getString('username')!;
     String email = prefs.getString('email')!;
     return [username,email];
+  }
+
+  Future<List<String>> deleteUsername() async {
+    return ['',''];
+  }
+
+  Future<void> deleteCredentials() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('username', '');
+    await prefs.setString('email', '');
+    await prefs.setString('password', '');
   }
 
   Future<void> retrieveCredentials() async {

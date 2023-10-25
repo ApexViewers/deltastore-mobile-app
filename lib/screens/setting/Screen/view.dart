@@ -249,7 +249,6 @@ class _SettingScreenState extends State<SettingScreen> {
             );
           }
           else if(snapshot.hasError){
-            //TODO: Add return to login screen navigation.
             return const Text("Not logged in");
           }
           else{

@@ -48,7 +48,7 @@ class _AllCategoriesState extends State<AllCategories> {
           padding: const EdgeInsets.only(top: 10),
           child: Obx(
             () => allCatagoriesController.categoriesLoading.value
-                ? FullPageShimmerEffect()
+                ? const FullPageShimmerEffect()
                 : allCatagoriesController.categoriesError != ''
                     ? Center(
                         child: Column(
@@ -106,9 +106,6 @@ class _AllCategoriesState extends State<AllCategories> {
                                                                     index]
                                                                 .id!;
                                                       });
-                                                      // print( twoInOneCategoriesController
-                                                      //     .twoInOneModel.id.toString()+"show indexdddd");
-                                                      // print(allCatagoriesController.categoriesModel[index].id!.toString()+"need");
                                                       twoInOneCategoriesController
                                                           .productById(
                                                         allCatagoriesController

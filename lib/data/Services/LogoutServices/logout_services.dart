@@ -19,8 +19,6 @@ class LogoutService{
       print('in try');
 
       if(res is http.Response){
-
-
         return logoutModelFromJson(res.body);
       }else {
         print('in else');

@@ -11,15 +11,24 @@ import '../../../data/Controllers/cart_controller/cart_controller.dart';
 import '../../../data/Controllers/total_amount_cart_controller/total_amount_controller.dart';
 import '../../../reuseable_widgets/appbar_widget.dart';
 import '../../../reuseable_widgets/rounded_button.dart';
+import '../../address/view/address_screen.dart';
 import '../../home/view/home.dart';
 import 'package:test_app/constant/app_urls/app_urls.dart';
 
-class CartView extends StatelessWidget {
+class CartView extends StatefulWidget {
+
+  CartView({super.key});
+
+  @override
+  State<CartView> createState() => _CartViewState();
+}
+
+class _CartViewState extends State<CartView> {
   final CartController cartController = Get.put(CartController());
+
   var totalAmoutController = Get.put(TotalAmountController());
 
   bool checkoutBtn = false;
-  CartView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -68,6 +77,7 @@ class CartView extends StatelessWidget {
                       ),
                       onTap: () {
                         //TODO: Implement Add new address functionality
+                        Get.to(() => const AddressScreen());
                       },
                     ),
                   ),
@@ -249,17 +259,17 @@ class CartView extends StatelessWidget {
                                                                     .circular(5)),
                                                             child: IconButton(
                                                                 onPressed: () {
-                                                                  onPressed: () {
+                                                                  setState(() async {
                                                                     BaseClientClass.delete(
                                                                         '${AppUrls.baseAddressAlt}${AppUrls.deleteItemFromCart}${item.itemKey}');
-                                                                    Future.delayed(
+                                                                    await Future.delayed(
                                                                         const Duration(
                                                                             seconds: 10));
-                                                                    Get.appUpdate();
+                                                                  });
+
                                                                     Get.snackbar(
                                                                         'Deleted Successfully',
                                                                         '${item.title} deleted successfully');
-                                                                  };
                                                                 },
                                                                 icon: const Icon(
                                                                     Icons.delete_outline),color: Colors.blueGrey,),
@@ -388,7 +398,7 @@ class CartView extends StatelessWidget {
                                           Container(
                                             alignment: Alignment.bottomCenter,
                                             padding: EdgeInsets.all(16),
-                                            child: const Column(
+                                            child: Column(
                                               crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
                                                 // Text(  "${addToCartController.addToCartModel.currency!.currencyCode.toString() + " "}${addToCartController.addToCartModel.items![0].totals!.total.toString()}",
@@ -401,7 +411,7 @@ class CartView extends StatelessWidget {
                                             ),
                                           ),
                                           Padding(
-                                            padding: const EdgeInsets.only(right: 18,bottom: 10,top: 10),
+                                            padding: EdgeInsets.only(right: 18,bottom: 10,top: 10),
                                             child: RoundedButton(
                                                 borderRadius: 12,
                                                 height: 6.h,

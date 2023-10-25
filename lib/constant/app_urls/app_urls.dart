@@ -21,7 +21,7 @@ class AppUrls {
   static const String deleteCart = "cocart/v2/cart/item/";
   static const String totalAmountCart = "cocart/v2/cart/calculate";
   static const String incrementQuantity = "cocart/v2/cart/item/";
-  static const String logout = "cocart/v2/cart/logout";
+  static const String logout = "cocart/v2/logout";
   static const String deleteItemFromCart = "/wp-json/cocart/v2/cart/item/";
 
 }

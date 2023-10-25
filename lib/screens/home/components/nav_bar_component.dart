@@ -270,7 +270,7 @@ class _BarState extends State<Bar> {
               page = CartView();
               break;
             case 4:
-              page = loginID == null ? LoginScreen() : const SettingScreen();
+              page = loginID == null || loginID!.length <2 ? LoginScreen() : const SettingScreen();
               break;
             default:
               page = Container();
