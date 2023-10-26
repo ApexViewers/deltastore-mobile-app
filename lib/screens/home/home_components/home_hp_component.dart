@@ -2,16 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../constant/image_assets.dart';
 import '../../../constant/loading/ShimmerEffectloading.dart';
 import '../../../constant/paddings.dart';
 import '../../../constant/styles/app_textstyles.dart';
 import '../../../constant/styles/colors.dart';
-import '../../../data/Controllers/all_product_controller/all_product_controller.dart';
-import '../../../data/Controllers/dell_laptop_controller/dell_laptop_controller.dart';
 
 import '../../../data/Controllers/hp_laptop_controller/hp_laptop_controller.dart';
 import '../../../data/Controllers/product_by_id_controller/product_by_id_controller.dart';
+import '../../../data/Controllers/total_amount_cart_controller/total_amount_controller.dart';
 import '../../laptops/views/hp/hp_details.dart';
 
 class HpLaptopProductComponent extends StatelessWidget {
@@ -19,6 +17,7 @@ class HpLaptopProductComponent extends StatelessWidget {
 
   var hpLaptopController = Get.put(HpCategoriesListController());
   var ProductidController = Get.put((ProductIdController()));
+  var totalAmoutController = Get.put(TotalAmountController());
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +34,7 @@ class HpLaptopProductComponent extends StatelessWidget {
                       children: [
                         IconButton(
                             onPressed: () {
+                              totalAmoutController.totalAmountToCart();
                               hpLaptopController.HpCategoriesController();
                             },
                             icon: const Icon(Icons.refresh)),
@@ -98,7 +98,7 @@ class HpLaptopProductComponent extends StatelessWidget {
                                                   .images![0]
                                                   .src!
                                                   .isEmpty
-                                              ? Container(child: Text(""))
+                                              ? Container(child: const Text(""))
                                               : Image.network(
                                                   fit: BoxFit.cover,
                                                   hpLaptopController
@@ -148,33 +148,24 @@ class HpLaptopProductComponent extends StatelessWidget {
                                             height: 4.0,
                                           ),
                                           Text(
-                                              "AED" +
-                                                          " " +
-                                                          hpLaptopController
+                                              "AED ${hpLaptopController
                                                               .hpLaptopModel[
                                                                   index]
-                                                              .salePrice
-                                                              .toString() ==
+                                                              .salePrice}" ==
                                                       ""
                                                   ? ""
-                                                  : "AED" +
-                                                      " " +
-                                                      hpLaptopController
+                                                  : "AED ${hpLaptopController
                                                           .hpLaptopModel[index]
-                                                          .salePrice
-                                                          .toString(),
+                                                          .salePrice}",
                                               style: hsmall.copyWith(
                                                   fontSize: 10.sp,
                                                   color:
                                                       cBlack.withOpacity(0.6))),
                                           Text(
-                                            "AED" +
-                                                        " " +
-                                                        hpLaptopController
+                                            "AED ${hpLaptopController
                                                             .hpLaptopModel[
                                                                 index]
-                                                            .regularPrice
-                                                            .toString() !=
+                                                            .regularPrice}" !=
                                                     ""
                                                 ? hpLaptopController
                                                     .hpLaptopModel[index]

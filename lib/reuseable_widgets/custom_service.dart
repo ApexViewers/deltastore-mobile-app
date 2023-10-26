@@ -15,7 +15,7 @@ class CustomServices extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final s=MediaQuery.of(context).size;
-    return Container(
+    return SizedBox(
 
       width: width,
       child: Column(

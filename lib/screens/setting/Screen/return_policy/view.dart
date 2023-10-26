@@ -1,5 +1,4 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../constant/paddings.dart';
@@ -206,11 +205,11 @@ class ReturnPolicy extends StatelessWidget {
         Container(
           width: 8.0,
           height: 8.0,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             shape: BoxShape.circle,
             color: Colors.black,
           ),
-          margin: EdgeInsets.only(top: 6.0, right: 8.0),
+          margin: const EdgeInsets.only(top: 6.0, right: 8.0),
         ),
         Expanded(
           child: Text(

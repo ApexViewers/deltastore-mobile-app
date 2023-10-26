@@ -1,5 +1,4 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -162,7 +161,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
                   vSpac6,
                   Text("Visitor comments may be checked through an automated spam detection service.",style: hsmall,),
                   vSpac6,
-                  Text(""),
+                  const Text(""),
 
                 ],
               ),

@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../constant/image_assets.dart';
@@ -33,6 +31,7 @@ class _DesktopComputerState extends State<DesktopComputer> {
     },
 
   ];
+  @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
@@ -46,7 +45,7 @@ class _DesktopComputerState extends State<DesktopComputer> {
               Row(
                 children: [
                   Text("See All",style: hsmall.copyWith(fontSize: 12),),
-                  Icon(Icons.arrow_forward,size: 13,)
+                  const Icon(Icons.arrow_forward,size: 13,)
                 ],
               )
             ],
@@ -55,11 +54,11 @@ class _DesktopComputerState extends State<DesktopComputer> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
 
-              Container(
+              SizedBox(
                 height: 77.h,
                 width: 70.w,
                 child: GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3, // Number of columns in the grid
                     mainAxisSpacing: 4.0, // Spacing between rows
                     crossAxisSpacing: 9.9, // Spacing between columns
@@ -82,7 +81,7 @@ class _DesktopComputerState extends State<DesktopComputer> {
                                 height: 8.h,
                                 width: 20.5.w,
                                 child: Container(
-                                  decoration: BoxDecoration(),
+                                  decoration: const BoxDecoration(),
                                   margin: EdgeInsets.only(
                                       left: 3.w, right: 4.w, bottom: 2.h, top: 2.h),
                                   child: Image.asset(

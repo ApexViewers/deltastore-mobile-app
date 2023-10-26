@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../constant/fonts_strings.dart';
 import '../../constant/image_assets.dart';
 import '../../constant/paddings.dart';
 import '../../constant/styles/app_textstyles.dart';
@@ -23,7 +21,7 @@ class Warranty extends StatelessWidget {
             child: Icon(Icons.arrow_back,color: cBlack,)),
         elevation: 0,
         backgroundColor: colorWhite,
-        title: Container(
+        title: SizedBox(
           width: 60.w,
           child: Image.asset(
             ImageAssests.logoImge.toString(),
@@ -38,7 +36,7 @@ class Warranty extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(height: s.height*0.02,),
-              Text("Delta International Mobile phone Electric device Trd LLC Warranty policy",
+              const Text("Delta International Mobile phone Electric device Trd LLC Warranty policy",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 17
@@ -49,7 +47,7 @@ class Warranty extends StatelessWidget {
               textWarranty(
                   text:
                       "The Warranty will be voided if The product is damaged physically. The product is repaired, modified, or disassembled."),
-              Padding(
+              const Padding(
                 padding: padA5,
                 child: Text.rich(
                   TextSpan(
@@ -68,7 +66,7 @@ class Warranty extends StatelessWidget {
                   ),
                 ),
               ),
-              Padding(
+              const Padding(
                 padding: padA5,
                 child: Text.rich(
                   TextSpan(
@@ -85,7 +83,7 @@ class Warranty extends StatelessWidget {
                   ),
                 ),
               ),
-              Padding(
+              const Padding(
                 padding: padA5,
                 child: Text.rich(
                   TextSpan(
@@ -104,7 +102,7 @@ class Warranty extends StatelessWidget {
               textWarranty(
                   text:
                       "DIT also offer extended warranties for an additional fee. This warranty period starts from the date of the DIT-Invoice. After the warranty expiration, we offer free general tech support and phone support, but do not cover parts & Services related to Parts repair or replacement. If any additional service is required will be charged Shipping/handling is the customer’s responsibility. The customer is responsible for the shipping cost outside the UAE."),
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -114,7 +112,7 @@ class Warranty extends StatelessWidget {
               textWarranty(
                   text:
                       "In case any product needs to be returned to DIT for warranty service, the customer should make sure to present our original invoice with the product serial number and the computer with the same matching SERIAL number mentioned or printed on the device the DIT will not accept any return shipment without the PRODUCT SERIAL number. Shipping/handling is the customer’s responsibility"),
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -124,7 +122,7 @@ class Warranty extends StatelessWidget {
               textWarranty(
                   text:
                       "If customer request or demand to return credit for defective or DOA products, the process is initiated only when the product is sold within 15 days from DIT invoice date. DIT will not charge any amount/price as a restocking fee."),
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -135,7 +133,7 @@ class Warranty extends StatelessWidget {
               textWarranty(
                   text:
                       "Replacement of any defective or unsatisfactory product is subject to the available quantity in DIT stock. In case any unavailability of stock occurs, DIT will offer alternate options. DIT will have at least 4 to 5 days to procure and replace the product for the customer.visit contact about"),
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
 
             ],
           ),

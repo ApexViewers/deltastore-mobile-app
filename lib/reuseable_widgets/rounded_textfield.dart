@@ -52,7 +52,7 @@ class ReuseTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: width,
       height: height,
       child: TextFormField(
@@ -71,9 +71,9 @@ class ReuseTextField extends StatelessWidget {
         maxLines: maxLint,
         decoration: InputDecoration(
           suffixIcon:suffixIcon ,
-          prefixIconConstraints: BoxConstraints(minWidth: 0),
+          prefixIconConstraints: const BoxConstraints(minWidth: 0),
 
-            contentPadding: EdgeInsets.only(left: 20),
+            contentPadding: const EdgeInsets.only(left: 20),
             hintStyle: TextStyle(
                 color: hintTextColor
             ),
@@ -83,7 +83,7 @@ class ReuseTextField extends StatelessWidget {
               borderRadius: BorderRadius.circular(borderRadius!),
               borderSide: BorderSide.none,
             ),
-            disabledBorder: OutlineInputBorder(
+            disabledBorder: const OutlineInputBorder(
               borderSide: BorderSide.none,
 
             ),

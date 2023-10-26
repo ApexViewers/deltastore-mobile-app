@@ -8,7 +8,6 @@ import '../../../constant/loading/ShimmerEffectloading.dart';
 import '../../../constant/paddings.dart';
 import '../../../constant/styles/app_textstyles.dart';
 import '../../../constant/styles/colors.dart';
-import '../../../data/Controllers/all_product_controller/all_product_controller.dart';
 import '../../../data/Controllers/dell_laptop_controller/dell_laptop_controller.dart';
 
 import '../../../data/Controllers/product_by_id_controller/product_by_id_controller.dart';
@@ -153,27 +152,19 @@ class DellLaptopProductComponent extends StatelessWidget {
                                   height: 4.0,
                                 ),
                                 Text(
-                                    "AED" +
-                                        " " +
-                                        dellLaptopController.hpLaptopModel[index]
-                                            .salePrice
-                                            .toString() ==
+                                    "AED ${dellLaptopController.hpLaptopModel[index]
+                                            .salePrice}" ==
                                         ""
                                         ? ""
-                                        : "AED" +
-                                        " " +
-                                        dellLaptopController.hpLaptopModel[index]
-                                            .salePrice
-                                            .toString(),
+                                        : "AED ${dellLaptopController.hpLaptopModel[index]
+                                            .salePrice}",
                                     style: hsmall.copyWith(
                                         fontSize: 10.sp,
                                         color:
                                         cBlack.withOpacity(0.6))),
                                 Text(
-                                  "AED" +
-                                      " " +
-                                      dellLaptopController.hpLaptopModel[index]
-                                          .regularPrice.toString()
+                                  "AED ${dellLaptopController.hpLaptopModel[index]
+                                          .regularPrice}"
                                       !=""?   dellLaptopController.hpLaptopModel[index]
                                       .regularPrice
                                       .toString():"",

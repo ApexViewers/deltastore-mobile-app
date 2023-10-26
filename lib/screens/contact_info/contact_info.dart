@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:test_app/constant/paddings.dart';
@@ -34,7 +33,7 @@ class _ContactInfoState extends State<ContactInfo> {
             )),
         elevation: 0,
         backgroundColor: colorWhite,
-        title: Container(
+        title: SizedBox(
           width: 60.w,
           child: Image.asset(
             ImageAssests.logoImge.toString(),
@@ -74,12 +73,12 @@ class _ContactInfoState extends State<ContactInfo> {
                     launch(faceBook);
                   },
 
-                    child: Icon(Icons.facebook,size: 54,)),
+                    child: const Icon(Icons.facebook,size: 54,)),
                 InkWell(
                   onTap: (){
                     launch(youtube);
                   },
-                  child: Container(height: 45,
+                  child: SizedBox(height: 45,
                     width: 45,
 
                     child: Image.asset(
@@ -93,7 +92,7 @@ class _ContactInfoState extends State<ContactInfo> {
                   onTap: (){
                     launch(instragram);
                   },
-                  child: Container(height: 45,
+                  child: SizedBox(height: 45,
                     width: 45,
 
                     child: Image.asset(

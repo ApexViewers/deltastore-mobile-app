@@ -1,9 +1,7 @@
 
 import 'package:get/get.dart';
 
-import '../../Model/allProduct_model/all_product_model.dart';
 import '../../Model/product_by_id_model/product_by_id_model.dart';
-import '../../Services/all_procuct_services/all_product_services.dart';
 import '../../Services/product_by_id_services/product_by_id_services.dart';
 
 class ProductIdController extends GetxController {
@@ -20,6 +18,13 @@ class ProductIdController extends GetxController {
     var response = await ProductById.getProductsid(id);
     if (response is ProductBYid) {
       print("test23");
+      if(response.id ==null){
+        productLoading.value = false;
+        productLoadbutton.value = false;
+        return 'No Items Found';
+
+
+      }
       productLoading.value = false; productLoadbutton.value = false;
       productBYid = response;
     } else {

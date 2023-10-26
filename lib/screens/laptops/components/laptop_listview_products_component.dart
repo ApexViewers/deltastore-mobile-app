@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../constant/image_assets.dart';
 import '../../../constant/loading/ShimmerEffectloading.dart';
 import '../../../constant/paddings.dart';
 import '../../../constant/styles/app_textstyles.dart';
@@ -96,7 +95,7 @@ class LaptopListViewProductComponent extends StatelessWidget {
                                                     .productModel[index]
                                                     .images!.isEmpty
                                             ? Container(
-                                                child: Text(""))
+                                                child: const Text(""))
                                             : Image.network(
                                                 fit: BoxFit.cover,
                                                 allProductController
@@ -145,30 +144,22 @@ class LaptopListViewProductComponent extends StatelessWidget {
                                           height: 4.0,
                                         ),
                                         Text(
-                                            "AED" +
-                                                        " " +
-                                                        allProductController
+                                            "AED ${allProductController
                                                             .productModel[index]
-                                                            .salePrice
-                                                            .toString() ==
+                                                            .salePrice}" ==
                                                     ""
                                                 ? ""
-                                                : "AED" +
-                                                    " " +
-                                                    allProductController
+                                                : "AED ${allProductController
                                                         .productModel[index]
-                                                        .salePrice
-                                                        .toString(),
+                                                        .salePrice}",
                                             style: hsmall.copyWith(
                                                 fontSize: 10.sp,
                                                 color:
                                                     cBlack.withOpacity(0.6))),
                                         Text(
-                                          "AED" +
-                                              " " +
-                                              allProductController
+                                          "AED ${allProductController
                                                   .productModel[index]
-                                                  .regularPrice.toString()
+                                                  .regularPrice}"
                                                   !=""? allProductController
                                               .productModel[index]
                                               .regularPrice

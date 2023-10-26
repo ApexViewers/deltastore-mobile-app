@@ -1,9 +1,7 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:sizer/sizer.dart';
 import 'package:test_app/screens/pantum_printers/pantum_image_slider.dart';
 import 'package:test_app/screens/pantum_printers/printer_details.dart';
@@ -12,7 +10,6 @@ import '../../constant/paddings.dart';
 import '../../constant/styles/app_textstyles.dart';
 import '../../constant/styles/colors.dart';
 import '../../reuseable_widgets/rounded_button.dart';
-import '../home/components/my_image_slider.dart';
 
 class PantumPrinters extends StatefulWidget {
   const PantumPrinters({Key? key}) : super(key: key);
@@ -75,7 +72,7 @@ class _PantumPrintersState extends State<PantumPrinters> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Pantum Printers"),
+        title: const Text("Pantum Printers"),
         backgroundColor: appthem,
       ),
       body: SingleChildScrollView(
@@ -83,7 +80,7 @@ class _PantumPrintersState extends State<PantumPrinters> {
           padding: padA5,
           child: Column(
             children: [
-              PantumImageSlider(),
+              const PantumImageSlider(),
               Text(
                 "Pantum Printers",
                 style: hMedium,
@@ -103,7 +100,7 @@ class _PantumPrintersState extends State<PantumPrinters> {
                       return Card(
                         child: Column(
                           children: [
-                            Container(
+                            SizedBox(
                               height: 12.h, // Set the desired height
                               width: 35.w,
                               child: Image.network(dataList[index]["image"]),
@@ -135,7 +132,7 @@ class _PantumPrintersState extends State<PantumPrinters> {
                         color: cGrey.withOpacity(0.3), // Shadow color
                         spreadRadius: 5, // Spread radius
                         blurRadius: 7, // Blur radius
-                        offset: Offset(0, 3), // Offset in x and y direction
+                        offset: const Offset(0, 3), // Offset in x and y direction
                       ),
                     ],
                   ),
@@ -151,7 +148,7 @@ class _PantumPrintersState extends State<PantumPrinters> {
                           ),
                         ],
                       ),
-                      Container(
+                      SizedBox(
                         height: 27.h,
                         child: ListView.builder(
                             shrinkWrap: true,
@@ -193,11 +190,11 @@ class _PantumPrintersState extends State<PantumPrinters> {
                                                 ),
                                               ],
                                             ),
-                                            Container(
+                                            SizedBox(
                                               height: 12.h,
                                               // Set the desired height
                                               width: 35.w,
-                                              child:dataList[index]["image"]=="null"?CircularProgressIndicator(): Image.network(
+                                              child:dataList[index]["image"]=="null"?const CircularProgressIndicator(): Image.network(
                                                   dataList[index]["image"]),
                                             ),
                                             Row(
@@ -217,7 +214,7 @@ class _PantumPrintersState extends State<PantumPrinters> {
 
                                                     borderRadius: BorderRadius.circular(40)
                                                   ),
-                                                  child: Center(child: Icon(
+                                                  child: const Center(child: Icon(
 
                                                       Icons.shopping_cart,color:colorWhite ,)),
                                                 )
@@ -230,9 +227,9 @@ class _PantumPrintersState extends State<PantumPrinters> {
                                               direction: Axis.horizontal,
                                               allowHalfRating: true,
                                               itemCount: 3,
-                                              itemPadding: EdgeInsets.symmetric(
+                                              itemPadding: const EdgeInsets.symmetric(
                                                   horizontal: 2.0),
-                                              itemBuilder: (context, _) => Icon(
+                                              itemBuilder: (context, _) => const Icon(
                                                 Icons.star,
                                                 size: 8,
                                                 color: Colors.amber,
@@ -269,7 +266,7 @@ class _PantumPrintersState extends State<PantumPrinters> {
                       color: cGrey.withOpacity(0.3), // Shadow color
                       spreadRadius: 5, // Spread radius
                       blurRadius: 7, // Blur radius
-                      offset: Offset(0, 3), // Offset in x and y direction
+                      offset: const Offset(0, 3), // Offset in x and y direction
                     ),
                   ],
                 ),
@@ -285,7 +282,7 @@ class _PantumPrintersState extends State<PantumPrinters> {
                         ),
                       ],
                     ),
-                    Container(
+                    SizedBox(
                       height: 27.h,
                       child: ListView.builder(
                           shrinkWrap: true,
@@ -319,7 +316,7 @@ class _PantumPrintersState extends State<PantumPrinters> {
                                             ),
                                           ],
                                         ),
-                                        Container(
+                                        SizedBox(
                                           height: 12.h,
                                           // Set the desired height
                                           width: 35.w,
@@ -343,7 +340,7 @@ class _PantumPrintersState extends State<PantumPrinters> {
 
                                                   borderRadius: BorderRadius.circular(40)
                                               ),
-                                              child: Center(child: Icon(
+                                              child: const Center(child: Icon(
 
                                                 Icons.shopping_cart,color:colorWhite ,)),
                                             )
@@ -356,9 +353,9 @@ class _PantumPrintersState extends State<PantumPrinters> {
                                           direction: Axis.horizontal,
                                           allowHalfRating: true,
                                           itemCount: 3,
-                                          itemPadding: EdgeInsets.symmetric(
+                                          itemPadding: const EdgeInsets.symmetric(
                                               horizontal: 2.0),
-                                          itemBuilder: (context, _) => Icon(
+                                          itemBuilder: (context, _) => const Icon(
                                             Icons.star,
                                             size: 8,
                                             color: Colors.amber,
@@ -392,7 +389,7 @@ class _PantumPrintersState extends State<PantumPrinters> {
                       color: cGrey.withOpacity(0.3), // Shadow color
                       spreadRadius: 5, // Spread radius
                       blurRadius: 7, // Blur radius
-                      offset: Offset(0, 3), // Offset in x and y direction
+                      offset: const Offset(0, 3), // Offset in x and y direction
                     ),
                   ],
                 ),
@@ -408,7 +405,7 @@ class _PantumPrintersState extends State<PantumPrinters> {
                         ),
                       ],
                     ),
-                    Container(
+                    SizedBox(
                       height: 27.h,
                       child: ListView.builder(
                           shrinkWrap: true,
@@ -442,7 +439,7 @@ class _PantumPrintersState extends State<PantumPrinters> {
                                             ),
                                           ],
                                         ),
-                                        Container(
+                                        SizedBox(
                                           height: 12.h,
                                           // Set the desired height
                                           width: 35.w,
@@ -466,7 +463,7 @@ class _PantumPrintersState extends State<PantumPrinters> {
 
                                                   borderRadius: BorderRadius.circular(40)
                                               ),
-                                              child: Center(child: Icon(
+                                              child: const Center(child: Icon(
 
                                                 Icons.shopping_cart,color:colorWhite ,)),
                                             )
@@ -479,9 +476,9 @@ class _PantumPrintersState extends State<PantumPrinters> {
                                           direction: Axis.horizontal,
                                           allowHalfRating: true,
                                           itemCount: 3,
-                                          itemPadding: EdgeInsets.symmetric(
+                                          itemPadding: const EdgeInsets.symmetric(
                                               horizontal: 2.0),
-                                          itemBuilder: (context, _) => Icon(
+                                          itemBuilder: (context, _) => const Icon(
                                             Icons.star,
                                             size: 8,
                                             color: Colors.amber,

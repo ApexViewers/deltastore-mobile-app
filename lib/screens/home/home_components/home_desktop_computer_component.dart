@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
@@ -16,7 +15,7 @@ import '../../desktop_computer/component/desktop_computer_listview_component.dar
 import '../../laptops/views/hp/hp_details.dart';
 
 class DeskTopComputerComponent extends StatefulWidget {
-  DeskTopComputerComponent({Key? key}) : super(key: key);
+  const DeskTopComputerComponent({Key? key}) : super(key: key);
 
   @override
   State<DeskTopComputerComponent> createState() =>
@@ -24,7 +23,7 @@ class DeskTopComputerComponent extends StatefulWidget {
 }
 
 class _DeskTopComputerComponentState extends State<DeskTopComputerComponent> {
-  List<Widget> pages = [DesktopComputerListComponent()];
+  List<Widget> pages = [const DesktopComputerListComponent()];
 
   int selectedIndex = 0;
   bool index0=true;
@@ -45,7 +44,7 @@ class _DeskTopComputerComponentState extends State<DeskTopComputerComponent> {
       height: 37.h,
       color: cGrey.withOpacity(0.1),
       child: Obx(() => desktopcomputerController.desktopComputerLoading.value
-          ? ShimmerEffectLoading()
+          ? const ShimmerEffectLoading()
           : desktopcomputerController.desktopComputerError.value != ''
               ? Center(
                   child: Column(
@@ -61,7 +60,7 @@ class _DeskTopComputerComponentState extends State<DeskTopComputerComponent> {
                 ))
               : Column(
                   children: [
-                    Container(
+                    SizedBox(
                       height: 6.h,
                       child: ListView.separated(
                           scrollDirection: Axis.horizontal,
@@ -220,7 +219,7 @@ class _DeskTopComputerComponentState extends State<DeskTopComputerComponent> {
                                                child: Center(
                                                    child:  dellHomeController.dellhomeModel[index].images![0].src!.isEmpty
                                                        ? Container(
-                                                       child: Text(""))
+                                                       child: const Text(""))
                                                        : Image.network(
                                                        fit: BoxFit.cover,
                                                        dellHomeController.dellhomeModel[index].images![0].src
@@ -265,27 +264,19 @@ class _DeskTopComputerComponentState extends State<DeskTopComputerComponent> {
                                                      height: 4.0,
                                                    ),
                                                    Text(
-                                                       "AED" +
-                                                           " " +
-                                                           dellHomeController.dellhomeModel[index]
-                                                               .salePrice
-                                                               .toString() ==
+                                                       "AED ${dellHomeController.dellhomeModel[index]
+                                                               .salePrice}" ==
                                                            ""
                                                            ? ""
-                                                           : "AED" +
-                                                           " " +
-                                                           dellHomeController.dellhomeModel[index]
-                                                               .salePrice
-                                                               .toString(),
+                                                           : "AED ${dellHomeController.dellhomeModel[index]
+                                                               .salePrice}",
                                                        style: hsmall.copyWith(
                                                            fontSize: 10.sp,
                                                            color:
                                                            cBlack.withOpacity(0.6))),
                                                    Text(
-                                                     "AED" +
-                                                         " " +
-                                                         dellHomeController.dellhomeModel[index]
-                                                             .regularPrice.toString()
+                                                     "AED ${dellHomeController.dellhomeModel[index]
+                                                             .regularPrice}"
                                                          !=""?  dellHomeController.dellhomeModel[index]
                                                          .regularPrice
                                                          .toString():"",
@@ -394,7 +385,7 @@ class _DeskTopComputerComponentState extends State<DeskTopComputerComponent> {
                                                    child: Center(
                                                        child:   hpHomeController.hphomeModel[index].images![0].src!.isEmpty
                                                            ? Container(
-                                                           child: Text(""))
+                                                           child: const Text(""))
                                                            : Image.network(
                                                            fit: BoxFit.cover,
                                                            hpHomeController.hphomeModel[index].images![0].src
@@ -439,27 +430,19 @@ class _DeskTopComputerComponentState extends State<DeskTopComputerComponent> {
                                                          height: 4.0,
                                                        ),
                                                        Text(
-                                                           "AED" +
-                                                               " " +
-                                                               hpHomeController.hphomeModel[index]
-                                                                   .salePrice
-                                                                   .toString() ==
+                                                           "AED ${hpHomeController.hphomeModel[index]
+                                                                   .salePrice}" ==
                                                                ""
                                                                ? ""
-                                                               : "AED" +
-                                                               " " +
-                                                               hpHomeController.hphomeModel[index]
-                                                                   .salePrice
-                                                                   .toString(),
+                                                               : "AED ${hpHomeController.hphomeModel[index]
+                                                                   .salePrice}",
                                                            style: hsmall.copyWith(
                                                                fontSize: 10.sp,
                                                                color:
                                                                cBlack.withOpacity(0.6))),
                                                        Text(
-                                                         "AED" +
-                                                             " " +
-                                                             hpHomeController.hphomeModel[index]
-                                                                 .regularPrice.toString()
+                                                         "AED ${hpHomeController.hphomeModel[index]
+                                                                 .regularPrice}"
                                                              !=""?  hpHomeController.hphomeModel[index]
                                                              .regularPrice
                                                              .toString():"",
@@ -489,7 +472,7 @@ class _DeskTopComputerComponentState extends State<DeskTopComputerComponent> {
                        ) ),
                    Visibility(
                         visible: index2,
-                       child:Text("no data available") ),
+                       child:const Text("no data available") ),
 
                   ],
                 )),

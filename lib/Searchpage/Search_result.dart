@@ -1,17 +1,11 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:sizer/sizer.dart';
 
 import '../constant/paddings.dart';
 import '../constant/styles/colors.dart';
 import '../reuseable_widgets/appbar_widget.dart';
-import '../reuseable_widgets/rounded_textfield.dart';
-import '../screens/home/components/top_bar_component.dart';
 import '../screens/laptops/components/hp_laptop_component/laptop_grid_view_product_component.dart';
-import '../screens/laptops/views/hp/hp_laptop.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -38,7 +32,7 @@ class _SearchPageState extends State<SearchPage> {
         backgroundColor: colorWhite,
         actions: [
           Padding(
-            padding:padA2.add(EdgeInsets.only(right: 14)),
+            padding:padA2.add(const EdgeInsets.only(right: 14)),
             child: InkWell(
             onTap: (){
               Get.back();

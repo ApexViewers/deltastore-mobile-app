@@ -23,7 +23,7 @@ class AboutScreen extends StatelessWidget {
             child: Icon(Icons.arrow_back,color: cBlack,)),
         elevation: 0,
         backgroundColor: colorWhite,
-        title: Container(
+        title: SizedBox(
           width: 60.w,
           child: Image.asset(
             ImageAssests.logoImge.toString(),
@@ -92,7 +92,7 @@ class AboutScreen extends StatelessWidget {
                         style: hMediumX,
                       ),
                       vSpac10,
-                      Container(
+                      SizedBox(
                         width: 64.w,
                         child: Text(
                           "At “DELTA” we give 2nd Life to End of life IT devices, making technology affordable, and Accepting environmental challenges. DIT mission is to be with the global effort to help the environment, Supply IT Products with a Combination of Quality & innovation at great prices. Sustainable climate-friendly Electronic recycling is one of the greatest challenges of our time. We are excited to be able to contribute as Solution–Delta Refurbished Center Reduce e-waste >Renew >Reuse > be prudent> by offering our refurbished products and services that can combine performance and reasonable pricing, we aim to provide excellent service to our customers and build long-term relationships with them. We aim at rebalancing our future resources. We are a value-driven organization and thrive to make significant contributions towards development goals and bring a positive impact on the lives of people through sustainable long-term programs.",
@@ -129,7 +129,7 @@ class AboutScreen extends StatelessWidget {
                               children: [
                                 Column(
                                   children: [
-                                    Container(
+                                    SizedBox(
                                       width: 69.w,
                                       child: Text(
                                         "Our vision is to be the largest sustainable and environmentally friendly Electronic repair, reuse, and recycler in the Middle East."
@@ -140,7 +140,7 @@ class AboutScreen extends StatelessWidget {
                                       ),
                                     ),
                                     vSpac6,
-                                    Container(
+                                    SizedBox(
                                       width: 69.w,
                                       child: Text(
                                         "Integrity in our processes of data sanitization, repair, and test of computers and other electronic devices."
@@ -151,7 +151,7 @@ class AboutScreen extends StatelessWidget {
                                       ),
                                     ),
                                     vSpac6,
-                                    Container(
+                                    SizedBox(
                                       width: 69.w,
                                       child: Text(
                                         "Employing only competent personal for our purposes."
@@ -162,7 +162,7 @@ class AboutScreen extends StatelessWidget {
                                       ),
                                     ),
                                     vSpac6,
-                                    Container(
+                                    SizedBox(
                                       width: 69.w,
                                       child: Text(
                                         "Complying with the legal requirements related to the Environment, Health and Safety. "
@@ -173,7 +173,7 @@ class AboutScreen extends StatelessWidget {
                                       ),
                                     ),
                                     vSpac6,
-                                    Container(
+                                    SizedBox(
                                       width: 69.w,
                                       child: Text(
                                         "Preventing pollution."
@@ -184,7 +184,7 @@ class AboutScreen extends StatelessWidget {
                                       ),
                                     ),
                                     vSpac6,
-                                    Container(
+                                    SizedBox(
                                       width: 69.w,
                                       child: Text(
                                         " Preventing work place injuries and ill health."
@@ -195,7 +195,7 @@ class AboutScreen extends StatelessWidget {
                                       ),
                                     ),
                                     vSpac6,
-                                    Container(
+                                    SizedBox(
                                       width: 69.w,
                                       child: Text(
                                         "Striving Providing a comfortable working environment to our team of employees and nurturing their growth."
@@ -206,7 +206,7 @@ class AboutScreen extends StatelessWidget {
                                       ),
                                     ),
                                     vSpac6,
-                                    Container(
+                                    SizedBox(
                                       width: 69.w,
                                       child: Text(
                                         "Striving for continual improvement."
@@ -265,7 +265,7 @@ class AboutScreen extends StatelessWidget {
                         style: hMediumX,
                       ),
                       vSpac10,
-                      Container(
+                      SizedBox(
                         width: 60.w,
                         child: Text(
                           "DIT specializes in used and refurbished laptops, computers, and parts like hard drives, RAM, and computer accessories. A large volume of our products is exported to customers worldwide. We give strong emphasis on the quality of products and work with complete determination. Our dedication, reliability, and tested products have built trusted relationships with our customers and made them our repeated buyers. We focus on customer service and want them to be pleased with our product’s service. We stand behind everything we sell. Our success depends on your repeat demands for our products and services. Our refurbished laptops are guaranteed, greatly functional, and can be availed at reasonable rates. visit our store ",
@@ -299,7 +299,7 @@ class AboutScreen extends StatelessWidget {
                               children: [
                                 Column(
                                   children: [
-                                    Container(
+                                    SizedBox(
                                       width: 69.w,
                                       child: Text(
                                         "Refurbished servers and server accessories"
@@ -310,7 +310,7 @@ class AboutScreen extends StatelessWidget {
                                       ),
                                     ),
                                     vSpac6,
-                                    Container(
+                                    SizedBox(
                                       width: 69.w,
                                       child: Text(
                                         "Refurbished computers and accessories"
@@ -321,7 +321,7 @@ class AboutScreen extends StatelessWidget {
                                       ),
                                     ),
                                     vSpac6,
-                                    Container(
+                                    SizedBox(
                                       width: 69.w,
                                       child: Text(
                                         "Refurbished laptops"
@@ -332,7 +332,7 @@ class AboutScreen extends StatelessWidget {
                                       ),
                                     ),
                                     vSpac6,
-                                    Container(
+                                    SizedBox(
                                       width: 69.w,
                                       child: Text(
                                         "Customize Kiosk solution"
@@ -343,7 +343,7 @@ class AboutScreen extends StatelessWidget {
                                       ),
                                     ),
                                     vSpac6,
-                                    Container(
+                                    SizedBox(
                                       width: 69.w,
                                       child: Text(
                                         "Networking equipment as well as other accessories"
@@ -354,7 +354,7 @@ class AboutScreen extends StatelessWidget {
                                       ),
                                     ),
                                     vSpac6,
-                                    Container(
+                                    SizedBox(
                                       width: 69.w,
                                       child: Text(
                                         " Refurbished printers"
@@ -365,7 +365,7 @@ class AboutScreen extends StatelessWidget {
                                       ),
                                     ),
                                     vSpac6,
-                                    Container(
+                                    SizedBox(
                                       width: 69.w,
                                       child: Text(
                                         "Software design and development"
@@ -376,7 +376,7 @@ class AboutScreen extends StatelessWidget {
                                       ),
                                     ),
                                     vSpac6,
-                                    Container(
+                                    SizedBox(
                                       width: 69.w,
                                       child: Text(
                                         "Maintaining and repairing"
@@ -472,7 +472,7 @@ class AboutScreen extends StatelessWidget {
                   ),
                 ),
                 vSpac12,
-                Text(''),
+                const Text(''),
               ],
             )
           ],

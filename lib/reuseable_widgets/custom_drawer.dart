@@ -3,7 +3,6 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:sizer/sizer.dart';
 
 import '../constant/paddings.dart';
@@ -62,7 +61,7 @@ class MyDrawer extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       TextButton(onPressed: () {
-                        Get.to(()=>LaptopProducts());
+                        Get.to(()=>const LaptopProducts());
                       }, child: Text("Laptop"
                           ,style: hsmall,)),
                       TextButton(onPressed: () {
@@ -199,14 +198,14 @@ class MyDrawer extends StatelessWidget {
                     children: [
                       TextButton(onPressed: () {
 
-                        Get.to(()=>CustomerService());
+                        Get.to(()=>const CustomerService());
 
                       }, child: Text("Customer Service",style: hsmall,)),
                       TextButton(onPressed: () {
-                        Get.to(()=>Warranty());
+                        Get.to(()=>const Warranty());
                       }, child: Text("Warranty",style: hsmall,)),
                       TextButton(onPressed: () {
-                        Get.to(()=>VisitOurStore());
+                        Get.to(()=>const VisitOurStore());
 
                       }, child: Text("Visit Our Store",style: hsmall)),
 
@@ -266,7 +265,7 @@ class MyDrawer extends StatelessWidget {
               style: hMediumX.copyWith(fontSize: 14),
             ),
             onTap: () {
-              Get.to(()=>AboutScreen());
+              Get.to(()=>const AboutScreen());
 
 
               log("about screen rout");
@@ -282,7 +281,7 @@ class MyDrawer extends StatelessWidget {
               style: hMediumX.copyWith(fontSize: 14),
             ),
             onTap: () {
-              Get.to(()=>ContactUs());
+              Get.to(()=>const ContactUs());
               // Close the drawer
             },
           ),

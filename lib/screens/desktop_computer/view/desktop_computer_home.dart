@@ -82,7 +82,7 @@ class DesktopComputerHome extends StatelessWidget {
                               right: index == 9 ? 10 : 0,
                               top: 5,
                               bottom: 5),
-                          child:  DesktopComputerListComponent(),
+                          child:  const DesktopComputerListComponent(),
                         );
                       }),
                 )),

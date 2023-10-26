@@ -1,5 +1,4 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
@@ -75,6 +74,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       if (val!.isEmpty) {
                         return "This field is required.";
                       }
+                      return null;
                     },
                     borderRadius: 6,
                     ontapborderRadius: 6,
@@ -130,6 +130,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       if (val!.isEmpty) {
                         return "This field is required.";
                       }
+                      return null;
                     },
                     borderRadius: 6,
                     ontapborderRadius: 6,

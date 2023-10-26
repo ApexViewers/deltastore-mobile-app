@@ -2,7 +2,6 @@ import '../../../constant/app_urls/app_urls.dart';
 import '../../../constant/base_client.dart';
 import 'package:http/http.dart' as http;
 
-import '../../Model/allProduct_model/all_product_model.dart';
 import '../../Model/product_by_id_model/product_by_id_model.dart';
 
 class CreateAccount {

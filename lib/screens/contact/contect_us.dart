@@ -1,5 +1,4 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -9,7 +8,6 @@ import '../../constant/paddings.dart';
 import '../../constant/styles/app_textstyles.dart';
 import '../../constant/styles/colors.dart';
 import '../../reuseable_widgets/rounded_button.dart';
-import '../../reuseable_widgets/rounded_textfield.dart';
 import '../../reuseable_widgets/textformfield_contact.dart';
 
 class ContactUs extends StatefulWidget {
@@ -38,7 +36,7 @@ class _ContactUsState extends State<ContactUs> {
             child: Icon(Icons.arrow_back,color: cBlack,)),
         elevation: 0,
         backgroundColor: colorWhite,
-        title: Container(
+        title: SizedBox(
           width: 60.w,
           child: Image.asset(
             ImageAssests.logoImge.toString(),
@@ -86,11 +84,12 @@ class _ContactUsState extends State<ContactUs> {
                         if (val!.isEmpty) {
                           return "This field is required.";
                         }
+                        return null;
                       },
                       hinttext: "First Name",
                       controller: firstNameController,
                     )),
-                    SizedBox(
+                    const SizedBox(
                       width: 5,
                     ),
                     Expanded(
@@ -102,6 +101,7 @@ class _ContactUsState extends State<ContactUs> {
                           if (val!.isEmpty) {
                             return "This field is required.";
                           }
+                          return null;
                         },
                         hinttext: "Last Name",
                         controller: lastNameController,
@@ -141,6 +141,7 @@ class _ContactUsState extends State<ContactUs> {
                     if (val!.isEmpty) {
                       return "This field is required.";
                     }
+                    return null;
                   },
                   maxLint: 6,
                   controller: commentNameController,

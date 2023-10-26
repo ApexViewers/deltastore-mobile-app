@@ -1,5 +1,7 @@
+
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:test_app/screens/laptops/components/empty_cart_container.dart';
 import 'dart:convert';
 
 import '../../Model/delete_cart_model/delete_cart_model.dart';
@@ -38,14 +40,13 @@ class ItemInCartController extends GetxController {
           'https://stagging.ditllcae.com/wp-json/cocart/v2/cart/items');
       print(apiUrl);
       Map<String, String> headers = {
-        'Authorization': 'Basic ' +
-            base64Encode(utf8.encode('$consumerKey:$secretKey')),
+        'Authorization': 'Basic ${base64Encode(utf8.encode('$consumerKey:$secretKey'))}',
       };
 
       final response = await http.get(apiUrl, headers: headers);
 
       final Map<String, dynamic> data = json.decode(response.body);
-print(data.toString()+"show data");
+print("${data}show data");
       if (response.statusCode == 200) {
         if(totalAmoutController.totalAmountModel.items!.length >=0){
           print("loading me");
@@ -55,23 +56,24 @@ print(data.toString()+"show data");
           totalAmoutController.totalAmountToCart();
           items = data.obs; // Assign the data directly to your RxMap.
           error.value = '';
-          print(data.toString()+"show data2");
-          print(totalAmoutController.totalAmountModel.items!.length .toString()+"show length");
+          print("${data}show data2");
+          print("${totalAmoutController.totalAmountModel.items!.length}show length");
         }
         print("test abbbbbbbb");
         // Data is not empty, update the cart
         totalAmoutController.totalAmountToCart();
         items = data.obs; // Assign the data directly to your RxMap.
         error.value = '';
-        print(data.toString()+"show data2");
-        print(totalAmoutController.totalAmountModel.items!.length .toString()+"show length");
+        print("${data}show data2");
+        print("${totalAmoutController.totalAmountModel.items!.length}show length");
         // Clear any previous error message
       } else if (totalAmoutController.totalAmountModel.items == []) {
         error.value = 'Failed to fetch data';
         print("no data");
       }
     } catch (e) {
-      error.value = 'An error occurred: $e';
+      //error.value = 'Cart Empty';
+      Get.to(EmptyCartContainer());
     }
 
     isLoading.value = false;
@@ -108,6 +110,11 @@ print(data.toString()+"show data");
 
   incrementAmountToCart(String quantity, String itemkey) async {
     addToCartLoading.value = true;
+
+    if(quantity == "0" ){
+      Get.snackbar("Error", "Items cannot be zero");
+      return;
+    }
 
 
     var response = await IncrementCartService.incrementCartAmount(

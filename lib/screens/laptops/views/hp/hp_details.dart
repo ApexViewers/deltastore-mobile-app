@@ -6,7 +6,6 @@ import 'package:sizer/sizer.dart';
 import '../../../../constant/email_validator.dart';
 import '../../../../constant/fonts_strings.dart';
 import '../../../../constant/image_assets.dart';
-import '../../../../constant/loading/ShimmerEffectloading.dart';
 import '../../../../constant/loading/shimmerEffect_full_page.dart';
 import '../../../../constant/paddings.dart';
 import '../../../../constant/spacing.dart';
@@ -51,6 +50,7 @@ class _HpLaptopDetailsScreenState extends State<HpLaptopDetailsScreen>
   var ProductidController = Get.put((ProductIdController()));
   var addToCartController = Get.put((AddToCartDataController()));
   var totalAmoutController=Get.put(TotalAmountController());
+  bool buttonIsAsync = false;
 
   @override
   void initState() {
@@ -100,7 +100,7 @@ class _HpLaptopDetailsScreenState extends State<HpLaptopDetailsScreen>
         ),
         body: Obx(
           () => ProductidController.productLoading.value
-              ? FullPageShimmerEffect()
+              ? const FullPageShimmerEffect()
               : ProductidController.productError.value != ''
                   ? Center(
                       child: Column(
@@ -182,7 +182,7 @@ class _HpLaptopDetailsScreenState extends State<HpLaptopDetailsScreen>
                                             children: [
                                               Row(
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: 80.w,
                                                     child: Text(
                                                       ProductidController
@@ -215,10 +215,10 @@ class _HpLaptopDetailsScreenState extends State<HpLaptopDetailsScreen>
                                           ),
                                           Column(
                                             children: [
-                                              Container(
+                                              SizedBox(
                                                 width: 100.w,
                                                 child: ListView.builder(
-                                                  physics: PageScrollPhysics(),
+                                                  physics: const PageScrollPhysics(),
                                                   shrinkWrap: true,
                                                   itemCount: ProductidController
                                                       .productBYid
@@ -266,7 +266,7 @@ class _HpLaptopDetailsScreenState extends State<HpLaptopDetailsScreen>
                                                               CrossAxisAlignment
                                                                   .start,
                                                           children: [
-                                                            Container(
+                                                            SizedBox(
                                                               width: 42.w,
                                                               child: Text(
                                                                   ProductidController
@@ -394,7 +394,7 @@ class _HpLaptopDetailsScreenState extends State<HpLaptopDetailsScreen>
                                                               MainAxisAlignment
                                                                   .start,
                                                           children: [
-                                                            Container(
+                                                            SizedBox(
                                                               height: MediaQuery.of(
                                                                               context)
                                                                           .size
@@ -449,7 +449,7 @@ class _HpLaptopDetailsScreenState extends State<HpLaptopDetailsScreen>
                                             ),
                                           ),
                                         ] else ...[
-                                          Text(""),
+                                          const Text(""),
                                         ],
                                         const Divider(),
                                         InkWell(
@@ -717,7 +717,7 @@ class _HpLaptopDetailsScreenState extends State<HpLaptopDetailsScreen>
                                               Padding(
                                                 padding: const EdgeInsets.only(
                                                     left: 10),
-                                                child: Container(
+                                                child: SizedBox(
                                                   width: 25.w,
                                                   child: Text(
                                                     "Our Gauarantee to you",
@@ -828,7 +828,7 @@ class _HpLaptopDetailsScreenState extends State<HpLaptopDetailsScreen>
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                        "${"AED "' '+ ProductidController.productBYid.regularPrice.toString()}",
+                                        "AED "' '+ ProductidController.productBYid.regularPrice.toString(),
                                         style: hMedium.copyWith(
                                           color: cGrey,
                                           fontSize: 16,
@@ -836,7 +836,7 @@ class _HpLaptopDetailsScreenState extends State<HpLaptopDetailsScreen>
                                           TextDecoration.lineThrough,
                                         )),
                                     Text(
-                                        "${"AED "' '+ProductidController.productBYid.salePrice.toString()}",
+                                        "AED "' '+ProductidController.productBYid.salePrice.toString(),
                                         style: hsmall.copyWith(
                                           fontSize: 20,
                                             color: cBlack.withOpacity(0.8)),),
@@ -849,18 +849,21 @@ class _HpLaptopDetailsScreenState extends State<HpLaptopDetailsScreen>
                                   padding: const EdgeInsets.only(right: 8),
                                   child: addToCartController.buttonText.value ==
                                           "Add to Cart"
-                                      ?  ProductidController.productLoadbutton.value? CircularProgressIndicator():RoundedButton(
+                                      ?  ProductidController.productLoadbutton.value? const CircularProgressIndicator():RoundedButton(
                                     borderRadius: 12,
                                     height: 6.h,
                                     width: 50.w,
                                     backGroundColor: appthem,
                                     textButton: "Add to Cart",
                                     onTap: () async {
+                                      ProductidController.productLoadbutton.value = true;
+                                      totalAmoutController.totalAmountToCart();
                                       await addToCartController.addToCart(
                                         ProductidController.productBYid.id
                                             .toString(),
                                         1.toString(),
                                       );
+                                      ProductidController.productLoadbutton.value = false;
                                     },
                                   )
                                       : Column(
@@ -871,11 +874,23 @@ class _HpLaptopDetailsScreenState extends State<HpLaptopDetailsScreen>
                                               height: 6.h,
                                               width: 50.w,
                                               backGroundColor: Colors.red,
-                                              textButton: "Check out",
+                                              textButton: "Go to Cart",
                                               onTap: () {
-                                                Get.to(() => AddToCart(price:   ProductidController
-                                                    .productBYid.salePrice
-                                                    .toString(),
+                                                Future.delayed(const Duration(seconds: 8));
+                                                // print(totalAmoutController.totalAmountModel.totals!.shippingTotal.);
+                                                Get.to(() => const AddToCart(
+
+                                                  // price: ProductidController
+                                                  //   .productBYid.salePrice
+                                                  //   .toString(),
+                                                  // shopping: totalAmoutController
+                                                  //     .totalAmountModel
+                                                  //     .totals!
+                                                  //     .shippingTotal,
+                                                  // totalAmount: totalAmoutController
+                                                  //     .totalAmountModel
+                                                  //     .totals!
+                                                  //     .total.toString(),
 
 
                                                 ));
@@ -1318,9 +1333,9 @@ class _HpLaptopDetailsScreenState extends State<HpLaptopDetailsScreen>
                 height: 63.h,
                 // Customize the appearance of the bottom sheet
                 // color: cGrey.withOpacity(0.3),
-                child: SingleChildScrollView(
+                child: const SingleChildScrollView(
                   child: Column(
-                    children: const [OurGauarantee()],
+                    children: [OurGauarantee()],
                   ),
                 ),
               ),
@@ -1400,11 +1415,12 @@ class _HpLaptopDetailsScreenState extends State<HpLaptopDetailsScreen>
                                       if (val!.isEmpty) {
                                         return "This field is required.";
                                       }
+                                      return null;
                                     },
                                     hinttext: "First Name",
                                     controller: firstNameController,
                                   )),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 5,
                                   ),
                                   Expanded(
@@ -1416,6 +1432,7 @@ class _HpLaptopDetailsScreenState extends State<HpLaptopDetailsScreen>
                                         if (val!.isEmpty) {
                                           return "This field is required.";
                                         }
+                                        return null;
                                       },
                                       hinttext: "Last Name",
                                       controller: lastNameController,
@@ -1454,6 +1471,7 @@ class _HpLaptopDetailsScreenState extends State<HpLaptopDetailsScreen>
                                   if (val!.isEmpty) {
                                     return "This field is required.";
                                   }
+                                  return null;
                                 },
                                 maxLint: 6,
                                 controller: commentNameController,

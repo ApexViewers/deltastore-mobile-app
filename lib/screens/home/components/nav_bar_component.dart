@@ -166,115 +166,118 @@ class _BarState extends State<Bar> {
   getStringValuesSF() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     //Return String
-    loginID = prefs.getString('LoginId');
+    loginID = prefs.getString('username');
   }
 
 
 
   @override
   Widget build(BuildContext context) {
-    print(loginID.toString() + "login id show");
-    return CupertinoTabScaffold(
-      resizeToAvoidBottomInset: true,
-      tabBar: CupertinoTabBar(
-        activeColor: appthem,
-        inactiveColor: cDarkGray,
-        backgroundColor: colorWhite,
+    //print(loginID.toString() + "login id show");
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: CupertinoTabScaffold(
+        resizeToAvoidBottomInset: true,
+        tabBar: CupertinoTabBar(
+          activeColor: appthem,
+          inactiveColor: cDarkGray,
+          backgroundColor: colorWhite,
 
-        //  backgroundColor: Color(0xff2086AE),
-        items: [
-          BottomNavigationBarItem(
-              backgroundColor: Colors.green,
-              icon: Icon(
-                Icons.home,
-                color: cDarkGray,
-              ),
-              activeIcon: const Icon(
-                Icons.home,
-                color: appthem,
-              ),
-              label: 'Home',
-              tooltip: 'tool tip'),
-          BottomNavigationBarItem(
-              backgroundColor: Colors.green,
-              icon: Icon(
-                Icons.menu,
-                color: cDarkGray,
-              ),
-              activeIcon: const Icon(
-                Icons.menu,
-                color: appthem,
-              ),
-              label: 'categories'),
-          BottomNavigationBarItem(
-              backgroundColor: Colors.green,
-              icon: Icon(
-                Icons.favorite_border,
-                color: cDarkGray,
-              ),
-              activeIcon: const Icon(
-                Icons.favorite,
-                color: appthem,
-              ),
-              label: 'WishList'),
-          BottomNavigationBarItem(
-              backgroundColor: Colors.green,
-              icon: Icon(
-                Icons.shopping_cart_outlined,
-                color: cDarkGray,
-              ),
-              activeIcon: const Icon(
-                Icons.shopping_cart,
-                color: appthem,
-              ),
-              label: 'Cart'),
-          BottomNavigationBarItem(
-              backgroundColor: Colors.green,
-              icon: Icon(
-                Icons.person_outline,
-                color: cDarkGray,
-              ),
-              activeIcon: const Icon(
-                Icons.person,
-                color: appthem,
-              ),
-              label: 'Account'),
-        ],
-        currentIndex: currentIndex.value, // This is where we use the currentIndex property
-        onTap: (index) {
-          setState(() {
-            currentIndex.value = index; // Update currentIndex when a new tab is tapped
-          });
+          //  backgroundColor: Color(0xff2086AE),
+          items: [
+            BottomNavigationBarItem(
+                backgroundColor: Colors.green,
+                icon: Icon(
+                  Icons.home,
+                  color: cDarkGray,
+                ),
+                activeIcon: const Icon(
+                  Icons.home,
+                  color: appthem,
+                ),
+                label: 'Home',
+                tooltip: 'tool tip'),
+            BottomNavigationBarItem(
+                backgroundColor: Colors.green,
+                icon: Icon(
+                  Icons.menu,
+                  color: cDarkGray,
+                ),
+                activeIcon: const Icon(
+                  Icons.menu,
+                  color: appthem,
+                ),
+                label: 'categories'),
+            BottomNavigationBarItem(
+                backgroundColor: Colors.green,
+                icon: Icon(
+                  Icons.favorite_border,
+                  color: cDarkGray,
+                ),
+                activeIcon: const Icon(
+                  Icons.favorite,
+                  color: appthem,
+                ),
+                label: 'WishList'),
+            BottomNavigationBarItem(
+                backgroundColor: Colors.green,
+                icon: Icon(
+                  Icons.shopping_cart_outlined,
+                  color: cDarkGray,
+                ),
+                activeIcon: const Icon(
+                  Icons.shopping_cart,
+                  color: appthem,
+                ),
+                label: 'Cart'),
+            BottomNavigationBarItem(
+                backgroundColor: Colors.green,
+                icon: Icon(
+                  Icons.person_outline,
+                  color: cDarkGray,
+                ),
+                activeIcon: const Icon(
+                  Icons.person,
+                  color: appthem,
+                ),
+                label: 'Account'),
+          ],
+          currentIndex: currentIndex.value, // This is where we use the currentIndex property
+          onTap: (index) {
+            setState(() {
+              currentIndex.value = index; // Update currentIndex when a new tab is tapped
+            });
+          },
+        ),
+
+
+        tabBuilder: (context, select) {
+          Widget page;
+          switch (select) {
+            case 0:
+              page = const HomeScreen();
+              break;
+            case 1:
+              page = const AllCategories();
+              break;
+            case 2:
+              page = const Wishlist();
+              break;
+            case 3:
+              page = AllOrder();
+              break;
+            case 4:
+              page = loginID == null || loginID!.length <2 ? LoginScreen() : const SettingScreen();
+              break;
+            default:
+              page = Container();
+          }
+          return CupertinoTabView(
+            onGenerateRoute: AppRoutes.generateRoute,
+            builder: (context) => Material(child: page),
+          );
         },
       ),
-
-
-      tabBuilder: (context, select) {
-        Widget page;
-        switch (select) {
-          case 0:
-            page = const HomeScreen();
-            break;
-          case 1:
-            page = const AllCategories();
-            break;
-          case 2:
-            page = const Wishlist();
-            break;
-          case 3:
-            page = AllOrder();
-            break;
-          case 4:
-            page = loginID == null ? SettingScreen() : LoginScreen();
-            break;
-          default:
-            page = Container();
-        }
-        return CupertinoTabView(
-          onGenerateRoute: AppRoutes.generateRoute,
-          builder: (context) => Material(child: page),
-        );
-      },
     );
   }
 }

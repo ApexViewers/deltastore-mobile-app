@@ -84,7 +84,7 @@ class DeliveryAndShipment extends StatelessWidget {
                   vSpac6,
                   Text("We offer local delivery of all products based on our order schedule and our partner shipping company schedule. If you require same day or express delivery, kindly mention in your order form so we can make arrangements for the same. Otherwise, all deliveries are expected to reach customers within 4-6 business days unless the order is out of stock in which case we’ll inform you accordingly.",style: hsmall,)
                , vSpac6,
-                  Text("All deliveries are done via J&D Express and DHL."),
+                  const Text("All deliveries are done via J&D Express and DHL."),
                   vSpac6,
                
                 ],

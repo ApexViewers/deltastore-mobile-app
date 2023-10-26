@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 
-import '../../../screens/categories/view/categories.dart';
 import '../../Model/categories_model/categories_model.dart';
 import '../../Services/all_categories/all_categories.dart';
 

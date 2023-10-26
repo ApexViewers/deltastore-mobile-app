@@ -1,11 +1,8 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 import '../../constant/image_assets.dart';
 import '../../constant/paddings.dart';
-import '../../constant/styles/app_textstyles.dart';
 import '../../constant/styles/colors.dart';
 import '../../reuseable_widgets/custom_service.dart';
 
@@ -28,7 +25,7 @@ class CustomerService extends StatelessWidget {
             children: [
               Container(
                 decoration: BoxDecoration(
-                    border: Border(
+                    border: const Border(
                       top: BorderSide(
                         color: appthem,
                         width: 3.0,
@@ -47,7 +44,7 @@ class CustomerService extends StatelessWidget {
                       ),
                     ),
                     borderRadius: BorderRadius.circular(8)),
-                child: Column(
+                child: const Column(
                   children: [
                     Padding(
                       padding: padA5,
@@ -92,14 +89,14 @@ class CustomerService extends StatelessWidget {
                       SizedBox(
                         height: s.height * 0.04,
                       ),
-                      Text(
+                      const Text(
                         "Hello. What can we help you with?",
                         style: TextStyle(fontSize: 16),
                       ),
                       SizedBox(
                         height: s.height * 0.04,
                       ),
-                      Text(
+                      const Text(
                         "Some things you can do here",
                         style: TextStyle(fontSize: 16),
                       ),
@@ -120,7 +117,7 @@ class CustomerService extends StatelessWidget {
                       color: cBlack.withOpacity(0.3),
                       blurRadius: 5.0, // soften the shadow
                       spreadRadius: 5.0, //extend the shadow
-                      offset: Offset(
+                      offset: const Offset(
                         5.0, // Move to right 5  horizontally
                         5.0, // Move to bottom 5 Vertically
                       ),
@@ -173,7 +170,7 @@ class CustomerService extends StatelessWidget {
                       color: cBlack.withOpacity(0.3),
                       blurRadius: 5.0, // soften the shadow
                       spreadRadius: 5.0, //extend the shadow
-                      offset: Offset(
+                      offset: const Offset(
                         5.0, // Move to right 5  horizontally
                         5.0, // Move to bottom 5 Vertically
                       ),
@@ -201,7 +198,7 @@ class CustomerService extends StatelessWidget {
                       color: cBlack.withOpacity(0.3),
                       blurRadius: 5.0, // soften the shadow
                       spreadRadius: 5.0, //extend the shadow
-                      offset: Offset(
+                      offset: const Offset(
                         5.0, // Move to right 5  horizontally
                         5.0, // Move to bottom 5 Vertically
                       ),
@@ -229,7 +226,7 @@ class CustomerService extends StatelessWidget {
                       color: cBlack.withOpacity(0.3),
                       blurRadius: 5.0, // soften the shadow
                       spreadRadius: 5.0, //extend the shadow
-                      offset: Offset(
+                      offset: const Offset(
                         5.0, // Move to right 5  horizontally
                         5.0, // Move to bottom 5 Vertically
                       ),

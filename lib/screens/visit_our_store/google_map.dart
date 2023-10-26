@@ -7,8 +7,8 @@ import '../../constant/styles/colors.dart';
 import 'controller/google_map_controller.dart';
 
 class GoogleMapScreen extends StatefulWidget {
-  dynamic? Lat;
-  dynamic? Lng;
+  dynamic Lat;
+  dynamic Lng;
   String? title;
   String? snipped;
   GoogleMapScreen({Key? key, this.Lat, this.Lng, this.title, this.snipped})

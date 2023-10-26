@@ -1,5 +1,4 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:test_app/screens/pantum_printers/review_tab_bar.dart';
@@ -8,7 +7,6 @@ import '../../constant/fonts_strings.dart';
 import '../../constant/paddings.dart';
 import '../../constant/styles/app_textstyles.dart';
 import '../../constant/styles/colors.dart';
-import '../../reuseable_widgets/bold_text_widget.dart';
 import '../../reuseable_widgets/textformfield_contact.dart';
 import 'description__tab_bar.dart';
 import 'our_gauarantee_to_you.dart';
@@ -47,7 +45,7 @@ class _PrinterDetailsState extends State<PrinterDetails> with SingleTickerProvid
     print(widget.nameFunctionality.toString());
     return Scaffold(
       appBar: AppBar(
-        title: Text("Printer Details"),
+        title: const Text("Printer Details"),
         backgroundColor: appthem,
       ),
       body: SingleChildScrollView(
@@ -58,7 +56,7 @@ class _PrinterDetailsState extends State<PrinterDetails> with SingleTickerProvid
               Card(
                 child: Column(
                   children: [
-                    Container(
+                    SizedBox(
                       height: 12.h,
                       // Set the desired height
                       width: 35.w,
@@ -69,7 +67,7 @@ class _PrinterDetailsState extends State<PrinterDetails> with SingleTickerProvid
                     Padding(
                       padding: padA5,
                       child: Container(
-                          decoration: BoxDecoration(color: appthem),
+                          decoration: const BoxDecoration(color: appthem),
                           child: Padding(
                             padding: padA5,
                             child: Text(
@@ -118,14 +116,14 @@ class _PrinterDetailsState extends State<PrinterDetails> with SingleTickerProvid
                       Divider(
                         height: 4.h,
                       ),
-                      Row(
+                      const Row(
                         children: [
                           Icon(Icons.favorite_border),
                           Text("Product Add!")
                         ],
                       ),
                       SizedBox(height: 1.h,),
-                      Row(
+                      const Row(
                         children: [Icon(Icons.refresh), Text("Compare")],
                       ),
                       Row(
@@ -162,7 +160,7 @@ class _PrinterDetailsState extends State<PrinterDetails> with SingleTickerProvid
                                   SizedBox(
                                     width: 20.w,
                                   ),
-                                  Center(
+                                  const Center(
                                       child: Icon(
                                     Icons.add_shopping_cart,
                                     color: Colors.white,
@@ -216,8 +214,8 @@ class _PrinterDetailsState extends State<PrinterDetails> with SingleTickerProvid
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       ExpansionTile(
-                        trailing: Icon(Icons.add),
-                        title: Text("FAQ'S"),
+                        trailing: const Icon(Icons.add),
+                        title: const Text("FAQ'S"),
                         children: [
                           normalText(textBold: "90 Days warranty",size: 12,noramlBold: "In case of failure, the product is repaired free of charge. If the repair is not possible, Parts Can be replaced and you have to pay the price for Replaced Parts only. Labor & Servicing absolutely free for 90 days.",),
                           Divider(height: 2.h,),
@@ -231,15 +229,15 @@ class _PrinterDetailsState extends State<PrinterDetails> with SingleTickerProvid
                   ),
                 ),
               ),
-              Container(
+              SizedBox(
                 height: 100.h,
                 child: Column(
                   children: <Widget>[
                     TabBar(
-                     labelStyle: TextStyle(fontSize: 12),
+                     labelStyle: const TextStyle(fontSize: 12),
                        labelColor: Colors.black,
                       controller: _tabController,
-                      tabs: [
+                      tabs: const [
                         Tab(text: 'Description',),
                         Tab(text: 'Reviews'),
                         Tab(text: 'Our Gauarantee To You'),
@@ -248,7 +246,7 @@ class _PrinterDetailsState extends State<PrinterDetails> with SingleTickerProvid
                     Expanded(
                       child: TabBarView(
                         controller: _tabController,
-                        children: [
+                        children: const [
                           DescriptionTabBar(),
                           ReviewTabBar(),
                           OurGauarantee()
