@@ -42,8 +42,8 @@ class _AllOrderState extends State<AllOrder> {
     itemController.fetchDataFromApi();
     totalAmoutController.totalAmountToCart();
     //Get.snackbar('Refresh', 'Screen is Refreshing');
-
   }
+
   @override
   Widget build(BuildContext context) {
     var addToCartController = Get.find<AddToCartController>();
@@ -115,7 +115,8 @@ class _AllOrderState extends State<AllOrder> {
                                           refreshScreen();
                                         },
                                         child: ListView.builder(
-                                            physics: const AlwaysScrollableScrollPhysics(),
+                                            physics:
+                                                const AlwaysScrollableScrollPhysics(),
                                             shrinkWrap: true,
                                             itemCount: cartController
                                                 .cartData.value.items.length,
@@ -153,7 +154,8 @@ class _AllOrderState extends State<AllOrder> {
                                                                         padA5,
                                                                     child:
                                                                         Container(
-                                                                      margin: const EdgeInsets.only(
+                                                                      margin: const EdgeInsets
+                                                                          .only(
                                                                           left:
                                                                               10,
                                                                           right:
@@ -162,14 +164,16 @@ class _AllOrderState extends State<AllOrder> {
                                                                               10,
                                                                           top:
                                                                               10),
-                                                                      height: 6.h,
-                                                                      width: 12.w,
+                                                                      height:
+                                                                          6.h,
+                                                                      width:
+                                                                          12.w,
                                                                       decoration:
                                                                           BoxDecoration(
                                                                         image:
                                                                             DecorationImage(
-                                                                          image: NetworkImage(
-                                                                              item.featuredImage),
+                                                                          image:
+                                                                              NetworkImage(item.featuredImage),
                                                                           fit: BoxFit
                                                                               .cover,
                                                                         ),
@@ -179,7 +183,8 @@ class _AllOrderState extends State<AllOrder> {
                                                                 ],
                                                               ),
                                                               Flexible(
-                                                                  child: Padding(
+                                                                  child:
+                                                                      Padding(
                                                                 padding: padA5,
                                                                 child: Column(
                                                                   mainAxisAlignment:
@@ -221,7 +226,8 @@ class _AllOrderState extends State<AllOrder> {
                                                             children: [
                                                               Padding(
                                                                 padding: padA5,
-                                                                child: Container(
+                                                                child:
+                                                                    Container(
                                                                   decoration: BoxDecoration(
                                                                       border: Border.all(
                                                                           color:
@@ -237,8 +243,7 @@ class _AllOrderState extends State<AllOrder> {
                                                                       Row(
                                                                         children: [
                                                                           InkWell(
-                                                                              onTap:
-                                                                                  () {
+                                                                              onTap: () {
                                                                                 setState(() {
                                                                                   if (addToCartController.initialValue > 0) {
                                                                                     addToCartController.initialValue--;
@@ -246,8 +251,7 @@ class _AllOrderState extends State<AllOrder> {
                                                                                   }
                                                                                 });
                                                                               },
-                                                                              child:
-                                                                                  Icon(
+                                                                              child: Icon(
                                                                                 Icons.remove,
                                                                                 color: cBlack.withOpacity(0.7),
                                                                               )),
@@ -264,15 +268,13 @@ class _AllOrderState extends State<AllOrder> {
                                                                                 4,
                                                                           ),
                                                                           InkWell(
-                                                                              onTap:
-                                                                                  () {
+                                                                              onTap: () {
                                                                                 setState(() {
                                                                                   addToCartController.initialValue.value++;
                                                                                   addToCartController.valueChange.value = addToCartController.initialValue.value * addToCartController.prooductPrice.value;
                                                                                 });
                                                                               },
-                                                                              child:
-                                                                                  Icon(
+                                                                              child: Icon(
                                                                                 Icons.add,
                                                                                 color: cBlack.withOpacity(0.7),
                                                                                 size: 20,
@@ -289,7 +291,8 @@ class _AllOrderState extends State<AllOrder> {
                                                                         .only(
                                                                         left:
                                                                             10)),
-                                                                child: Container(
+                                                                child:
+                                                                    Container(
                                                                   decoration: BoxDecoration(
                                                                       border: Border.all(
                                                                           color:
@@ -314,8 +317,8 @@ class _AllOrderState extends State<AllOrder> {
                                                                             Icon(
                                                                           Icons
                                                                               .favorite_border,
-                                                                          color: cBlack
-                                                                              .withOpacity(0.3),
+                                                                          color:
+                                                                              cBlack.withOpacity(0.3),
                                                                         ),
                                                                       ),
                                                                       Padding(
@@ -324,9 +327,8 @@ class _AllOrderState extends State<AllOrder> {
                                                                         child:
                                                                             Text(
                                                                           "Move to wishlist",
-                                                                          style: hsmall.copyWith(
-                                                                              color:
-                                                                                  cBlack.withOpacity(0.6)),
+                                                                          style:
+                                                                              hsmall.copyWith(color: cBlack.withOpacity(0.6)),
                                                                         ),
                                                                       )
                                                                     ],
@@ -339,27 +341,44 @@ class _AllOrderState extends State<AllOrder> {
                                                                         .only(
                                                                         left:
                                                                             10)),
-                                                                child: Container(
-                                                                  decoration: BoxDecoration(
-                                                                      border: Border.all(
+                                                                child:
+                                                                    GestureDetector(
+                                                                  onTap: () {
+                                                                    setState(
+                                                                        () async {
+                                                                      itemController.deleteToCart(item
+                                                                          .itemKey
+                                                                          .toString());
+                                                                      totalAmoutController
+                                                                          .totalAmountToCart();
+                                                                      // print(item[
+                                                                      // 'item_key']);
+                                                                      await Future.delayed(const Duration(
+                                                                          seconds:
+                                                                              5));
+                                                                      refreshScreen();
+                                                                    });
+                                                                  },
+                                                                  child:
+                                                                      Container(
+                                                                    decoration: BoxDecoration(
+                                                                        border: Border.all(
+                                                                            color:
+                                                                                cGrey),
+                                                                        color: colorWhite.withOpacity(
+                                                                            0.9),
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(4)),
+                                                                    child: Row(
+                                                                      children: [
+                                                                        Icon(
+                                                                          Icons
+                                                                              .delete_outline,
                                                                           color:
-                                                                              cGrey),
-                                                                      color: colorWhite
-                                                                          .withOpacity(
-                                                                              0.9),
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              4)),
-                                                                  child: Row(
-                                                                    children: [
-                                                                      Icon(
-                                                                        Icons
-                                                                            .delete_outline,
-                                                                        color: cBlack
-                                                                            .withOpacity(
-                                                                                0.3),
-                                                                      ),
-                                                                    ],
+                                                                              cBlack.withOpacity(0.3),
+                                                                        ),
+                                                                      ],
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ),
