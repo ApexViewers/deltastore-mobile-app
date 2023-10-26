@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
+import 'package:test_app/screens/home/components/nav_bar_component.dart';
 
 import '../../../constant/paddings.dart';
 import '../../../constant/styles/app_textstyles.dart';
@@ -59,7 +61,7 @@ class _AddressScreenState extends State<AddressScreen> {
 
                         controller:phonNumberController , obsecure: false,),
                       const SizedBox(height: 15),
-                      textWidget(text: "Street /Apartment/Valla"),
+                      textWidget(text: "Street /Apartment/ Villa"),
                       const SizedBox(height: 4),
                       RoundTextFormField(
                         width: 100.w,
@@ -102,11 +104,13 @@ class _AddressScreenState extends State<AddressScreen> {
               ),
               const SizedBox(height: 20),
               RoundedButton(
-
                 width: 80.w,
                 height: 6.h,
                 backGroundColor: appthem,
-                textButton: 'Save Address', onTap: () {  },
+                textButton: 'Save Address', onTap: () {
+                  Get.snackbar('Address','Address Added Successfully');
+                  Get.offAll(Bar());
+              },
                 borderRadius: 12,
 
               )

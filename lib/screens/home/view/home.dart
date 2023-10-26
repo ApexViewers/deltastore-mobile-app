@@ -12,8 +12,12 @@ import '../../../constant/styles/colors.dart';
 import '../../../data/Controllers/Categories_controller/all_categories_controller.dart';
 import '../../../data/Controllers/all_categories_controller/all_categories_show_controller.dart';
 
+import '../../../data/Controllers/all_product_controller/all_product_controller.dart';
 import '../../../data/Controllers/dell_laptop_controller/dell_laptop_controller.dart';
 import '../../../data/Controllers/destop_computer_controller/desktop_computer_controller.dart';
+import '../../../data/Controllers/hp_laptop_controller/hp_laptop_controller.dart';
+import '../../../data/Controllers/lenovo_laptop_controller/lenovo_laptop_controller.dart';
+import '../../../data/Controllers/product_by_id_controller/product_by_id_controller.dart';
 import '../../../data/Controllers/twoinone_category_controller/twoinone_category_controller.dart';
 import '../../../reuseable_widgets/rounded_textfield.dart';
 import '../../laptops/components/laptop_listview_products_component.dart';
@@ -51,6 +55,20 @@ class _HomeScreenState extends State<HomeScreen> {
   var allCatagoriesController = Get.put(AllCategoriesListController());
   var twoInOneCategoriesController = Get.put(TwoInOneCategoriesController());
   var desktopComputerController = Get.put(DesktopComputerDataController());
+  var ProductidController = Get.put((ProductIdController()));
+  var hpLaptopController = Get.put(HpCategoriesListController());
+  var lenovoLaptopController = Get.put(LenpvoCategoriesListController());
+  var desktopcomputerController = Get.put(DesktopComputerDataController());
+  var allProductController = Get.put(AllProductController());
+
+  Future<void> refreshScreen() async {
+     dellLaptopController.DellCategoriesController();
+     hpLaptopController.HpCategoriesController();
+     lenovoLaptopController.lenovoCategoriesController();
+     desktopComputerController.HpCategoriesController();
+     allProductController.getAllProducts();
+     //Get.snackbar('Reload', 'Reloading Screen');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -127,7 +145,7 @@ class _HomeScreenState extends State<HomeScreen> {
           },
           body: RefreshIndicator(
             onRefresh: () async {
-              build(context);
+              refreshScreen();
             },
             child: SingleChildScrollView(
               child: Container(

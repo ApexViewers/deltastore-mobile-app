@@ -103,7 +103,9 @@ class _AddToCartState extends State<AddToCart> {
                         ),
                         RefreshIndicator(
                           onRefresh: () async {
-                            build(context);
+                            setState(() {
+
+                            });
                           },
                           child: Obx(() {
                             if (itemController.isLoading.value) {
@@ -123,7 +125,9 @@ class _AddToCartState extends State<AddToCart> {
                                     width: 100.w,
                                     child: RefreshIndicator(
                                       onRefresh: () async {
-                                        build(context);
+                                        setState(() {
+
+                                        });
                                       },
                                       child: ListView.builder(
                                           physics: const PageScrollPhysics(),

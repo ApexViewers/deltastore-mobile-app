@@ -31,12 +31,19 @@ class AllOrder extends StatefulWidget {
 class _AllOrderState extends State<AllOrder> {
   final CartController cartController = Get.put(CartController());
   var itemController = Get.put((ItemInCartController()));
-
   var totalAmoutController = Get.put(TotalAmountController());
   int initialValue = 0;
   int valueChange = 0;
   int prooductPrice = 700;
   List<double> productPrices = [];
+
+  Future<void> refreshScreen() async {
+    cartController.fetchCartData();
+    itemController.fetchDataFromApi();
+    totalAmoutController.totalAmountToCart();
+    //Get.snackbar('Refresh', 'Screen is Refreshing');
+
+  }
   @override
   Widget build(BuildContext context) {
     var addToCartController = Get.find<AddToCartController>();
@@ -103,264 +110,269 @@ class _AllOrderState extends State<AllOrder> {
                                       return EmptyCartContainer.showAppBar(
                                           showAppBar: false);
                                     } else {
-                                      return ListView.builder(
-                                          physics: const PageScrollPhysics(),
-                                          shrinkWrap: true,
-                                          itemCount: cartController
-                                              .cartData.value.items.length,
-                                          itemBuilder: (context, index) {
-                                            var item = cartController
-                                                .cartData.value.items[index];
-                                            return Padding(
-                                              padding: padA6,
-                                              child: Column(
-                                                children: [
-                                                  Container(
-                                                    decoration:
-                                                        productBox.copyWith(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        5)),
-                                                    child: Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Row(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Row(
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                Padding(
-                                                                  padding:
-                                                                      padA5,
-                                                                  child:
-                                                                      Container(
-                                                                    margin: const EdgeInsets.only(
-                                                                        left:
-                                                                            10,
-                                                                        right:
-                                                                            10,
-                                                                        bottom:
-                                                                            10,
-                                                                        top:
-                                                                            10),
-                                                                    height: 6.h,
-                                                                    width: 12.w,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      image:
-                                                                          DecorationImage(
-                                                                        image: NetworkImage(
-                                                                            item.featuredImage),
-                                                                        fit: BoxFit
-                                                                            .cover,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                )
-                                                              ],
-                                                            ),
-                                                            Flexible(
-                                                                child: Padding(
-                                                              padding: padA5,
-                                                              child: Column(
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
+                                      return RefreshIndicator(
+                                        onRefresh: () async {
+                                          refreshScreen();
+                                        },
+                                        child: ListView.builder(
+                                            physics: const AlwaysScrollableScrollPhysics(),
+                                            shrinkWrap: true,
+                                            itemCount: cartController
+                                                .cartData.value.items.length,
+                                            itemBuilder: (context, index) {
+                                              var item = cartController
+                                                  .cartData.value.items[index];
+                                              return Padding(
+                                                padding: padA6,
+                                                child: Column(
+                                                  children: [
+                                                    Container(
+                                                      decoration:
+                                                          productBox.copyWith(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          5)),
+                                                      child: Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Row(
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Row(
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
                                                                         .start,
                                                                 children: [
-                                                                  Row(
-                                                                    children: [
-                                                                      Flexible(
-                                                                        child:
-                                                                            Column(
-                                                                          children: [
-                                                                            Text(
-                                                                              item.name,
-                                                                              style: hMedium.copyWith(fontSize: 10, color: cBlack.withOpacity(0.6)),
-                                                                            ),
-                                                                            Row(
-                                                                              children: [
-                                                                                Text(
-                                                                                  "AED ${item.price}",
-                                                                                  style: hMedium.copyWith(fontWeight: FontWeight.bold, fontSize: 12, color: cBlack.withOpacity(0.9)),
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                          ],
+                                                                  Padding(
+                                                                    padding:
+                                                                        padA5,
+                                                                    child:
+                                                                        Container(
+                                                                      margin: const EdgeInsets.only(
+                                                                          left:
+                                                                              10,
+                                                                          right:
+                                                                              10,
+                                                                          bottom:
+                                                                              10,
+                                                                          top:
+                                                                              10),
+                                                                      height: 6.h,
+                                                                      width: 12.w,
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                        image:
+                                                                            DecorationImage(
+                                                                          image: NetworkImage(
+                                                                              item.featuredImage),
+                                                                          fit: BoxFit
+                                                                              .cover,
                                                                         ),
                                                                       ),
-                                                                    ],
-                                                                  ),
+                                                                    ),
+                                                                  )
                                                                 ],
                                                               ),
-                                                            )),
-                                                          ],
-                                                        ),
-                                                        Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceBetween,
-                                                          children: [
-                                                            Padding(
-                                                              padding: padA5,
-                                                              child: Container(
-                                                                decoration: BoxDecoration(
-                                                                    border: Border.all(
-                                                                        color:
-                                                                            cGrey),
-                                                                    color: colorWhite
-                                                                        .withOpacity(
-                                                                            0.9),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            4)),
-                                                                child: Row(
+                                                              Flexible(
+                                                                  child: Padding(
+                                                                padding: padA5,
+                                                                child: Column(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .start,
                                                                   children: [
                                                                     Row(
                                                                       children: [
-                                                                        InkWell(
-                                                                            onTap:
-                                                                                () {
-                                                                              setState(() {
-                                                                                if (addToCartController.initialValue > 0) {
-                                                                                  addToCartController.initialValue--;
-                                                                                  addToCartController.valueChange.value = addToCartController.initialValue.value * addToCartController.prooductPrice.value;
-                                                                                }
-                                                                              });
-                                                                            },
-                                                                            child:
-                                                                                Icon(
-                                                                              Icons.remove,
-                                                                              color: cBlack.withOpacity(0.7),
-                                                                            )),
-                                                                        const SizedBox(
-                                                                          width:
-                                                                              4,
+                                                                        Flexible(
+                                                                          child:
+                                                                              Column(
+                                                                            children: [
+                                                                              Text(
+                                                                                item.name,
+                                                                                style: hMedium.copyWith(fontSize: 10, color: cBlack.withOpacity(0.6)),
+                                                                              ),
+                                                                              Row(
+                                                                                children: [
+                                                                                  Text(
+                                                                                    "AED ${item.price}",
+                                                                                    style: hMedium.copyWith(fontWeight: FontWeight.bold, fontSize: 12, color: cBlack.withOpacity(0.9)),
+                                                                                  ),
+                                                                                ],
+                                                                              ),
+                                                                            ],
+                                                                          ),
                                                                         ),
-                                                                        Text(addToCartController
-                                                                            .initialValue
-                                                                            .value
-                                                                            .toString()),
-                                                                        const SizedBox(
-                                                                          width:
-                                                                              4,
-                                                                        ),
-                                                                        InkWell(
-                                                                            onTap:
-                                                                                () {
-                                                                              setState(() {
-                                                                                addToCartController.initialValue.value++;
-                                                                                addToCartController.valueChange.value = addToCartController.initialValue.value * addToCartController.prooductPrice.value;
-                                                                              });
-                                                                            },
-                                                                            child:
-                                                                                Icon(
-                                                                              Icons.add,
-                                                                              color: cBlack.withOpacity(0.7),
-                                                                              size: 20,
-                                                                            )),
                                                                       ],
                                                                     ),
                                                                   ],
                                                                 ),
-                                                              ),
-                                                            ),
-                                                            Padding(
-                                                              padding: padA5.add(
-                                                                  const EdgeInsets
-                                                                      .only(
-                                                                      left:
-                                                                          10)),
-                                                              child: Container(
-                                                                decoration: BoxDecoration(
-                                                                    border: Border.all(
-                                                                        color:
-                                                                            cGrey),
-                                                                    color: colorWhite
-                                                                        .withOpacity(
-                                                                            0.9),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            4)),
-                                                                child: Row(
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .spaceBetween,
-                                                                  children: [
-                                                                    Padding(
-                                                                      padding: padA6.add(const EdgeInsets
-                                                                          .only(
-                                                                          left:
-                                                                              5)),
-                                                                      child:
-                                                                          Icon(
-                                                                        Icons
-                                                                            .favorite_border,
-                                                                        color: cBlack
-                                                                            .withOpacity(0.3),
-                                                                      ),
-                                                                    ),
-                                                                    Padding(
-                                                                      padding:
-                                                                          padA5,
-                                                                      child:
-                                                                          Text(
-                                                                        "Move to wishlist",
-                                                                        style: hsmall.copyWith(
-                                                                            color:
-                                                                                cBlack.withOpacity(0.6)),
-                                                                      ),
-                                                                    )
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                            ),
-                                                            Padding(
-                                                              padding: padA5.add(
-                                                                  const EdgeInsets
-                                                                      .only(
-                                                                      left:
-                                                                          10)),
-                                                              child: Container(
-                                                                decoration: BoxDecoration(
-                                                                    border: Border.all(
-                                                                        color:
-                                                                            cGrey),
-                                                                    color: colorWhite
-                                                                        .withOpacity(
-                                                                            0.9),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            4)),
-                                                                child: Row(
-                                                                  children: [
-                                                                    Icon(
-                                                                      Icons
-                                                                          .delete_outline,
-                                                                      color: cBlack
+                                                              )),
+                                                            ],
+                                                          ),
+                                                          Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceBetween,
+                                                            children: [
+                                                              Padding(
+                                                                padding: padA5,
+                                                                child: Container(
+                                                                  decoration: BoxDecoration(
+                                                                      border: Border.all(
+                                                                          color:
+                                                                              cGrey),
+                                                                      color: colorWhite
                                                                           .withOpacity(
-                                                                              0.3),
-                                                                    ),
-                                                                  ],
+                                                                              0.9),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              4)),
+                                                                  child: Row(
+                                                                    children: [
+                                                                      Row(
+                                                                        children: [
+                                                                          InkWell(
+                                                                              onTap:
+                                                                                  () {
+                                                                                setState(() {
+                                                                                  if (addToCartController.initialValue > 0) {
+                                                                                    addToCartController.initialValue--;
+                                                                                    addToCartController.valueChange.value = addToCartController.initialValue.value * addToCartController.prooductPrice.value;
+                                                                                  }
+                                                                                });
+                                                                              },
+                                                                              child:
+                                                                                  Icon(
+                                                                                Icons.remove,
+                                                                                color: cBlack.withOpacity(0.7),
+                                                                              )),
+                                                                          const SizedBox(
+                                                                            width:
+                                                                                4,
+                                                                          ),
+                                                                          Text(addToCartController
+                                                                              .initialValue
+                                                                              .value
+                                                                              .toString()),
+                                                                          const SizedBox(
+                                                                            width:
+                                                                                4,
+                                                                          ),
+                                                                          InkWell(
+                                                                              onTap:
+                                                                                  () {
+                                                                                setState(() {
+                                                                                  addToCartController.initialValue.value++;
+                                                                                  addToCartController.valueChange.value = addToCartController.initialValue.value * addToCartController.prooductPrice.value;
+                                                                                });
+                                                                              },
+                                                                              child:
+                                                                                  Icon(
+                                                                                Icons.add,
+                                                                                color: cBlack.withOpacity(0.7),
+                                                                                size: 20,
+                                                                              )),
+                                                                        ],
+                                                                      ),
+                                                                    ],
+                                                                  ),
                                                                 ),
                                                               ),
-                                                            ),
-                                                          ],
-                                                        )
-                                                      ],
+                                                              Padding(
+                                                                padding: padA5.add(
+                                                                    const EdgeInsets
+                                                                        .only(
+                                                                        left:
+                                                                            10)),
+                                                                child: Container(
+                                                                  decoration: BoxDecoration(
+                                                                      border: Border.all(
+                                                                          color:
+                                                                              cGrey),
+                                                                      color: colorWhite
+                                                                          .withOpacity(
+                                                                              0.9),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              4)),
+                                                                  child: Row(
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .spaceBetween,
+                                                                    children: [
+                                                                      Padding(
+                                                                        padding: padA6.add(const EdgeInsets
+                                                                            .only(
+                                                                            left:
+                                                                                5)),
+                                                                        child:
+                                                                            Icon(
+                                                                          Icons
+                                                                              .favorite_border,
+                                                                          color: cBlack
+                                                                              .withOpacity(0.3),
+                                                                        ),
+                                                                      ),
+                                                                      Padding(
+                                                                        padding:
+                                                                            padA5,
+                                                                        child:
+                                                                            Text(
+                                                                          "Move to wishlist",
+                                                                          style: hsmall.copyWith(
+                                                                              color:
+                                                                                  cBlack.withOpacity(0.6)),
+                                                                        ),
+                                                                      )
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              Padding(
+                                                                padding: padA5.add(
+                                                                    const EdgeInsets
+                                                                        .only(
+                                                                        left:
+                                                                            10)),
+                                                                child: Container(
+                                                                  decoration: BoxDecoration(
+                                                                      border: Border.all(
+                                                                          color:
+                                                                              cGrey),
+                                                                      color: colorWhite
+                                                                          .withOpacity(
+                                                                              0.9),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              4)),
+                                                                  child: Row(
+                                                                    children: [
+                                                                      Icon(
+                                                                        Icons
+                                                                            .delete_outline,
+                                                                        color: cBlack
+                                                                            .withOpacity(
+                                                                                0.3),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          )
+                                                        ],
+                                                      ),
                                                     ),
-                                                  ),
-                                                ],
-                                              ),
-                                            );
-                                          });
+                                                  ],
+                                                ),
+                                              );
+                                            }),
+                                      );
                                     }
                                   });
                                 } else {
@@ -496,7 +508,7 @@ class _AllOrderState extends State<AllOrder> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                              "AED ${totalAmoutController.totalAmountModel.totals?.total == null ? totalAmoutController.totalAmountModel.totals!.total : 0.toString()}",
+                              "AED ${totalAmoutController.totalAmountModel.totals?.total != null ? totalAmoutController.totalAmountModel.totals!.total : 0.toString()}",
                               style: hsmall.copyWith(
                                   color: cBlack.withOpacity(0.6))),
                           // Text("AED 1000",
