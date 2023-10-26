@@ -39,121 +39,135 @@ class _AllCategoriesState extends State<AllCategories> {
           title: const Appbar(),
           backgroundColor: colorWhite,
         ),
-        body: Padding(
-          padding: const EdgeInsets.only(top: 10),
-          child: Obx(
-            () => allCatagoriesController.categoriesLoading.value
-                ? const FullPageShimmerEffect()
-                : allCatagoriesController.categoriesError != ''
-                    ? Center(
-                        child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          IconButton(
-                              onPressed: () {
-                                allCatagoriesController.CategoriesController();
-                              },
-                              icon: const Icon(Icons.refresh)),
-                          Text(allCatagoriesController.categoriesError.value),
-                        ],
-                      ))
-                    : Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Flexible(
-                            child: ListView.builder(
-                                physics: const PageScrollPhysics(),
-                                shrinkWrap: true,
-                                itemCount: allCatagoriesController
-                                    .categoriesModel.length,
-                                itemBuilder: (buildContext, index) {
-                                  return SingleChildScrollView(
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(2),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius:
-                                              BorderRadius.circular(7),
-                                          boxShadow: const [
-                                            BoxShadow(
-                                              color: appthem,
-                                              blurRadius: 4,
-                                              offset: Offset(
-                                                  4, 4), // Shadow position
-                                            ),
-                                          ],
-                                        ),
-                                        width: 36.w,
-                                        child: Column(
-                                          children: [
-                                            Card(
-                                              color: colorWhite,
+        body: RefreshIndicator(
+          onRefresh: () async {
+            allCatagoriesController
+                .CategoriesController();
+          },
+          child: ListView(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: Obx(
+                  () => allCatagoriesController.categoriesLoading.value
+                      ? const FullPageShimmerEffect()
+                      : allCatagoriesController.categoriesError != ''
+                          ? Center(
+                              child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                IconButton(
+                                    onPressed: () {
+                                      allCatagoriesController
+                                          .CategoriesController();
+                                    },
+                                    icon: const Icon(Icons.refresh)),
+                                Text(allCatagoriesController
+                                    .categoriesError.value),
+                              ],
+                            ))
+                          : Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Flexible(
+                                  child: ListView.builder(
+                                      physics: const PageScrollPhysics(),
+                                      shrinkWrap: true,
+                                      itemCount: allCatagoriesController
+                                          .categoriesModel.length,
+                                      itemBuilder: (buildContext, index) {
+                                        return SingleChildScrollView(
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(2),
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius:
+                                                    BorderRadius.circular(7),
+                                                boxShadow: const [
+                                                  BoxShadow(
+                                                    color: appthem,
+                                                    blurRadius: 4,
+                                                    offset: Offset(
+                                                        4, 4), // Shadow position
+                                                  ),
+                                                ],
+                                              ),
+                                              width: 36.w,
                                               child: Column(
                                                 children: [
-                                                  ListTile(
-                                                    onTap: () {
-                                                      setState(() {
-                                                        selectedIndex !=
+                                                  Card(
+                                                    color: colorWhite,
+                                                    child: Column(
+                                                      children: [
+                                                        ListTile(
+                                                          onTap: () {
+                                                            setState(() {
+                                                              selectedIndex !=
+                                                                  allCatagoriesController
+                                                                      .categoriesModel[
+                                                                          index]
+                                                                      .id!;
+                                                            });
+                                                            twoInOneCategoriesController
+                                                                .productById(
+                                                              allCatagoriesController
+                                                                  .categoriesModel[
+                                                                      index]
+                                                                  .id!,
+                                                            );
+                                                            allCatagoriesByIdController
+                                                                .getAllCatagoryById(
+                                                              allCatagoriesController
+                                                                  .categoriesModel[
+                                                                      index]
+                                                                  .id!,
+                                                            );
+                                                          },
+                                                          title: Text(
                                                             allCatagoriesController
                                                                 .categoriesModel[
                                                                     index]
-                                                                .id!;
-                                                      });
-                                                      twoInOneCategoriesController
-                                                          .productById(
-                                                        allCatagoriesController
-                                                            .categoriesModel[
-                                                                index]
-                                                            .id!,
-                                                      );
-                                                      allCatagoriesByIdController
-                                                          .getAllCatagoryById(
-                                                        allCatagoriesController
-                                                            .categoriesModel[
-                                                                index]
-                                                            .id!,
-                                                      );
-                                                    },
-                                                    title: Text(
-                                                      allCatagoriesController
-                                                          .categoriesModel[
-                                                              index]
-                                                          .name
-                                                          .toString(),
-                                                      style: hsmall.copyWith(
-                                                        fontSize: MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .width <
-                                                                600
-                                                            ? 10
-                                                            : 16,
-                                                      ),
+                                                                .name
+                                                                .toString(),
+                                                            style:
+                                                                hsmall.copyWith(
+                                                              fontSize: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .width <
+                                                                      600
+                                                                  ? 10
+                                                                  : 16,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
                                                     ),
                                                   ),
                                                 ],
                                               ),
                                             ),
-                                          ],
-                                        ),
-                                      ),
+                                          ),
+                                        );
+                                      }),
+                                ),
+                                Flexible(
+                                  flex: 3,
+                                  child: Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 2.5.w),
+                                    child: Container(
+                                      child: pages[selectedIndex],
                                     ),
-                                  );
-                                }),
-                          ),
-                          Flexible(
-                            flex: 3,
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 2.5.w),
-                              child: Container(
-                                child: pages[selectedIndex],
-                              ),
+                                  ),
+                                )
+                              ],
                             ),
-                          )
-                        ],
-                      ),
+                ),
+              ),
+            ],
           ),
         ));
   }
