@@ -15,7 +15,7 @@ import '../../laptops/views/hp/hp_details.dart';
 
 
 class DellLaptopProductComponent extends StatefulWidget {
-  DellLaptopProductComponent({super.key});
+  const DellLaptopProductComponent({super.key});
 
   @override
   State<DellLaptopProductComponent> createState() => _DellLaptopProductComponentState();

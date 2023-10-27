@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart';
 import 'package:sizer/sizer.dart';
-import 'package:test_app/constant/base_client.dart';
 import 'package:test_app/routes/app_routes.dart';
 
 import 'bindings/initializing_dependenciese.dart';

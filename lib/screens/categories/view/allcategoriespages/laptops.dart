@@ -34,7 +34,8 @@ class _LaptopsState extends State<Laptops> {
 
   @override
   Widget build(BuildContext context) {
-    var childAspectRatio = MediaQuery.of(context).size.width > 600 ? 12 / 11 : 9 / 10;
+    var childAspectRatio =
+        MediaQuery.of(context).size.width > 600 ? 12 / 11 : 9 / 10;
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -54,42 +55,47 @@ class _LaptopsState extends State<Laptops> {
                       ],
                     ))
                   : Column(children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  twoInOneCategoriesController
-                      .twoInOneModel.name
-                      ==null?"2 in 1":twoInOneCategoriesController
-                      .twoInOneModel.name
-                      .toString(),
-                  style:
-                  hMedium.copyWith(fontSize: 12, color: cBlack),
-                ),
-
-                InkWell(
-                  onTap: (){
-                    showAllCategoryByIdController.getAllCatagoryById(twoInOneCategoriesController
-                        .twoInOneModel.id!);
-                    Get.to(() =>  HpLaptops(name:twoInOneCategoriesController
-                        .twoInOneModel.name.toString() ,));
-                  },
-                  child: Row(
-                    children: [
-                      Text(
-                        "See All",
-                        style: hsmall.copyWith(fontSize: 12),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            twoInOneCategoriesController.twoInOneModel.name ==
+                                    null
+                                ? "2 in 1"
+                                : twoInOneCategoriesController
+                                    .twoInOneModel.name
+                                    .toString(),
+                            style:
+                                hMedium.copyWith(fontSize: 12, color: cBlack),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              showAllCategoryByIdController.getAllCatagoryById(
+                                  twoInOneCategoriesController
+                                      .twoInOneModel.id!);
+                              Get.to(
+                                () => HpLaptops(
+                                  name: twoInOneCategoriesController
+                                      .twoInOneModel.name
+                                      .toString(),
+                                ),
+                              );
+                            },
+                            child: Row(
+                              children: [
+                                Text(
+                                  "See All",
+                                  style: hsmall.copyWith(fontSize: 12),
+                                ),
+                                const Icon(
+                                  Icons.arrow_forward,
+                                  size: 13,
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
                       ),
-                      const Icon(
-                        Icons.arrow_forward,
-                        size: 13,
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            ),
-
                       if (allCatagoriesByIdController.categoryById.isEmpty) ...[
                         Column(
                           children: [
@@ -98,40 +104,64 @@ class _LaptopsState extends State<Laptops> {
                                 children: [
                                   InkWell(
                                     onTap: () {
-                                      final idString = twoInOneCategoriesController.twoInOneModel.id.toString();
+                                      final idString =
+                                          twoInOneCategoriesController
+                                              .twoInOneModel.id
+                                              .toString();
                                       final parsedId = int.parse(idString);
                                       showAllCategoryByIdController
-                                          .getAllCatagoryById(
-                                          parsedId);
-                                      Get.to(() =>  HpLaptops(name:twoInOneCategoriesController
-                                          .twoInOneModel.name.toString() ,));
+                                          .getAllCatagoryById(parsedId);
+                                      Get.to(
+                                        () => HpLaptops(
+                                          name: twoInOneCategoriesController
+                                              .twoInOneModel.name
+                                              .toString(),
+                                        ),
+                                      );
                                     },
                                     child: Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
-                                        height: MediaQuery.of(context).size.height < 600 ? 0.7.h : 8.h,
-                                        width:MediaQuery.of(context).size.width < 600 ? 19.w : 14.w,
+                                        height:
+                                            MediaQuery.of(context).size.height <
+                                                    600
+                                                ? 0.7.h
+                                                : 8.h,
+                                        width:
+                                            MediaQuery.of(context).size.width <
+                                                    600
+                                                ? 19.w
+                                                : 14.w,
                                         decoration: BoxDecoration(
                                             color: appthem,
                                             borderRadius:
                                                 BorderRadius.circular(8)),
                                         child: Center(
                                             child: Padding(
-                                              padding: const EdgeInsets.all(2),
-                                              child: Center(
-                                                child: Text(
-                                          twoInOneCategoriesController
-                                                  .twoInOneModel.name
-                                                  ==null?"2 in 1":twoInOneCategoriesController
-                                                  .twoInOneModel.name
-                                                  .toString(),
-                                          style: hMedium.copyWith(
-                                            fontSize:  MediaQuery.of(context).size.width < 600 ? 9.sp : 14, color: colorWhite),
-                                                  overflow: TextOverflow.ellipsis,
-                                                  maxLines: 2,
-                                        ),
-                                              ),
-                                            )),
+                                          padding: const EdgeInsets.all(2),
+                                          child: Center(
+                                            child: Text(
+                                              twoInOneCategoriesController
+                                                          .twoInOneModel.name ==
+                                                      null
+                                                  ? "2 in 1"
+                                                  : twoInOneCategoriesController
+                                                      .twoInOneModel.name
+                                                      .toString(),
+                                              style: hMedium.copyWith(
+                                                  fontSize:
+                                                      MediaQuery.of(context)
+                                                                  .size
+                                                                  .width <
+                                                              600
+                                                          ? 9.sp
+                                                          : 14,
+                                                  color: colorWhite),
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 2,
+                                            ),
+                                          ),
+                                        )),
                                       ),
                                     ),
                                   )
@@ -144,8 +174,9 @@ class _LaptopsState extends State<Laptops> {
                             children: [
                               SizedBox(
                                 height: 100.h,
-                                width: MediaQuery.of(context).size.width < 600 ? 60.w : 50.w,
-
+                                width: MediaQuery.of(context).size.width < 600
+                                    ? 60.w
+                                    : 50.w,
                                 child: GridView.builder(
                                   gridDelegate:
                                       SliverGridDelegateWithFixedCrossAxisCount(
@@ -155,7 +186,8 @@ class _LaptopsState extends State<Laptops> {
                                     // Spacing between rows
                                     crossAxisSpacing: 12.0,
                                     // Spacing between columns
-                                    childAspectRatio:childAspectRatio, // Width to height ratio of each item
+                                    childAspectRatio:
+                                        childAspectRatio, // Width to height ratio of each item
                                   ),
                                   itemCount: allCatagoriesByIdController
                                       .categoryById.length,
@@ -169,13 +201,15 @@ class _LaptopsState extends State<Laptops> {
                                                     .categoryById[index].id!);
                                         // print( allCatagoriesByIdController
                                         //     .categoryById[index].name.toString());
-                                        Get.to(() =>  HpLaptops(name:allCatagoriesByIdController
-                                            .categoryById[index].name.toString() ,));
+                                        Get.to(() => HpLaptops(
+                                              name: allCatagoriesByIdController
+                                                  .categoryById[index].name
+                                                  .toString(),
+                                            ));
                                       },
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Container(
-
                                           decoration: BoxDecoration(
                                               color: appthem,
                                               borderRadius:
@@ -186,9 +220,15 @@ class _LaptopsState extends State<Laptops> {
                                                 .categoryById[index].name
                                                 .toString(),
                                             style: hMedium.copyWith(
-                                                fontSize:  MediaQuery.of(context).size.width < 600 ? 11 : 14, color: colorWhite),
-                                                overflow: TextOverflow.ellipsis,
-                                                maxLines: 2,
+                                                fontSize: MediaQuery.of(context)
+                                                            .size
+                                                            .width <
+                                                        600
+                                                    ? 11
+                                                    : 14,
+                                                color: colorWhite),
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 2,
                                           )),
                                         ),
                                       ),

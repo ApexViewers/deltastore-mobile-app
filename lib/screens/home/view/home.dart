@@ -250,7 +250,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                     ],
                                   ),
-                                  DellLaptopProductComponent(),
+                                  const DellLaptopProductComponent(),
                                   const SizedBox(
                                     height: 15,
                                   ),

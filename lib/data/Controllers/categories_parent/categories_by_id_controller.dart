@@ -23,6 +23,7 @@ class AllCategoryByIdController extends GetxController {
     print(id.toString());
     if (response is List<CategoryById>) {
       productLoading.value = false;
+      productError.value = '';
       categoryById = response;
 
       print("${response.length}show length of dafdsfasta");

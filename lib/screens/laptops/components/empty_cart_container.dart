@@ -9,7 +9,6 @@ import '../../../constant/image_assets.dart';
 import '../../../data/Controllers/cart_controller/cart_controller.dart';
 import '../../../data/Controllers/items_in_cart_controller/item_in_cart_controller.dart';
 import '../../../data/Controllers/total_amount_cart_controller/total_amount_controller.dart';
-import '../../home/view/home.dart';
 import '../../setting/Screen/setting_screen.dart';
 
 class EmptyCartContainer extends StatelessWidget {
