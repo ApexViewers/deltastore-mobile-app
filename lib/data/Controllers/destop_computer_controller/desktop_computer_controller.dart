@@ -23,6 +23,7 @@ class DesktopComputerDataController extends GetxController {
     if (response is List<DesktopComputerModel>) {
       print(response.toString());
       desktopComputerLoading.value = false;
+      desktopComputerError.value = '';
       desktopComputerModel = response;
     } else {
       desktopComputerLoading.value = false;

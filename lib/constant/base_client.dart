@@ -16,6 +16,7 @@ class BaseClientClass {
     final String basicAuth =
         'Basic ${base64Encode(utf8.encode('$consumerkey:$secretkey'))}';
     print('url: ${url + params}');
+    //isInternetConnected();
     http.Response response;
     try {
       response = await http.get(
@@ -135,6 +136,12 @@ class BaseClientClass {
         return true;
       }
     } on SocketException catch (_) {
+      for(int i = 0;i<2;i++){
+        final result = await InternetAddress.lookup('example.com');
+        if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+          return true;
+        }
+      }
       return false;
     }
     return false;

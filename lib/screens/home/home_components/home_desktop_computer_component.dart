@@ -53,6 +53,9 @@ class _DeskTopComputerComponentState extends State<DeskTopComputerComponent> {
                     IconButton(
                         onPressed: () {
                           desktopcomputerController.HpCategoriesController();
+                          // setState(() {
+                          //   desktopcomputerController.HpCategoriesController();
+                          // });
                         },
                         icon: const Icon(Icons.refresh)),
                     Text(desktopcomputerController.desktopComputerError.value),

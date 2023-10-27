@@ -22,6 +22,7 @@ class DellCategoriesListController extends GetxController {
     if (response is List<DellLaptopModel>) {
      print("hit successfullytttttttt");
       hpcategoriesLoading.value = false;
+      hpcategoriesError.value = '';
       hpLaptopModel = response;
     } else {
       print("wrror show");

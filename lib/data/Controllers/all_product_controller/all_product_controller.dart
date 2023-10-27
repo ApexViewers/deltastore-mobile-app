@@ -21,6 +21,7 @@ class AllProductController extends GetxController {
     var response = await AllProducts.getProducts();
     if (response is List<AllProductModel>) {
       productLoading.value = false;
+      productError.value = '';
       productModel = response;
       print("${response.length}show length of data");
 

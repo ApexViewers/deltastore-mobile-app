@@ -22,6 +22,7 @@ class HpCategoriesListController extends GetxController {
     if (response is List<HpLaptopModel>) {
       print(response.toString());
       hpcategoriesLoading.value = false;
+      hpcategoriesError.value = '';
       hpLaptopModel = response;
     } else {
       hpcategoriesLoading.value = false;

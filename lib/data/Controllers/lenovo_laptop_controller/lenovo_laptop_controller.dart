@@ -22,6 +22,7 @@ class LenpvoCategoriesListController extends GetxController {
     if (response is List<LenovoLaptopModel>) {
       print(response.toString());
       lenovocategoriesLoading.value = false;
+      lenovocategoriesError.value = '';
       lenovoLaptopModel = response;
     } else {
       lenovocategoriesLoading.value = false;

@@ -24,7 +24,6 @@ class DellCategoriesServices {
     } catch (e) {
       print("${e}shhhhhhhhhhhhhh");
       print('in catch');
-
       return e;
     }
   }

@@ -14,10 +14,16 @@ import '../../../data/Controllers/product_by_id_controller/product_by_id_control
 import '../../laptops/views/hp/hp_details.dart';
 
 
-class DellLaptopProductComponent extends StatelessWidget {
+class DellLaptopProductComponent extends StatefulWidget {
   DellLaptopProductComponent({super.key});
 
+  @override
+  State<DellLaptopProductComponent> createState() => _DellLaptopProductComponentState();
+}
+
+class _DellLaptopProductComponentState extends State<DellLaptopProductComponent> {
   var dellLaptopController = Get.put(DellCategoriesListController());
+
   var ProductidController = Get.put((ProductIdController()));
 
   @override
@@ -39,7 +45,7 @@ class DellLaptopProductComponent extends StatelessWidget {
                         dellLaptopController.DellCategoriesController();
                       },
                       icon: const Icon(Icons.refresh)),
-                  Text( dellLaptopController.hpcategoriesError.value),
+                  Text(dellLaptopController.hpcategoriesError.value),
                 ],
               ))
               :
@@ -192,3 +198,75 @@ class DellLaptopProductComponent extends StatelessWidget {
     );
   }
 }
+
+// import 'package:flutter/material.dart';
+// import 'package:get/get.dart';
+// import 'package:sizer/sizer.dart';
+//
+// import '../../../constant/image_assets.dart';
+// import '../../../constant/loading/ShimmerEffectloading.dart';
+// import '../../../constant/paddings.dart';
+// import '../../../constant/styles/app_textstyles.dart';
+// import '../../../constant/styles/colors.dart';
+// import '../../../data/Controllers/dell_laptop_controller/dell_laptop_controller.dart';
+// import '../../../data/Controllers/product_by_id_controller/product_by_id_controller.dart';
+// import '../../laptops/views/hp/hp_details.dart';
+//
+// class DellLaptopProductComponent extends StatelessWidget {
+//   DellLaptopProductComponent({Key? key});
+//
+//   final dellLaptopController = Get.put(DellCategoriesListController());
+//   final ProductIdController productidController = Get.put(ProductIdController());
+//
+//   Future<void> _refreshData() async {
+//     // Put your data fetching logic here
+//     await dellLaptopController.DellCategoriesController();
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return RefreshIndicator(
+//       onRefresh: _refreshData,
+//       child: Container(
+//         height: 31.h,
+//         color: cGrey.withOpacity(0.1),
+//         child: Obx(
+//               () {
+//             if (dellLaptopController.hpcategoriesLoading.value) {
+//               return const ShimmerEffectLoading();
+//             } else if (dellLaptopController.hpcategoriesError.value != '') {
+//               return Center(
+//                 child: Column(
+//                   mainAxisAlignment: MainAxisAlignment.center,
+//                   children: [
+//                     IconButton(
+//                       onPressed: (){
+//                         dellLaptopController.hpLaptopModel;
+//                       },
+//                       icon: const Icon(Icons.refresh),
+//                     ),
+//                     Text(dellLaptopController.hpcategoriesError.value),
+//                   ],
+//                 ),
+//               );
+//             } else {
+//               return ListView.builder(
+//                 scrollDirection: Axis.horizontal,
+//                 itemCount: dellLaptopController.hpLaptopModel.length,
+//                 itemBuilder: (BuildContext context, int index) {
+//                   return InkWell(
+//                     onTap: () {
+//                       productidController.productById(dellLaptopController.hpLaptopModel[index].id!);
+//                       Get.to(() => HpLaptopDetailsScreen());
+//                     },
+//                     // Rest of your card widget code here
+//                   );
+//                 },
+//               );
+//             }
+//           },
+//         ),
+//       ),
+//     );
+//   }
+// }
