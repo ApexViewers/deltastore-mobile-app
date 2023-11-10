@@ -30,7 +30,7 @@ class AddToCartDataController extends GetxController {
       addToloading.value = true;
       addToCartLoading.value = false;
       addToCartModel = response;
-      print("hit successfully");
+      print("hit successfullyyy");
 
       Get.snackbar("Success", "Item added to cart successfully");
 
